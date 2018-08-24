@@ -16,11 +16,7 @@ INDIR='./res/example_input'	#where to look for SLHA files if a list of names is 
 #---- CheckMATE additional parameters
 PARAMS='-q'
 
-#---- Paths to executables
-CHECKMATE=/Users/rafalmaselek/CheckMATE-2.0.26/bin/CheckMATE
-SUSYHIT=/Users/rafalmaselek/susyhit/run
-
-##############################################################################
+#---- Function for printing messages to stdout
 inside_print()
 {
 	if ! [[ $SILENT == 'true' ]]; then
@@ -28,6 +24,23 @@ inside_print()
 	fi
 }
 
+clear
+inside_print "[START]"
+
+#---- Paths to executables
+if [[ -e "input_paths.txt" ]]; then
+	exec 4< "input_paths.txt"
+	read  CHECKMATE<&4
+	read  SUSYHIT<&4
+	exec 4<&-
+	inside_print "[INFO] Reading paths from input_paths.txt"
+else
+	inside_print "[INFO] Reading paths from script"
+	CHECKMATE=/Users/rafalmaselek/CheckMATE-2.0.26/bin/CheckMATE
+	SUSYHIT=/Users/rafalmaselek/susyhit/run
+fi
+
+##############################################################################
 make_output_dir()
 {
 	if [[ ! -d "$OUTDIR" ]]; then
@@ -39,8 +52,6 @@ make_output_dir()
 	fi
 }
 
-clear
-inside_print "[START]"
 #---- Working area
 FILE=`echo $1`						#input file
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"	#directory of bash script
@@ -49,26 +60,25 @@ OUTPUT_EXISTS='overwrite'				#what to do if output already exists
 
 # the temp directory used, within $DIR
 # omit the -p parameter to create a temporal directory in the default location
-WORK_DIR=`mktemp -d  "$DIR/tmp"`
+WORK_DIR=$(mktemp -d $DIR/tmp_XXXXXXXX)
 
 # check if tmp dir was created
 if [[ ! -d "$WORK_DIR" ]]; then
-  echo "[ERROR] Could not create temp dir! Check if it already exists and permissions!"
+  echo "[ERROR] Could not create temp dir! Close the terminal and try again!"
   exit 1
 else
-  inside_print "[INFO] Temporary directory created: " $WORK_DIR
+  inside_print "[INFO] Temporary directory created:  $WORK_DIR"
 fi
 
 # deletes the temp directory
-function cleanup 
+function cleanup() 
 {      
-  rm -rf "$WORK_DIR"
+  rm -rf "$WORK_DIR" 
   inside_print "[INFO] Deleted temp working directory $WORK_DIR"
 }
 
 # register the cleanup function to be called on the EXIT signal
 trap cleanup EXIT #COMMENT THIS TO KEEP ALL OUTPUT FROM CHECKMATE
-
 #create results directory if it doesn't exist
 make_output_dir
 
@@ -93,11 +103,11 @@ move_results()
 	if [[ ! -d "$1" ]]; then
 		mkdir $1
 		if [[ ! -d "$1" ]]; then
-			echo "[ERROR] Could not create subdirectory for name: " $1
+			echo "[ERROR] Could not create subdirectory for name: $1"
 			exit 1
 		fi
 	else
-		echo "[WARNING] Results for: " $1 " will be overwritten!"
+		echo "[WARNING] Results for: $1 will be overwritten!"
 	fi
 	cp $WORK_DIR/$1/result.txt $WORK_DIR/$1/evaluation/best_signal_regions.txt $WORK_DIR/$1/evaluation/best_signal_regions.txt \
 $WORK_DIR/$1/evaluation/total_results.txt $WORK_DIR/$1/pythia/pythia_process.log ./$1
@@ -111,23 +121,24 @@ $WORK_DIR/$1/evaluation/total_results.txt $WORK_DIR/$1/pythia/pythia_process.log
 #---- CASE 1: User provides a single SLHA file as a parameter
 if [ ${FILE: -5} == ".slha" ]; then
 	if [[ ! -e $FILE ]]; then
-    		echo "[ERROR] SLHA file: " $FILE " doesn't exist!"
+    		echo "[ERROR] SLHA file: $FILE doesn't exist!"
     		exit 1
 	else 
 		NAME=$(echo `basename $FILE` | cut -d'.' -f1)
 		susyhit $NAME.slha
+		inside_print "[INFO] SUSYHit done. Running CheckMATE..."
 		$CHECKMATE -n $NAME -pyp "p p > $PYTHIA" -a $ANALYSES -maxev $NEV -slha $WORK_DIR/$NAME.slha -oe $OUTPUT_EXISTS -od $WORK_DIR $PARAMS
 		move_results $NAME
 	fi
 else
 #---- CASE 2: User provides a single file with names of SLHA files in it
-	inside_print "[INFO] Reading names of SLHA files from: " $FILE
+	inside_print "[INFO] Reading names of SLHA files from: $FILE"
 	IT=1
 	OUTDIR=$OUTDIR/$(echo `basename $FILE` | cut -d'.' -f1)
 	make_output_dir
 	#---- read input file line by line to extract slha file names
 	while read -r LINE <&3 || [[ -n "$LINE" ]]; do
-		echo "[INFO] Text read from file: $LINE"
+		echo "[INFO] Text read from input file: $LINE"
 	    if ! [[ ${LINE: -5} == ".slha" ]]; then
 			LINE=$LINE.slha
 	    fi
@@ -137,9 +148,10 @@ else
 	    if [[ $USE_FILE_NAMES == 'true' ]]; then 
 	    	IT_NAME=$NAME
 	    	if [[ -d $OUTDIR/$NAME ]]; then
-	    		echo "[WARNING] Results for: " $NAME " will be overwritten!"
+	    		echo "[WARNING] Results for: $NAME will be overwritten!"
 	    	fi
 	    fi
+	    inside_print "[INFO] SUSYHit done. Running CheckMATE..."
 	    $CHECKMATE -n $IT_NAME -pyp "p p > $PYTHIA" -a $ANALYSES -maxev $NEV -slha $WORK_DIR/$LINE -oe $OUTPUT_EXISTS -od $WORK_DIR $PARAMS
 		move_results $IT_NAME
 		if ! [[ $USE_FILE_NAMES == 'true' ]]; then 

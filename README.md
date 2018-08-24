@@ -16,7 +16,15 @@ Repository for CheckMate related stuff for Master thesis
 * SUSYHit; located in res/ folder. To install SUSYHit, extract the archive and build the programme using the `make` command.
 
 #### 1. Installation:
-**auto_checkmate** is a single-file bash scripts and does not require any installation. However user have to specify some parameters: path to CheckMATE executable, path to SUSYHit executable and CheckMATE parameters. All parameters can be set by modifying the variable
+**auto_checkmate** is a single-file bash scripts and does not require any installation. However user have to specify some parameters:
+
+* path to CheckMATE executable (variable CHECKMATE)
+
+* path to SUSYHit executable (variable SUSYHIT)
+
+**NOTE:** In order not to change above paths after upgrading to a newer version of the script, there is a possibility to use an external file with paths to executables. That file will not be overwritten after pulling a new version from GitHub. The file should be located in the same directory as auto_checkmate.sh script and should be named *input_paths.txt*. It should contain two lines with two absolute paths to CheckMATE and SUSYHit accordingly.
+
+User have to also specify CheckMATE parameters or use the default ones. All CheckMATE parameters can be set by modifying the variable
 definitions at the beginning of the script. The meaning of those parameters can be found in CheckMATE article:  https://arxiv.org/pdf/1611.09856.pdf
 
 #### 2. Runnning:
