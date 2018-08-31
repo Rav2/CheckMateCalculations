@@ -15,6 +15,8 @@ Repository for CheckMate related stuff for Master thesis
 
 * SUSYHit; located in res/ folder. To install SUSYHit, extract the archive and build the programme using the `make` command.
 
+* python with *pyslha* module; you can install *pyslha* using pip by typing `pip install pyslha`
+
 #### 1. Installation:
 **auto_checkmate** is a single-file bash scripts and does not require any installation. However user have to specify some parameters:
 

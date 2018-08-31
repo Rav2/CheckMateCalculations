@@ -139,6 +139,16 @@ print_help()
 	echo ""
 }
 
+# validate if input file provided to SUSYHit looks like a proper SLHA file
+validate_slha()
+{
+	./slha_validator.py  $INDIR/$1
+	if [ $? != 0 ]; then
+		echoerr "[ERROR] SLHA input file is broken!"
+		exit 1
+	fi
+}
+
 #---------------------------------#
 #---- THE MAIN PART OF SCRIPT ----#
 #---------------------------------#
@@ -163,6 +173,7 @@ elif [ ${FILE: -5} == ".slha" ]; then
 	else 
 		NAME=$(echo `basename $FILE` | cut -d'.' -f1)
 		INDIR=$(dirname $FILE)
+		validate_slha $NAME.slha
 		susyhit $NAME.slha
 		inside_print "[INFO] SUSYHit done. Running CheckMATE..."
 		$CHECKMATE -n $NAME -pyp "p p > $PYTHIA" -a $ANALYSES -maxev $NEV -slha $WORK_DIR/$NAME.slha -oe $OUTPUT_EXISTS -od $WORK_DIR $PARAMS
@@ -180,6 +191,7 @@ else
 	    if ! [[ ${LINE: -5} == ".slha" ]]; then
 			LINE=$LINE.slha
 	    fi
+	    validate_slha $LINE
 	    susyhit $LINE
 	    NAME=$(echo $LINE | cut -d'.' -f1)
 	    IT_NAME=$(printf '%i' $IT )
