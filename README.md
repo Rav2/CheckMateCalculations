@@ -85,3 +85,6 @@ Each output directory contains four files:
 * result.txt --final result of CheckMATE
 * total_results.txt -- detailed results for each of the signal regions
 * best_signal_regions.txt -- can be used to establish which signal regions are the best for theory testing
+
+
+If one is interested in keeping all output from CheckMATE, it is possible by setting DEBUG variable to *true*.

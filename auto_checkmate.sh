@@ -3,8 +3,11 @@
 #--------------------------------------#
 #---- AUTO_CHECKMATE BY R. MASELEK ----#
 #--------------------------------------#
+
+#---- Script parameters
 SILENT='false' 		  #set to true to disable all script generated output to stdout
 USE_FILE_NAMES='false' #set 'true' to use file names to name output folders in multi-file mode instead of using natural numbers
+DEBUG='false' #set to 'true' to prevent deleting the directory with standard CheckMATE output
 
 #---- CheckMATE basic parameters
 PYTHIA='allsusy'		#which process to simulate
@@ -12,7 +15,7 @@ ANALYSES='atlas_1802_03158'	#which analyses to perform
 NEV='5000'			#max number of events
 OUTDIR='./results'		#where to place results (NO "/"" AT THE END)
 INDIR='./res/example_input'	#where to look for SLHA files if a list of names is provided (NO "/"" AT THE END)
-	
+
 #---- CheckMATE additional parameters
 PARAMS='-q'
 
@@ -81,8 +84,9 @@ function cleanup()
 }
 
 #---- register the cleanup function to be called on the EXIT signal
-trap cleanup EXIT #COMMENT THIS TO KEEP ALL OUTPUT FROM CHECKMATE
-
+if ! [[ $DEBUG == 'true' ]]; then
+	trap cleanup EXIT 
+fi
 #create results directory if it doesn't exist
 make_output_dir
 
