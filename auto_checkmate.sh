@@ -125,7 +125,7 @@ move_results()
 
 	fi
 	cp $WORK_DIR/$2 $WORK_DIR/$1
-	cp $WORK_DIR/$1/result.txt $WORK_DIR/$1/evaluation/best_signal_regions.txt $WORK_DIR/$1/evaluation/best_signal_regions.txt \
+	cp $WORK_DIR/$1/result.txt $WORK_DIR/$1/evaluation/best_signal_regions.txt \
 $WORK_DIR/$1/evaluation/total_results.txt $WORK_DIR/$1/pythia/pythia_process.log $WORK_DIR/$1/$2 ./$DEST
 	cd $DIR
 }
