@@ -5,13 +5,13 @@ RESULT_PATH='/Users/rafalmaselek/TEMP'
 MODE="QqN1"
 ANALYSIS="atlas_1712_02332"
 
-M1_MIN=900
+M1_MIN=500
 M1_MAX=1200
-M1_STEP=900
+M1_STEP=200
 
-M2_MIN=900
+M2_MIN=500
 M2_MAX=1500
-M2_STEP=700
+M2_STEP=200
 
 #Check if output directory exists
 if [[ ! -d "$RESULT_PATH" ]]; then

@@ -5,7 +5,7 @@
 #--------------------------------------#
 
 #---- Script parameters
-SILENT='true' 		  #set to true to disable all script generated output to stdout
+SILENT='false' 		  #set to true to disable all script generated output to stdout
 USE_FILE_NAMES='true' #set 'true' to use file names to name output folders in multi-file mode instead of using natural numbers
 DEBUG='false' #set to 'true' to prevent deleting the directory with standard CheckMATE output
 
@@ -161,21 +161,21 @@ elif [ ${FILE: -4} == ".dat" ]; then
 		$CHECKMATE $FILE
 		move_results $NAME $NAME.spcdec
 	fi
-# else
-# #---- CASE 4: User provides a single file with names of SLHA files in it
-# 	inside_print "[INFO] Reading names of SLHA files from: $FILE"
+else
+# #---- CASE 4: User provides a single file with names of parameter cards in it
+	inside_print "[INFO] Reading names of parameter cards from: $FILE"
 # 	IT=1
 # 	OUTDIR=$OUTDIR/$(echo `basename $FILE` | cut -d'.' -f1)
 # 	make_output_dir
-# 	#---- read input file line by line to extract slha file names
-# 	while read -r LINE <&3 || [[ -n "$LINE" ]]; do
-# 		inside_print "[INFO] Text read from input file: $LINE"
-# 	    if ! [[ ${LINE: -5} == ".slha" ]]; then
-# 			LINE=$LINE.slha
-# 	    fi
+# 	#---- read input file line by line to extract file names
+	while read -r LINE <&3 || [[ -n "$LINE" ]]; do
+		inside_print "[INFO] Text read from input file: $LINE"
+	    if ! [[ ${LINE: -4} == ".dat" ]]; then
+			LINE=$LINE.dat
+	    fi
 # 	    validate_slha $LINE
 # 	    # susyhit $LINE
-# 	    NAME=$(echo $LINE | cut -d'.' -f1)
+	    # NAME=$(echo $LINE | cut -d'.' -f1)
 # 	    IT_NAME=$(printf '%i' $IT )
 # 	    if [[ $USE_FILE_NAMES == 'true' ]]; then 
 # 	    	IT_NAME=$NAME
@@ -184,13 +184,14 @@ elif [ ${FILE: -4} == ".dat" ]; then
 # 	    	fi
 # 	    fi
 # 	    # inside_print "[INFO] SUSYHit done."
-# 	    inside_print "[INFO] Running CheckMATE..."
-# 	    $CHECKMATE -n $IT_NAME -pyp "p p > $PYTHIA" -a $ANALYSES -maxev $NEV -slha $WORK_DIR/$LINE -oe $OUTPUT_EXISTS -od $WORK_DIR $PARAMS
-# 		move_results $IT_NAME $LINE
+		NAME=$(echo `basename $LINE` | cut -d'.' -f1)
+	    inside_print "[INFO] Running CheckMATE..."
+	    $CHECKMATE $LINE
+		move_results $NAME $NAME.spcdec
 # 		if ! [[ $USE_FILE_NAMES == 'true' ]]; then 
 # 			IT=$((IT+1)) 
 # 		fi
-# 	done 3<"$FILE"
+	done 3<"$FILE"
 fi
 
 inside_print "[END]"
