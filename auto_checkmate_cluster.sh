@@ -7,7 +7,7 @@
 #---- Script parameters
 SILENT='false' 		  #set to true to disable all script generated output to stdout
 USE_FILE_NAMES='true' #set 'true' to use file names to name output folders in multi-file mode instead of using natural numbers
-DEBUG='false' #set to 'true' to prevent deleting the directory with standard CheckMATE output
+DEBUG='true' #set to 'true' to prevent deleting the directory with standard CheckMATE output
 
 NAME='' #tag-name of the files
 #---- Function for printing messages to stdout
@@ -24,12 +24,24 @@ clear
 inside_print "[START]"
 
 #---- Paths to executables
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 if [[ -e "input_paths.txt" ]]; then
-	exec 4< "input_paths.txt"
-	read  CHECKMATE<&4
-	read  SUSYHIT<&4
-	exec 4<&-
 	inside_print "[INFO] Reading paths from input_paths.txt"
+	exec 4< "input_paths.txt"
+	CHECKMATE=""
+	SUSYHIT=""
+	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
+		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
+		if [[ !( "$LINE" =~ ^#.*$ ) ]]; then
+			if [[ "$CHECKMATE" == "" ]]; then
+				CHECKMATE=$LINE
+			else
+				SUSYHIT=$LINE
+				break
+			fi
+		fi
+	done
+	exec 4<&-
 else
 	inside_print "[INFO] Reading paths from script"
 	CHECKMATE=/Users/rafalmaselek/CheckMATE-2.0.26/bin/CheckMATE
@@ -55,8 +67,11 @@ WORK_DIR=$(dirname $(dirname $FILE) )
 #---- Directories 
 RESDIR=$WORK_DIR'/results'		#where to place results (NO "/"" AT THE END) 
 OUTDIR=$WORK_DIR'/output'		#where to place temporary files (NO "/"" AT THE END)
-INDIR=$WORK_DIR'/in_files'		#where to look for SLHA files (NO "/"" AT THE END)
+INDIR=$WORK_DIR'/in_files'		#where to look for Pythia cards (NO "/"" AT THE END)
 
+inside_print "[INFO] RESDIR: $RESDIR"
+inside_print "[INFO] OUTDIR: $OUTDIR"
+inside_print "[INFO] INDIR: $INDIR"
 #--- Creating directories
 make_dir $RESDIR
 make_dir $OUTDIR
@@ -81,7 +96,8 @@ fi
 # run SUSYHit and copy the output to WORK_DIR
 susyhit()
 {
-	inside_print "[INFO] Running SUSYHit..."
+	inside_print " "
+	#[INFO] Running SUSYHit..."
 	# local SUSYHIT_DIR=$(echo `dirname $SUSYHIT`)
 	# cp $INDIR/$1 $SUSYHIT_DIR/slhaspectrum.in
 	# cd $SUSYHIT_DIR

@@ -34,11 +34,22 @@ inside_print "[START]"
 
 #---- Paths to executables
 if [[ -e "input_paths.txt" ]]; then
-	exec 4< "input_paths.txt"
-	read  CHECKMATE<&4
-	read  SUSYHIT<&4
-	exec 4<&-
 	inside_print "[INFO] Reading paths from input_paths.txt"
+	exec 4< "input_paths.txt"
+	CHECKMATE=""
+	SUSYHIT=""
+	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
+		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
+		if [[ !( "$LINE" =~ ^#.*$ ) ]]; then
+			if [[ "$CHECKMATE" == "" ]]; then
+				CHECKMATE=$LINE
+			else
+				SUSYHIT=$LINE
+				break
+			fi
+		fi
+	done
+	exec 4<&-
 else
 	inside_print "[INFO] Reading paths from script"
 	CHECKMATE=/Users/rafalmaselek/CheckMATE-2.0.26/bin/CheckMATE
