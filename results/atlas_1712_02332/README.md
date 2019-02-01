@@ -1,14 +1,10 @@
-#
 # 01.02.2019
-#
-# This analysis was devoted to reproduce exclusion plots from atlas analysis: 1712_02332
-# https://arxiv.org/abs/1712.02332
-# figures 13.a and 13.b were reproduced
-# it was an initial test of doing calculations on the cluster
+
+# This analysis was devoted to reproduce exclusion plots from atlas analysis: 1712_02332 https://arxiv.org/abs/1712.02332 figures 13.a and 13.b were reproduced it was an initial test of doing calculations on the cluster
 
 ## *Steps:*
 0. Make sure paths specified in input_path.txt are valid.
-1. Run make_slha.sh with, where grid and analysis is specified. It will use modified version of LHC_recast, in particular main_sms_RM.sh.
+1. Run make_slha.sh, where grid and analysis is specified. It will use modified version of LHC_recast, in particular main_sms_RM.sh.
 2. Copy files to udocker.
 3. Use divide_list.sh to create files with short lists of SLHA files to proceed by CheckMATE.
 4. Use udocker scripts to make jobs assigning list files to auto_checkmate_cluster_p8cards.sh script.
