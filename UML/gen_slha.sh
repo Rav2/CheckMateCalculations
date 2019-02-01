@@ -1,5 +1,5 @@
 # !/bin/bash
-
+PREFIX="minigrid"
 INPUT="./grid/minigrid.dat"
 WRITE_SLHA="./write_slha.py"
 RESULT_PATH="./SLHA"
@@ -15,13 +15,20 @@ fi
 if [[ -e $WRITE_SLHA ]]; then
 	echo "[INFO] Generating SLHA files!"
 	exec 4< $INPUT
-	line_no=0
+	line_no=1
 	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
+		# echo "[INFO] LINE: $line_no"
 		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
 		if [[ !( "$LINE" =~ ^#.*$ ) ]]; then
-			echo $LINE
-
+			NAME="$PREFIX" 
+			for STR in $LINE; do
+				NAME=$NAME"_"$STR
+			done
+			NAME=$NAME".slha"
+			$WRITE_SLHA $LINE > $NAME
+			mv $NAME $RESULT_PATH
 		fi
+	line_no=$(( $line_no + 1))
 	done
 	exec 4<&-
 fi

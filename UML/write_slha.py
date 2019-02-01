@@ -187,5 +187,4 @@ BLOCK MSOFT Q=  7.28047708E+03  # soft SUSY breaking masses at the scale Q
         46     6.73955076E+03   # M_tR
         47     7.97436780E+03   # M_dR
         48     7.97436780E+03   # M_sR
-        49     7.93910496E+03   # M_bR
-'''.format(mG=mG, mQ=mQ, mQ3=mQ3, mN1=mN1)
+        49     7.93910496E+03   # M_bR'''.format(mG=mG, mQ=mQ, mQ3=mQ3, mN1=mN1)
