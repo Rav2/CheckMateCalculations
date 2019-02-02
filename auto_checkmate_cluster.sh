@@ -5,11 +5,16 @@
 #--------------------------------------#
 
 #---- Script parameters
-SILENT='false' 		  #set to true to disable all script generated output to stdout
+SILENT='true' 		  #set to true to disable all script generated output to stdout
 USE_FILE_NAMES='true' #set 'true' to use file names to name output folders in multi-file mode instead of using natural numbers
-DEBUG='true' #set to 'true' to prevent deleting the directory with standard CheckMATE output
+DEBUG='false' #set to 'true' to prevent deleting the directory with standard CheckMATE output
 
 NAME='' #tag-name of the files
+
+PARAMS="-a 13TeV -q -oe overwrite" 
+PROCESS="allsusy"
+
+echo $PARAMS
 #---- Function for printing messages to stdout
 inside_print()
 {
@@ -30,14 +35,27 @@ if [[ -e "input_paths.txt" ]]; then
 	exec 4< "input_paths.txt"
 	CHECKMATE=""
 	SUSYHIT=""
+	PREFIX=""
+	OPT=0
 	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
 		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
 		if [[ !( "$LINE" =~ ^#.*$ ) ]]; then
-			if [[ "$CHECKMATE" == "" ]]; then
+			if [[ $OPT -eq 1 ]]; then
 				CHECKMATE=$LINE
-			else
+			elif [[ $OPT -eq 2 ]]; then
 				SUSYHIT=$LINE
-				break
+			elif [[ $OPT -eq 3 ]]; then
+				PREFIX=$LINE
+			fi
+		else 
+			if [[ "$LINE" = *"CHECKMATE"*  ]]; then
+				OPT=1
+			elif [[ "$LINE" = *"SUSYHIT"* ]]; then
+				OPT=2
+			elif [[ "$LINE" = *"RESULTS"* ]]; then
+				OPT=3
+			else 
+				OPT=0
 			fi
 		fi
 	done
@@ -46,6 +64,7 @@ else
 	inside_print "[INFO] Reading paths from script"
 	CHECKMATE=/Users/rafalmaselek/CheckMATE-2.0.26/bin/CheckMATE
 	SUSYHIT=/Users/rafalmaselek/susyhit/run
+	PREFIX="/RESULTS/4DIM/MINIGRID"
 fi
 
 ##############################################################################
@@ -65,9 +84,9 @@ FILE=`echo $1`	#input file
 WORK_DIR=$(dirname $(dirname $FILE) )
 
 #---- Directories 
-RESDIR=$WORK_DIR'/results'		#where to place results (NO "/"" AT THE END) 
-OUTDIR=$WORK_DIR'/output'		#where to place temporary files (NO "/"" AT THE END)
-INDIR=$WORK_DIR'/in_files'		#where to look for Pythia cards (NO "/"" AT THE END)
+RESDIR=$PREFIX'/results'		#where to place results (NO "/"" AT THE END) 
+OUTDIR=$PREFIX'/output'		#where to place temporary files (NO "/"" AT THE END)
+INDIR=$PREFIX'/in_files'		#where to look for Pythia cards (NO "/"" AT THE END)
 
 inside_print "[INFO] RESDIR: $RESDIR"
 inside_print "[INFO] OUTDIR: $OUTDIR"
@@ -93,18 +112,6 @@ if ! [[ $DEBUG == 'true' ]]; then
 fi
 
 #---- Functions
-# run SUSYHit and copy the output to WORK_DIR
-susyhit()
-{
-	inside_print " "
-	#[INFO] Running SUSYHit..."
-	# local SUSYHIT_DIR=$(echo `dirname $SUSYHIT`)
-	# cp $INDIR/$1 $SUSYHIT_DIR/slhaspectrum.in
-	# cd $SUSYHIT_DIR
-	# ./$(echo `basename $SUSYHIT`)
-	# cp susyhit_slha.out $WORK_DIR/$1
-	# cd $DIR
-}
 
 # create a convenient folder hierarchy and move interesting files in it 
 move_results()
@@ -136,16 +143,6 @@ print_help()
 	echo ""
 }
 
-# validate if input file provided to SUSYHit looks like a proper SLHA file
-# validate_slha()
-# {
-# 	./slha_validator.py  $INDIR/$1
-# 	if [ $? != 0 ]; then
-# 		echoerr "[ERROR] SLHA input file is broken!"
-# 		exit 1
-# 	fi
-# }
-
 #---------------------------------#
 #---- THE MAIN PART OF SCRIPT ----#
 #---------------------------------#
@@ -162,51 +159,32 @@ elif [[ $FILE == "-h" || $FILE == "--help" ]] ; then
 elif [ ${FILE: 0:1} == "-" ]; then
 	echoerr "[ERROR] Unknown flag! Type ./auto_checkmate --help for help!"
 	exit 1
-#---- CASE 3: User provides a single card file as a parameter
-elif [ ${FILE: -4} == ".dat" ]; then
+#---- CASE 3: User provides a single SLHA file as a parameter
+elif [ ${FILE: -5} == ".slha" ]; then
 	if [[ ! -e $FILE ]]; then
-    		echoerr "[ERROR] DAT file: $FILE doesn't exist!"
+    		echoerr "[ERROR] SLHA file: $FILE doesn't exist!"
     		exit 1
 	else 
 		NAME=$(echo `basename $FILE` | cut -d'.' -f1)
-		# INDIR=$(dirname $FILE)
-		# validate_slha $NAME.slha
-		# susyhit $NAME.slha
-		# inside_print "[INFO] SUSYHit done."
 		inside_print "[INFO] Running CheckMATE..."
-		$CHECKMATE $FILE
-		move_results $NAME $NAME.spcdec
+		PARAMS2=$( echo '-slha' ${FILE} '-od' ${OUTDIR} )
+	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS"
+		move_results $NAME $NAME.slha
 	fi
 else
-# #---- CASE 4: User provides a single file with names of parameter cards in it
-	inside_print "[INFO] Reading names of parameter cards from: $FILE"
-# 	IT=1
-# 	OUTDIR=$OUTDIR/$(echo `basename $FILE` | cut -d'.' -f1)
-# 	make_output_dir
+# #---- CASE 4: User provides a single file with names of slha files in it
+	inside_print "[INFO] Reading names of SLHA files from: $FILE"
 # 	#---- read input file line by line to extract file names
 	while read -r LINE <&3 || [[ -n "$LINE" ]]; do
 		inside_print "[INFO] Text read from input file: $LINE"
-	    if ! [[ ${LINE: -4} == ".dat" ]]; then
-			LINE=$LINE.dat
+	    if ! [[ ${LINE: -5} == ".slha" ]]; then
+			LINE=$LINE.slha
 	    fi
-# 	    validate_slha $LINE
-# 	    # susyhit $LINE
-	    # NAME=$(echo $LINE | cut -d'.' -f1)
-# 	    IT_NAME=$(printf '%i' $IT )
-# 	    if [[ $USE_FILE_NAMES == 'true' ]]; then 
-# 	    	IT_NAME=$NAME
-# 	    	if [[ -d $OUTDIR/$NAME ]]; then
-# 	    		echo "[WARNING] Results for: $NAME will be overwritten!"
-# 	    	fi
-# 	    fi
-# 	    # inside_print "[INFO] SUSYHit done."
 		NAME=$(echo `basename $LINE` | cut -d'.' -f1)
 	    inside_print "[INFO] Running CheckMATE..."
-	    $CHECKMATE $LINE
-		move_results $NAME $NAME.spcdec
-# 		if ! [[ $USE_FILE_NAMES == 'true' ]]; then 
-# 			IT=$((IT+1)) 
-# 		fi
+		PARAMS2=$( echo '-slha' ${LINE} '-od' ${OUTDIR} )
+	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS"
+		move_results $NAME $NAME.slha
 	done 3<"$FILE"
 fi
 

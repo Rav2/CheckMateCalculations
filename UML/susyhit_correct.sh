@@ -3,7 +3,7 @@
 SUSYHIT="/Users/rafalmaselek/susyhit/run"
 INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA"
 OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
-PREFIX="minigrid"
+PREFIX=""
 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"	#directory of bash script
