@@ -2,6 +2,15 @@
 
 # This analysis was devoted to create a 4-dimensional grid of points and test if the software works well
 
+**analyses:** 13 TeV
+**processes:** allSUSY
+**model parameters:**  mG, mQ, mQ3, mN1
+**no of points:** 433
+**generator:** Pythia in CheckMate
+**cross-sections:** UML/write_slha.py script + SUSYhit
+**seed:** random
+**no of events:** Pythia?
+
 ## *Steps:*
 0. Use UML/grid/generation.py script to generate a grid of points.
 1. Use UML/gen_slha.sh to generate slha files
