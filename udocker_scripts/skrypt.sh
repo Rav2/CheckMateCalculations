@@ -10,5 +10,5 @@
 		-v /home/2/rm394969/susyhit:/susyhit \
                 -v /home/2/rm394969/SLHA:/SLHA \
 		-v /home/2/rm394969/LHC_recast-master:/LHC_recast \
-		 LHCrecasting /bin/bash
+		 LHCrecasting /bin/bash 
 
