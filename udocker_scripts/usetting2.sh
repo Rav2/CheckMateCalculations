@@ -10,4 +10,6 @@
 		-v /home/2/rm394969/susyhit:/susyhit \
                 -v /home/2/rm394969/SLHA:/SLHA \
 		-v /home/2/rm394969/LHC_recast-master:/LHC_recast \
+		-v /home/2/rm394969/EWKfast_LO:/EWKfast_LO \
+		-v /home/2/rm394969/NLLfast:/NLLfast \
 		 LHCrecasting /bin/bash /CheckMATECalculations/auto_checkmate_cluster.sh $1

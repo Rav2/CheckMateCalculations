@@ -5,14 +5,13 @@
 #--------------------------------------#
 
 #---- Script parameters
-SILENT='true' 		  #set to true to disable all script generated output to stdout
-USE_FILE_NAMES='true' #set 'true' to use file names to name output folders in multi-file mode instead of using natural numbers
-DEBUG='false' #set to 'true' to prevent deleting the directory with standard CheckMATE output
-
+SILENT='true'	#set to true to disable all script generated output to stdout
+DEBUG='false' 	#set to 'true' to prevent deleting the directory with standard CheckMATE output
 NAME='' #tag-name of the files
-
-PARAMS="-a 13TeV -q -oe overwrite" 
-PROCESS="allsusy"
+PARAMS="-a 13TeV -q -oe overwrite" 	#parameters for checkmate
+PROCESS="allsusy"	#process for pythia
+MIN_NEV=1000	#minimal number of events to simulate
+CALC_XSECT='true' #set to 'true' to calculate required no of events using NLLfast and EWKfast
 
 echo $PARAMS
 #---- Function for printing messages to stdout
@@ -36,6 +35,8 @@ if [[ -e "input_paths.txt" ]]; then
 	CHECKMATE=""
 	SUSYHIT=""
 	PREFIX=""
+	EWKFAST_LO=""
+	NLLFAST=""
 	OPT=0
 	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
 		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
@@ -46,6 +47,10 @@ if [[ -e "input_paths.txt" ]]; then
 				SUSYHIT=$LINE
 			elif [[ $OPT -eq 3 ]]; then
 				PREFIX=$LINE
+			elif [[ $OPT -eq 4 ]]; then
+				EWKFAST_LO=$LINE"/EWKFast.py"
+			elif [[ $OPT -eq 5 ]]; then
+				NLLFAST=$LINE
 			fi
 		else 
 			if [[ "$LINE" = *"CHECKMATE"*  ]]; then
@@ -54,6 +59,10 @@ if [[ -e "input_paths.txt" ]]; then
 				OPT=2
 			elif [[ "$LINE" = *"RESULTS"* ]]; then
 				OPT=3
+			elif [[ "$LINE" = *"EWKFAST_LO"* ]]; then
+				OPT=4
+			elif [[ "$LINE" = *"NLLFAST"* ]]; then
+				OPT=5
 			else 
 				OPT=0
 			fi
@@ -124,9 +133,12 @@ move_results()
 			exit 1
 		fi
 	fi
-	cp $INDIR/$2 $RESDIR/$1
+	cp $2 $RESDIR/$1
 	cp $OUTDIR/$1/result.txt $OUTDIR/$1/evaluation/best_signal_regions.txt $OUTDIR/$1/evaluation/total_results.txt \
 	$OUTDIR/$1/pythia/pythia_process.log $RESDIR/$1
+	if [[ CALC_XSECT == 'true' ]]; then
+		cp $OUTDIR/$1/EWK.txt $RESDIR/$1
+	fi
 	cd $DIR
 }
 
@@ -140,6 +152,9 @@ print_help()
 	echo "To use it, provide as an argument a path to a single slha file, or alternatively"
 	echo "to a text file containing names of slha files (one per line, files in the same folder"
 	echo "as the list-file)."
+	echo "IMPORTANT! To run auto_checkmate you need to have a .txt file named 'input_paths.txt'"
+	echo "in the same folder as the script. To see how the file should look like, use the"
+	echo "'input_paths_template.txt' file."
 	echo ""
 }
 
@@ -154,7 +169,7 @@ if [ $# -eq 0 ]; then
 #---- CASE 1: User asks for help
 elif [[ $FILE == "-h" || $FILE == "--help" ]] ; then
 	print_help
-	exit 0
+	exit 1
 #---- CASE 2: User provides wrong flag
 elif [ ${FILE: 0:1} == "-" ]; then
 	echoerr "[ERROR] Unknown flag! Type ./auto_checkmate --help for help!"
@@ -166,25 +181,45 @@ elif [ ${FILE: -5} == ".slha" ]; then
     		exit 1
 	else 
 		NAME=$(echo `basename $FILE` | cut -d'.' -f1)
+		make_dir ${RESDIR}/${NAME} 
 		inside_print "[INFO] Running CheckMATE..."
 		PARAMS2=$( echo '-slha' ${FILE} '-od' ${OUTDIR} )
-	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS"
-		move_results $NAME $NAME.slha
+		NEV=${MIN_NEV}
+		if [[ $CALC_XSECT=='true' ]]; then
+			# calculate required no of events to simulate
+			output=$(./xsection/get_nev.py ${MIN_NEV} ${EWKFAST_LO} ${FILE} ${NLLFAST} ${RESDIR}"/"${NAME} 2>&1)
+			# print some output from NLLfast and EWKfast
+			echo "[${output#*[}"
+			array=( $output )
+			NEV=${array[0]}
+		fi
+	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
+		move_results $NAME $FILE
 	fi
 else
-# #---- CASE 4: User provides a single file with names of slha files in it
+#---- CASE 4: User provides a single file with names of slha files in it
 	inside_print "[INFO] Reading names of SLHA files from: $FILE"
-# 	#---- read input file line by line to extract file names
+	#---- read input file line by line to extract file names
 	while read -r LINE <&3 || [[ -n "$LINE" ]]; do
 		inside_print "[INFO] Text read from input file: $LINE"
 	    if ! [[ ${LINE: -5} == ".slha" ]]; then
 			LINE=$LINE.slha
 	    fi
 		NAME=$(echo `basename $LINE` | cut -d'.' -f1)
+		make_dir ${RESDIR}/${NAME} 
 	    inside_print "[INFO] Running CheckMATE..."
 		PARAMS2=$( echo '-slha' ${LINE} '-od' ${OUTDIR} )
-	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS"
-		move_results $NAME $NAME.slha
+		NEV=${MIN_NEV}
+		if [[ $CALC_XSECT=='true' ]]; then
+			# calculate required no of events to simulate
+			output=$(./xsection/get_nev.py ${MIN_NEV} ${EWKFAST_LO} ${FILE} ${NLLFAST} ${RESDIR}"/"${NAME} 2>&1)
+			# print some output from NLLfast and EWKfast
+			echo "[${output#*[}"
+			array=( $output )
+			NEV=${array[0]}
+		fi
+	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
+		move_results $NAME $FILE
 	done 3<"$FILE"
 fi
 
