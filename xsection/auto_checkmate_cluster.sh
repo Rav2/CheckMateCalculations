@@ -5,7 +5,7 @@
 #--------------------------------------#
 
 #---- Script parameters
-SILENT='false'	#set to true to disable all script generated output to stdout
+SILENT='true'	#set to true to disable all script generated output to stdout
 DEBUG='false' 	#set to 'true' to prevent deleting the directory with standard CheckMATE output
 NAME='' #tag-name of the files
 PARAMS="-a 13TeV -q -oe overwrite" 	#parameters for checkmate
@@ -18,7 +18,7 @@ echo $PARAMS
 inside_print()
 {
 	if ! [[ $SILENT == 'true' ]]; then
-		echo ${1}
+		echo $1
 	fi
 }
 #---- Function for printing messages to stderr
@@ -35,6 +35,8 @@ if [[ -e "input_paths.txt" ]]; then
 	CHECKMATE=""
 	SUSYHIT=""
 	PREFIX=""
+	EWKFAST_LO=""
+	NLLFAST=""
 	OPT=0
 	while IFS= read -r LINE<&4 || [[ -n "$LINE" ]]; do
 		LINE="$(echo -e "${LINE}" | sed -e 's/[[:space:]]*$//')"
@@ -45,6 +47,10 @@ if [[ -e "input_paths.txt" ]]; then
 				SUSYHIT=$LINE
 			elif [[ $OPT -eq 3 ]]; then
 				PREFIX=$LINE
+			elif [[ $OPT -eq 4 ]]; then
+				EWKFAST_LO=$LINE"/EWKFast.py"
+			elif [[ $OPT -eq 5 ]]; then
+				NLLFAST=$LINE
 			fi
 		else 
 			if [[ "$LINE" = *"CHECKMATE"*  ]]; then
@@ -53,6 +59,10 @@ if [[ -e "input_paths.txt" ]]; then
 				OPT=2
 			elif [[ "$LINE" = *"RESULTS"* ]]; then
 				OPT=3
+			elif [[ "$LINE" = *"EWKFAST_LO"* ]]; then
+				OPT=4
+			elif [[ "$LINE" = *"NLLFAST"* ]]; then
+				OPT=5
 			else 
 				OPT=0
 			fi
@@ -176,18 +186,12 @@ elif [ ${FILE: -5} == ".slha" ]; then
 		PARAMS2=$( echo '-slha' ${FILE} '-od' ${OUTDIR} )
 		NEV=${MIN_NEV}
 		if [[ $CALC_XSECT=='true' ]]; then
-			# make a dry run to estimate the total SUSY x-section
-			$CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
 			# calculate required no of events to simulate
-			output=$(./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process.log" 2>&1)
-			# print calculated x-section
-			inside_print "[${output#*[}"
+			output=$(./xsection/get_nev.py ${MIN_NEV} ${EWKFAST_LO} ${FILE} ${NLLFAST} ${RESDIR}"/"${NAME} 2>&1)
+			# print some output from NLLfast and EWKfast
+			echo "[${output#*[}"
 			array=( $output )
 			NEV=${array[0]}
-			if [[ ${MIN_NEV} -gt ${NEV} ]]; then
-				NEV=${MIN_NEV}
-				inside_print "[INFO] No of event to simulate: ${NEV}" 
-			fi
 		fi
 	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
 		move_results $NAME $FILE
@@ -207,18 +211,12 @@ else
 		PARAMS2=$( echo '-slha' ${LINE} '-od' ${OUTDIR} )
 		NEV=${MIN_NEV}
 		if [[ $CALC_XSECT=='true' ]]; then
-			# make a dry run to estimate the total SUSY x-section
-			$CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
 			# calculate required no of events to simulate
-			output=$(./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process.log" 2>&1)
-			# print calculated x-section
-			inside_print "[${output#*[}"
+			output=$(./xsection/get_nev.py ${MIN_NEV} ${EWKFAST_LO} ${LINE} ${NLLFAST} ${RESDIR}"/"${NAME} 2>&1)
+			# print some output from NLLfast and EWKfast
+			echo "[${output#*[}"
 			array=( $output )
 			NEV=${array[0]}
-			if [[ ${MIN_NEV} -gt ${NEV} ]]; then
-				NEV=${MIN_NEV}
-				inside_print "[INFO] No of event to simulate: ${NEV}" 
-			fi
 		fi
 	    $CHECKMATE -n ${NAME} ${PARAMS} ${PARAMS2} -pyp "p p > $PROCESS" -maxev ${NEV}
 		move_results $NAME $FILE
