@@ -240,7 +240,7 @@ else
 			# test_success "initial run of CheckMATE"
 			# calculate required no of events to simulate process1 <-- NOTE!
 			
-			output=$(python ./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process1.log" 2>&1)
+			output=$(python ./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process1.log" ${RESDIR}/${NAME} 2>&1)
 			# test_success "NEV calculation"
 			# print calculated x-section
 			inside_print "[${output#*[}"
