@@ -3,6 +3,9 @@
 #
 import sys
 import os.path
+import write_pythia_input
+
+script_path=os.path.dirname(os.path.realpath(__file__))
 
 ifseed = '#'
 ifxsect = '#'
@@ -10,19 +13,21 @@ ifsxescterr = '#'
 try:
 	name = str(sys.argv[1]).replace('\"','').strip()
 	analyses = str(sys.argv[2]).replace('\"','').strip()
-	# print(analyses)
-	slha = str(sys.argv[3])
-	quiet = str(sys.argv[4]).replace('\"','').strip()
-	seed = int(sys.argv[5])
+	energy = str(sys.argv[3])
+	slha = str(sys.argv[4])
+	quiet = str(sys.argv[5]).replace('\"','').strip()
+	seed = int(sys.argv[6])
 	if seed >= 0:
 		ifseed = ''
-	outdir = str(sys.argv[6])
-	nev = int(sys.argv[7])
-	xsections = float(sys.argv[8])
-	xsecterr = float(sys.argv[9])
-	processes = str(sys.argv[10]).replace('\"','').strip()
+	outdir = str(sys.argv[7])
+	nev = int(sys.argv[8])
+	xsections = float(sys.argv[9])
+	xsecterr = float(sys.argv[10])
+	processes = str(sys.argv[11]).replace('\"','').strip()
+	card_dir = str(sys.argv[12])
+
 except:
-    print '[name] [analyses] [slha] [quiet] [seed] [outdir] [nev] [xsections] [xsecterr] [processes]'
+    print '[name] [analyses] [energy] [slha] [quiet] [seed] [outdir] [nev] [xsections] [xsecterr] [processes] [card dir]'
     exit()
 
 processes = [str(x).strip() for x in processes.split(',')]
@@ -41,6 +46,11 @@ else:
 process_blocks = ''
 for it, proc in enumerate(processes):
 	jj = it
+	p8card = write_pythia_input.main(slha, proc, energy, nev)
+	p8path = os.path.join(card_dir, name + "_" + proc + ".in")
+	p8file = open(p8path, 'w')
+	p8file.write(p8card)
+	p8file.close()
 	if proper_xsections:
 		ifxsect = ''
 		ifsxescterr = ''
@@ -49,14 +59,12 @@ for it, proc in enumerate(processes):
 		ifsxescterr = '#'
 		jj=0
 
+
+
 	process_blocks += """
 [process{}]
-Pythia8Process: p p > {}
-MaxEvents: {}
-{}XSect: {}
-{}XSectErr: {}
-#Pythia8Card: testpythia8card.in
-	""".format(it+1, proc, nev, ifxsect, xsections[jj], ifsxescterr,xsecterr[jj])
+Pythia8Card: {}
+	""".format(it+1, p8path)
 
 
 print '''

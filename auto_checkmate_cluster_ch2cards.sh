@@ -12,9 +12,10 @@ MIN_NEV=1000				#minimal number of events to simulate
 #---- CheckMATE parameters
 NAME=''						# tag-name of the files
 QUIET='True'				# reduce output from CheckMATE
-ANALYSES='atlas_1405_7875'	# analyses for CheckMATE
+ANALYSES='13TeV'	# analyses for CheckMATE
+ENERGY='13'					# sqrt(s) [TeV]
 SEED="-1"					# seed for event generation, set negative for using a random seed
-PROCESS="allsusy"			#process for pythia
+PROCESS="all"				# has to be chosen from [all, squark_only, gluino_only, C1C1, C1N2, sbottom_only, slepton_direct]
 
 echo $PARAMS
 #---- Function for printing messages to stdout
@@ -187,7 +188,7 @@ elif [ ${FILE: -5} == ".slha" ]; then
 		if [[ $CALC_XSECT=='true' ]]; then
 			IFS=
 			# Prepare CheckMATE parameter card
-			output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" ${FILE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
+			output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" $ENERGY ${FILE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
 			inside_print "${output}"
 			test_success "write_checkmate_params.sh"
 			# make a dry run to estimate the total SUSY x-section
@@ -206,7 +207,7 @@ elif [ ${FILE: -5} == ".slha" ]; then
 			inside_print "[INFO] No of event to simulate: ${NEV}" 
 		fi
 		# Prepare new CheckMATE parameter card
-		output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" ${FILE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
+		output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" $ENERGY ${FILE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
 	    inside_print "${output}"
 		test_success "write_checkmate_params.sh"
 	    # Run the main simulation
@@ -231,7 +232,7 @@ else
 		if [[ $CALC_XSECT=='true' ]]; then
 			IFS=
 			# Prepare CheckMATE parameter card
-			output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" ${LINE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
+			output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" $ENERGY ${LINE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
 			inside_print "${output}"
 			# test_success "write_checkmate_params.sh"
 			# make a dry run to estimate the total SUSY x-section
@@ -250,7 +251,7 @@ else
 			inside_print "[INFO] No of event to simulate: ${NEV}" 
 		fi
 	    # Prepare new CheckMATE parameter card
-		output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" ${LINE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
+		output=$(IFS= ; echo $(IFS= ; $DIR/cards/write_checkmate_params.sh ${NAME} "\"${ANALYSES}\"" $ENERGY ${LINE} ${QUIET} ${SEED} ${OUTDIR} $NEV "\"${PROCESS}\"" ${INDIR}) 2>&1) 
 	    inside_print "${output}"
 		# test_success "write_checkmate_params.sh"
 	    # Run the main simulation
