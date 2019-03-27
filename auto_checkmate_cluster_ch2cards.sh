@@ -6,13 +6,13 @@
 
 #---- Script parameters
 SILENT='false'				#set to true to disable all script generated output to stdout
-DEBUG='true' 				#set to 'true' to prevent deleting the directory with standard CheckMATE output
+DEBUG='false' 				#set to 'true' to prevent deleting the directory with standard CheckMATE output
 CALC_XSECT='true' 			#set to 'true' to calculate required no of events using NLLfast and EWKfast
 MIN_NEV=1000				#minimal number of events to simulate
 #---- CheckMATE parameters
 NAME=''						# tag-name of the files
 QUIET='True'				# reduce output from CheckMATE
-ANALYSES='13TeV'	# analyses for CheckMATE
+ANALYSES='13TeV'			# analyses for CheckMATE
 ENERGY='13'					# sqrt(s) [TeV]
 SEED="-1"					# seed for event generation, set negative for using a random seed
 PROCESS="all"				# has to be chosen from [all, squark_only, gluino_only, C1C1, C1N2, sbottom_only, slepton_direct]
@@ -196,7 +196,7 @@ elif [ ${FILE: -5} == ".slha" ]; then
 			test_success "initial run of CheckMATE"
 			# calculate required no of events to simulate process1 <-- NOTE!
 			
-			output=$(python ./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process1.log" 2>&1)
+			output=$(python ./xsection/reuse_pythia.py ${OUTDIR}"/"${NAME}"/pythia/pythia_process1.log" ${RESDIR}/${NAME} 2>&1)
 			test_success "NEV calculation"
 			# print calculated x-section
 			inside_print "[${output#*[}"
