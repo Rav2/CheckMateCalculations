@@ -9,6 +9,7 @@ SILENT='false'				#set to true to disable all script generated output to stdout
 DEBUG='false' 				#set to 'true' to prevent deleting the directory with standard CheckMATE output
 CALC_XSECT='true' 			#set to 'true' to calculate required no of events using NLLfast and EWKfast
 MIN_NEV=1000				#minimal number of events to simulate
+MAX_NEV=1000000				#maximal number of events to simulate
 #---- CheckMATE parameters
 NAME=''						# tag-name of the files
 QUIET='True'				# reduce output from CheckMATE
@@ -203,6 +204,10 @@ elif [ ${FILE: -5} == ".slha" ]; then
 			NEV=$(echo ${output} | head -n 1)
 			if [[ ${MIN_NEV} -gt ${NEV} ]]; then
 				NEV=${MIN_NEV}
+				if [[ ${NEV} -gt ${MAX_NEV} ]]; then
+					inside_print "[WARNING] Calculated no of events: $NEV"
+					NEV=${MAX_NEV}
+				fi
 			fi
 			inside_print "[INFO] No of event to simulate: ${NEV}" 
 		fi
@@ -247,6 +252,9 @@ else
 			NEV=$(echo ${output} | head -n 1)
 			if [[ ${MIN_NEV} -gt ${NEV} ]]; then
 				NEV=${MIN_NEV}
+				if [[ ${NEV} -gt ${MAX_NEV} ]]; then
+					NEV=${MAX_NEV}
+				fi
 			fi
 			inside_print "[INFO] No of event to simulate: ${NEV}" 
 		fi
@@ -256,7 +264,7 @@ else
 		# test_success "write_checkmate_params.sh"
 	    # Run the main simulation
 	    $CHECKMATE "${INDIR}/${NAME}.dat"
-	    # test_success "run of CheckMATE"
+	    test_success "run of CheckMATE"
 		move_results $NAME $LINE
 	done 3<"$FILE"
 fi

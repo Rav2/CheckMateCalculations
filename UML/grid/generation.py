@@ -3,12 +3,12 @@
 import os, sys
 import numpy as np
 
-n = 15 # full grid
-#n = 5 # mini grid
+n = 10 # full grid
+# n = 3 # mini grid
 
-mG_ar = np.logspace(np.log10(700.1), np.log10(3500.1), n)
-mQ_ar = np.logspace(np.log10(500.1), np.log10(3500.1), n)
-mQ3_ar = np.logspace(np.log10(200.1), np.log10(3500.1), n)
+mG_ar = np.logspace(np.log10(1000.1), np.log10(3000.1), n)
+mQ_ar = np.logspace(np.log10(1000.1), np.log10(3000.1), n)
+mQ3_ar = np.logspace(np.log10(500.1), np.log10(3000.1), n)
 
 print '# mG mQ mQ3 mN1'
 for mG in mG_ar:

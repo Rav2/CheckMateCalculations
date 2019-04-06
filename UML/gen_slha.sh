@@ -1,4 +1,5 @@
 # !/bin/bash
+
 PREFIX="minigrid"
 INPUT="./grid/minigrid.dat"
 WRITE_SLHA="./write_slha.py"
@@ -25,8 +26,9 @@ if [[ -e $WRITE_SLHA ]]; then
 				NAME=$NAME"_"$STR
 			done
 			NAME=$NAME".slha"
-			$WRITE_SLHA $LINE > $NAME
+			python $WRITE_SLHA $LINE > $NAME
 			mv $NAME $RESULT_PATH
+			# echo ${NAME}
 		fi
 	line_no=$(( $line_no + 1))
 	done
