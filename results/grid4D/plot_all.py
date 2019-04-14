@@ -12,7 +12,7 @@ import pandas as pd
 
 ##################################################################
 
-def do_plot(x, y, z, n1, r, labels):
+def do_plot(x, y, z, val, r, labels, mode='G'):
 
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')
@@ -39,12 +39,19 @@ def do_plot(x, y, z, n1, r, labels):
 
 	fig.subplots_adjust(bottom=0.08, right=0.90, top=0.95, left=0.10)
 	# ticks and limit
-	ax.xaxis.set_ticks(np.arange(1000, 3501, 500))
-	ax.set_xlim(950, 3550)
-	ax.yaxis.set_ticks(np.arange(1000, 3501, 500))
-	ax.set_ylim(950,3550)
-	ax.zaxis.set_ticks(np.arange(500, 3501, 500))
-	ax.set_zlim(450,3550)
+	ax.xaxis.set_ticks(np.arange(1000, 3001, 500))
+	ax.set_xlim(950, 3050)
+	if mode=='G':
+		ax.yaxis.set_ticks(np.arange(500, 3001, 500))
+		ax.set_ylim(450,3050)
+		ax.zaxis.set_ticks(np.arange(1, 3001, 500))
+		ax.set_zlim(1,3050)
+	else:
+		ax.yaxis.set_ticks(np.arange(1000, 3001, 500))
+		ax.set_ylim(950,3050)
+		ax.zaxis.set_ticks(np.arange(500, 3001, 500))
+		ax.set_zlim(450,3050)
+
 	# axes labels
 	ax.set_xlabel(labels[0]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
 	ax.set_ylabel(labels[1]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
@@ -58,13 +65,16 @@ def do_plot(x, y, z, n1, r, labels):
 	cbaxes.yaxis.set_ticks_position('left')
 
 	# text box
-	textstr = labels[-1] + '={}'.format(int(n1)) + r'$ [\rm GeV/c^2]$'
+	textstr = labels[-1] + '={}'.format(int(val)) + r'$ [\rm GeV/c^2]$'
 	# these are matplotlib.patch.Patch properties
 	props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 	# place a text box in upper left in axes coords
 	ax.text2D(0.10, 0.97, textstr, transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props, fontname='Helvetica')
 
-	plt.savefig("plots/N1_{}.png".format(n1))
+	if mode=='G':
+		plt.savefig("plots/G_slice/G_{}.png".format(val))
+	else:
+		plt.savefig("plots/N1_slice/N1_{}.png".format(val))
 	plt.close()
 
 ##################################################################
@@ -72,14 +82,35 @@ def do_plot(x, y, z, n1, r, labels):
 plot_prefix = 'minigrid'
 infile = 'collective_results.txt'
 
-labels = [r'$m_G$', r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$']
-labels2 = ['G', 'Q', 'Q3', 'N1']
+labelsG = [r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$', r'$m_G$']
+labels2G = ['Q', 'Q3', 'N1', 'G']
+labelsN = [ r'$m_G$', r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$']
+labels2N = ['G','Q', 'Q3', 'N1']
 
 # load data
 data_raw = np.loadtxt(infile, skiprows=2, usecols=range(0,5))
 data = data_raw.transpose()
-assert len(labels)+1 == len(data), "Labels not set!" 
+assert len(labelsG)+1 == len(data), "Labels not set!" 
+assert len(labelsN)+1 == len(data), "Labels not set!" 
 
+# plot with mG slices
+df=pd.DataFrame(data_raw).sort_values(0)
+groups = df.groupby(0)
+group_names = df[0].unique()
+for name in group_names:
+	x = []
+	y = []
+	z = []
+	r = []
+	val = name
+	for index, row in groups.get_group(name).iterrows():
+		x.append(row[1])
+		y.append(row[2])
+		z.append(row[3])
+		r.append(row[4])
+	do_plot(x, y, z, val, r, labelsG, 'G')
+
+# plot with mN1 slices
 df=pd.DataFrame(data_raw).sort_values(3)
 groups = df.groupby(3)
 group_names = df[3].unique()
@@ -88,11 +119,10 @@ for name in group_names:
 	y = []
 	z = []
 	r = []
-	n1 = name
+	val = name
 	for index, row in groups.get_group(name).iterrows():
 		x.append(row[0])
 		y.append(row[1])
 		z.append(row[2])
 		r.append(row[4])
-	do_plot(x, y, z, n1, r, labels)
-
+	do_plot(x, y, z, val, r, labelsN, 'N')
