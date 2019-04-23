@@ -41,16 +41,16 @@ def do_plot(x, y, z, val, r, labels, mode='G'):
 	# ticks and limit
 	ax.xaxis.set_ticks(np.arange(1000, 3001, 500))
 	ax.set_xlim(950, 3050)
+	ax.yaxis.set_ticks(np.arange(500, 3001, 500))
+	ax.set_ylim(450,3050)
 	if mode=='G':
-		ax.yaxis.set_ticks(np.arange(500, 3001, 500))
-		ax.set_ylim(450,3050)
+		# mG is used to slice
 		ax.zaxis.set_ticks(np.arange(1, 3001, 500))
 		ax.set_zlim(1,3050)
 	else:
-		ax.yaxis.set_ticks(np.arange(1000, 3001, 500))
-		ax.set_ylim(950,3050)
-		ax.zaxis.set_ticks(np.arange(500, 3001, 500))
-		ax.set_zlim(450,3050)
+		# mN1 is used to slice		
+		ax.zaxis.set_ticks(np.arange(1000, 3001, 500))
+		ax.set_zlim(950,3050)
 
 	# axes labels
 	ax.set_xlabel(labels[0]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
@@ -84,8 +84,8 @@ infile = 'collective_results.txt'
 
 labelsG = [r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$', r'$m_G$']
 labels2G = ['Q', 'Q3', 'N1', 'G']
-labelsN = [ r'$m_G$', r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$']
-labels2N = ['G','Q', 'Q3', 'N1']
+labelsN = [r'$m_Q$', r'$m_{Q_3}$', r'$m_G$', r'$m_{\chi^0_1}$']
+labels2N = ['Q', 'Q3', 'G', 'N1']
 
 # load data
 data_raw = np.loadtxt(infile, skiprows=2, usecols=range(0,5))
@@ -121,8 +121,8 @@ for name in group_names:
 	r = []
 	val = name
 	for index, row in groups.get_group(name).iterrows():
-		x.append(row[0])
-		y.append(row[1])
-		z.append(row[2])
+		x.append(row[1])
+		y.append(row[2])
+		z.append(row[0])
 		r.append(row[4])
 	do_plot(x, y, z, val, r, labelsN, 'N')
