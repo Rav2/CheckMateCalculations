@@ -1,7 +1,7 @@
 # !/bin/bash
 
 SUSYHIT="/Users/rafalmaselek/susyhit/run"
-INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA"
+INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_SOFT"
 OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
 PREFIX=""
 
@@ -25,4 +25,5 @@ for FILE in $INDIR/$PREFIX*.slha; do
 	./$(echo `basename $SUSYHIT`)
 	cp susyhit_slha.out $OUTDIR/$FILE
 	cd $DIR
+	#break
 done
