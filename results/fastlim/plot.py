@@ -33,7 +33,7 @@ def plot_bar_from_counter(counter, ax=None):
 	ax.yaxis.set_major_formatter(plt.FixedFormatter(names))
 	ax.yaxis.set_tick_params(labelsize=10)
 	ax.set_ylim(-1, len(counter)+1)
-	ax.set_xlim(0, max(frequencies)+100)
+	ax.set_xlim(0, max(frequencies)+300)
 	for i, v in enumerate(frequencies):
 		ax.text( v + 20, i-0.25, str(v), color='black', fontweight='normal', fontsize=10)
 
@@ -97,18 +97,18 @@ class Point:
 def plot_hist(points):
 	maxprocs = [p.maxproc for p in points]
 	proc_counts = Counter(maxprocs)
-	plot_bar_from_counter(proc_counts.most_common())
+	plot_bar_from_counter(proc_counts.most_common(10))
 	# plt.xticks(rotation=90)
-	plt.title('Top process occurence')
+	plt.title('Top process occurence (10 highest results)')
 	plt.savefig('plots/proc/top_process.png')
 
 	plt.clf()
 	top3 = [p.top3proc for p in points]
 	top3 = list(chain.from_iterable(top3))
 	top3_counts = Counter(top3)
-	plot_bar_from_counter(top3_counts.most_common())
+	plot_bar_from_counter(top3_counts.most_common(15))
 	# plt.xticks(rotation=90)
-	plt.title('Top 3 processes occurence')
+	plt.title('Top 3 processes occurence (15 highest results)')
 	plt.savefig('plots/proc/top3_process.png')
 
 
@@ -133,7 +133,7 @@ def plot_rate_xsec(points):
 		plt.title(r"Top coverage for $\tan(\beta)$={tan}, $sgn$={sign}, $A_0$={A0}".format(sign=signval, tan=tanval, A0=0))
 		sc = ax.scatter(zeroA0['m0'].tolist(), zeroA0['mhalf'].tolist(), c=zeroA0['maxrate'].tolist(), s=200, cmap=cmap, edgecolor='face', marker='s', vmin=0., vmax=100.)
 		plt.colorbar(sc)
-		plt.xlim(0, 3050)
+		plt.xlim(0, 3100)
 		plt.savefig("plots/rate/rate_{}_{}_{}.png".format(tanval, 0, signval))
 		plt.close()
 		
@@ -144,7 +144,7 @@ def plot_rate_xsec(points):
 		plt.title(r"Top coverage for $\tan(\beta)$={tan}, $sgn$={sign}, $A_0$={A0}".format(sign=signval, tan=tanval, A0=r'$-m_{1/2}$'))
 		sc = ax.scatter(nonzeroA0['m0'].tolist(), nonzeroA0['mhalf'].tolist(), c=nonzeroA0['maxrate'].tolist(), s=200, cmap=cmap, edgecolor='face', marker='s', vmin=0., vmax=100.)
 		plt.colorbar(sc)
-		plt.xlim(0, 3050)
+		plt.xlim(0, 3100)
 		plt.savefig("plots/rate/rate_{}_{}_{}.png".format(tanval, '-mhalf', signval))
 		plt.close()	
 
@@ -155,7 +155,7 @@ def plot_rate_xsec(points):
 		plt.title(r"Top x-sec for $\tan(\beta)$={tan}, $sgn$={sign}, $A_0$={A0}".format(sign=signval, tan=tanval, A0=0))
 		sc = ax.scatter(zeroA0['m0'].tolist(), zeroA0['mhalf'].tolist(), c=zeroA0['maxxsec'].tolist(), s=200, cmap=cmap, edgecolor='face', marker='s')
 		plt.colorbar(sc)
-		plt.xlim(0, 3050)
+		plt.xlim(0, 3100)
 		plt.savefig("plots/xsec/xsec{}_{}_{}.png".format(tanval, 0, signval))
 		plt.close()
 		
@@ -166,7 +166,7 @@ def plot_rate_xsec(points):
 		plt.title(r"Top x-sec for $\tan(\beta)$={tan}, $sgn$={sign}, $A_0$={A0}".format(sign=signval, tan=tanval, A0=r'$-m_{1/2}$'))
 		sc = ax.scatter(nonzeroA0['m0'].tolist(), nonzeroA0['mhalf'].tolist(), c=nonzeroA0['maxxsec'].tolist(), s=200, cmap=cmap, edgecolor='face', marker='s')
 		plt.colorbar(sc)
-		plt.xlim(0, 3050)
+		plt.xlim(0, 3100)
 		plt.savefig("plots/xsec/xsec{}_{}_{}.png".format(tanval, '-mhalf', signval))
 		plt.close()	
 
