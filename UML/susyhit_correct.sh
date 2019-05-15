@@ -1,8 +1,8 @@
 # !/bin/bash
 
 SUSYHIT="/Users/rafalmaselek/susyhit/run"
-INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_SOFT"
-OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
+INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
+OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX2"
 PREFIX=""
 
 
@@ -20,6 +20,7 @@ echo "[INFO] Running SUSYHit..."
 SUSYHIT_DIR=$(echo `dirname $SUSYHIT`)
 for FILE in $INDIR/$PREFIX*.slha; do
 	FILE=$(echo `basename $FILE`)
+	echo ${FILE}
 	cp $INDIR/$FILE $SUSYHIT_DIR/slhaspectrum.in
 	cd $SUSYHIT_DIR
 	./$(echo `basename $SUSYHIT`)

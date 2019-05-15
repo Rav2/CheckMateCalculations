@@ -4,11 +4,12 @@
 import os, sys
 import numpy as np
 
-n = 15 # no of points for m0 and m1/2 scan
+n0 = 22 # no of points for m0
+n12 = 15 # no of points for m1/2
 tanB = [5, 40]
 
-for m0 in [int(x) for x in np.linspace(1000, 3000, n)]:
-    for mhalf in [int(x) for x in np.linspace(400, 1200, n)]:
+for m0 in [int(x) for x in np.linspace(100, 3000, n0)]:
+    for mhalf in [int(x) for x in np.linspace(400, 1200, n12)]:
         for tanval in tanB:
             for A0 in [0, -mhalf]:
                 for sign in [+1, -1]:
