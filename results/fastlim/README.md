@@ -4,7 +4,7 @@
 
 **energy:** 13 TeV
 **processes:** allSUSY
-**model parameters:**  mG, mQ, mQ3, mN1
+**model parameters:**  m0, m12, tanB, A0, sign(mu)
 **no of points:** 2640 -> 2508
 **generator:** no need
 **cross-sections:** susy-cross-section python package by Sho Iwamoto and EWKfast_LO
