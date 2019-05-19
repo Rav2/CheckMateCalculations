@@ -1,8 +1,8 @@
 # !/bin/bash
 
 SUSYHIT="/Users/rafalmaselek/susyhit/run"
-INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
-OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX2"
+INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_SOFT"
+OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
 PREFIX=""
 
 

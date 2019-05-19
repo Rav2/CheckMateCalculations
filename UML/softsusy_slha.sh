@@ -25,6 +25,6 @@ do
 	ARR=($LINE)
 	NAME="${PREFIX}_${ARR[0]}_${ARR[1]}_${ARR[2]}_${ARR[3]}_${ARR[4]}"
 	echo ${NAME}
-	${SOFTSUSY_EXEC} ${MODEL} --m0=${ARR[0]} --m12=${ARR[1]} --tanBeta=${ARR[2]} --a0=${ARR[3]} --sgnMu=${ARR[4]} --decays --minBR=1.0e-10 --outputPartialWidths > ${OUTDIR}/${NAME}.slha
+	${SOFTSUSY_EXEC} ${MODEL} --m0=${ARR[0]} --m12=${ARR[1]} --tanBeta=${ARR[2]} --a0=${ARR[3]} --sgnMu=${ARR[4]} > ${OUTDIR}/${NAME}.slha
   	#echo ${ARR[0]}
 done < "$INFILE"
