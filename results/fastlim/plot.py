@@ -58,6 +58,7 @@ class Point:
 		self.top3rate = []
 		self.top3xsec = []
 		self.broken = False
+		self.name = "{m0}_{mhalf}_{tanB}_{A0}_{sign}".format(m0=self.m0, mhalf=self.mhalf, tanB=self.tanB, A0=self.A0, sign=self.sign)
 
 	def add_data(self, proc, xsec, rate):
 		self.rates.append(rate)
@@ -193,7 +194,12 @@ def main(in_path):
 			points.append(Point(name_arr[0], name_arr[1], name_arr[2], name_arr[3], name_arr[4]))
 			for ii,line in enumerate(content):
 				if 'ERROR' in line:
-					points[-1].add_err(str(content[ii+1]).strip())
+					try:
+						msg = str(content[ii+1]).strip()
+					except Exception as e:
+						msg = str(content[ii]).strip()
+					points[-1].add_err(msg)
+					points[-1].is_broken()
 				elif "Output upto" in line:
 					jj = 2
 					# read process table

@@ -1,0 +1,1198 @@
+/Users/rafalmaselek/Projects/fastlim-1.0
+ 
+#################################################################
+#                                                               #
+#                                                               #
+#                     This is Fastlim  ver. 1.0                 #
+#                                                               #
+#          A fast LHC limit calculator for BSM models.          #
+#                                                               #
+#                  http://cern.ch/fastlim-1.0/                  #
+#                                                               #
+#  for bugs/feature requests: fastlim-1.0.developers@gmail.com  #
+#                                                               #
+#    please refer to:                                           #
+#    M.Papucci, K.Sakurai, A.Weiler, L.Zeune arXiv:1402.xxxx    #
+#                                                               #
+#################################################################
+ 
+
+!! Masses incompatible with the data for ERER !!
+
+!! Problem with reading tables for ER ER !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for ELEL !!
+
+!! Problem with reading tables for EL EL !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for TAU1TAU1 !!
+
+!! Problem with reading tables for TAU1 TAU1 !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for TAU2TAU2 !!
+
+!! Problem with reading tables for TAU2 TAU2 !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C1C2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1-C2+
+XSEC FOUND FOR: C1+C2-
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C1N1 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N1
+XSEC FOUND FOR: C1-N1
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C1N2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N2
+XSEC FOUND FOR: C1-N2
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C1N3 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N3
+XSEC FOUND FOR: C1-N3
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C1N4 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N4
+XSEC FOUND FOR: C1-N4
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C2N1 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N1
+XSEC FOUND FOR: C2-N1
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C2N2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N2
+XSEC FOUND FOR: C2-N2
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C2N3 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N3
+XSEC FOUND FOR: C2-N3
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!! EWK PROCESS C2N4 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N4
+XSEC FOUND FOR: C2-N4
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+!!! THERE IS MASS SHIFTING IN EWKfast --------------------------------------------------------
+Energy  Precision  PDF  Process
+13      LO    NNPDF30           C1C1       0.3474004846745318 
+13      LO    NNPDF30           C1+C2-     0.00015448433403652425 # mass is shifted in the grid
+13      LO    NNPDF30           C1-C2+     0.00015449050744489976 # mass is shifted in the grid
+13      LO    NNPDF30           C2C2       0.01314710701687296 # mass is shifted in the grid
+13      LO    NNPDF30           N1N1       0.017838314630174015 
+13      LO    NNPDF30           N1N2       0.0017852399539855274 
+13      LO    NNPDF30           N1N3       3.881006652778268e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1N4       2.7054681208190922e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N2       0.009145644780973683 
+13      LO    NNPDF30           N2N3       8.006387003032652e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2N4       4.596255829255165e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3N3       1.3696891270491054e-09 # mass is shifted in the grid
+13      LO    NNPDF30           N3N4       0.0022666432663138738 # mass is shifted in the grid
+13      LO    NNPDF30           N4N4       6.399729553317779e-08 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1+      0.0031402430494512227 
+13      LO    NNPDF30           N2C1+      0.5090300198265855 
+13      LO    NNPDF30           N3C1+      0.00013349712167789757 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1+      2.8192307727328947e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N1C1-      0.001079739405550656 
+13      LO    NNPDF30           N2C1-      0.172591801101387  
+13      LO    NNPDF30           N3C1-      4.431643809126028e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N4C1-      9.258454969687972e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2+      0.00025090092249887327 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2+      1.8315621414702956e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2+      0.003187533307373908 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2+      0.01625175831694208 # mass is shifted in the grid
+13      LO    NNPDF30           N1C2-      8.389441651903256e-05 # mass is shifted in the grid
+13      LO    NNPDF30           N2C2-      6.0834006430450045e-06 # mass is shifted in the grid
+13      LO    NNPDF30           N3C2-      0.0011013573791251007 # mass is shifted in the grid
+13      LO    NNPDF30           N4C2-      0.005462619003001756 # mass is shifted in the grid
+
+SLHA file: /Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX/cmssm_790_1200_40_-1200_-1.slha
+Input file: /Users/rafalmaselek/ScienceSoft/EWKfast_LO/input_default.dat
+Sort: OFF 
+Cut: -1 
+Unit: fb 
+ScaleVariation: OFF 
+
+mC2 = 1522.19523 is out of range. |mC2| = 1500 was used.
+mN3 = -1517.26821 is out of range. |mN3| = 1500 was used.
+mN4 = 1521.41124 is out of range. |mN4| = 1500 was used.
+
+-----------------------------------------------------------------------------------------------
+---------------  Output inclusive processes  ---------------
+The total xsec = 2436.22 [fb]
+The total rate = 100.00%
+Output upto 0.10%
+                             Modes : xsec/fb      (rate)
+          C1nTAU1taN1_N2taTAU1taN1 : 566.1796041 (23.24)%
+      QqC1nTAU1taN1_QqN2taTAU1taN1 : 302.3683027 (12.41)%
+       QqC1nTAU1taN1_QqC1nTAU1taN1 : 299.5728672 (12.30)%
+           C1nTAU1taN1_C1nTAU1taN1 : 286.6065000 (11.76)%
+     QqN2taTAU1taN1_QqN2taTAU1taN1 : 76.2974559 (3.13)%
+             QqC1nTAU1taN1_QqC1wN1 : 60.4907432 (2.48)%
+                 C1nTAU1taN1_C1wN1 : 57.8725315 (2.38)%
+                C1wN1_N2taTAU1taN1 : 57.1624282 (2.35)%
+                 C1nTAU1taN1_N2hN1 : 46.9206452 (1.93)%
+              GqQqN1_QqC1nTAU1taN1 : 41.7977720 (1.72)%
+            QqC1wN1_QqN2taTAU1taN1 : 30.5276034 (1.25)%
+             QqC1nTAU1taN1_QqN2hN1 : 25.0579776 (1.03)%
+             GqQqN1_QqN2taTAU1taN1 : 21.0939019 (0.87)%
+                             N1_N1 : 17.8383146 (0.73)%
+    GtT1bC1nTAU1taN1_QqC1nTAU1taN1 : 15.6199515 (0.64)%
+                QqC1nTAU1taN1_QqN1 : 15.4724826 (0.64)%
+            QqN2hN1_QqN2taTAU1taN1 : 12.6459019 (0.52)%
+    GbB1tC1nTAU1taN1_QqC1nTAU1taN1 : 10.3417271 (0.42)%
+   GtT1bC1nTAU1taN1_QqN2taTAU1taN1 : 7.8828538 (0.32)%
+               QqN1_QqN2taTAU1taN1 : 7.8084313 (0.32)%
+         N2taTAU1taN1_N2taTAU1taN1 : 7.6485689 (0.31)%
+   GtT1tN2taTAU1taN1_QqC1nTAU1taN1 : 7.3339990 (0.30)%
+                 C1nTAU1taN1_N2zN1 : 5.9592710 (0.24)%
+   GbB1bN2taTAU1taN1_QqC1nTAU1taN1 : 5.5218534 (0.23)%
+   GbB1tC1nTAU1taN1_QqN2taTAU1taN1 : 5.2191149 (0.21)%
+                       C1wN1_N2hN1 : 4.7371859 (0.19)%
+ GtT2tN4wC1nTAU1taN1_QqC1nTAU1taN1 : 4.3268978 (0.18)%
+                    GqQqN1_QqC1wN1 : 4.2199721 (0.17)%
+ GtT1tN3wC1nTAU1taN1_QqC1nTAU1taN1 : 4.2181330 (0.17)%
+ GbB2tC2hC1nTAU1taN1_QqC1nTAU1taN1 : 3.9363413 (0.16)%
+                    C1nTAU1taN1_N1 : 3.8329968 (0.16)%
+             GtT1tN1_QqC1nTAU1taN1 : 3.7656802 (0.15)%
+  GtT1tN2taTAU1taN1_QqN2taTAU1taN1 : 3.7012177 (0.15)%
+     T1bC1nTAU1taN1_T1bC1nTAU1taN1 : 3.6425308 (0.15)%
+ GbB2tC2zC1nTAU1taN1_QqC1nTAU1taN1 : 3.4992211 (0.14)%
+GbB2tC2wN2taTAU1taN1_QqC1nTAU1taN1 : 3.4723066 (0.14)%
+    T1bC1nTAU1taN1_T1tN2taTAU1taN1 : 3.4205378 (0.14)%
+ GtT2hT1bC1nTAU1taN1_QqC1nTAU1taN1 : 3.3083013 (0.14)%
+             QqC1nTAU1taN1_QqN2zN1 : 3.1825496 (0.13)%
+                   QqC1wN1_QqC1wN1 : 3.0536227 (0.13)%
+ GbB1bN3wC1nTAU1taN1_QqC1nTAU1taN1 : 2.9496632 (0.12)%
+                       C1wN1_C1wN1 : 2.9214532 (0.12)%
+ GtT1bC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.9179480 (0.12)%
+  GbB1bN2taTAU1taN1_QqN2taTAU1taN1 : 2.7866900 (0.11)%
+ GtT2bC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.7214687 (0.11)%
+    GbB2tC1nTAU1taN1_QqC1nTAU1taN1 : 2.7033309 (0.11)%
+ GbB1bN4wC1nTAU1taN1_QqC1nTAU1taN1 : 2.6729094 (0.11)%
+ GtT1bC2zC1nTAU1taN1_QqC1nTAU1taN1 : 2.5939177 (0.11)%
+ GbB1tC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.5769448 (0.11)%
+GtT1bC2wN2taTAU1taN1_QqC1nTAU1taN1 : 2.5739664 (0.11)%
+                   QqC1wN1_QqN2hN1 : 2.5298948 (0.10)%
+ GtT2bC2zC1nTAU1taN1_QqC1nTAU1taN1 : 2.4192569 (0.10)%
+------------------------------------------------------------
+                                                 SUM=85.38%
+
+SHOWING PROCESSES TO GET 90.00% SUSY COVERAGE
+---------------  Output inclusive processes  ---------------
+The total xsec = 2436.22 [fb]
+The total rate = 100.00%
+                              Modes : xsec/fb      (rate)
+           C1nTAU1taN1_N2taTAU1taN1 : 566.1796041 (23.24)%
+       QqC1nTAU1taN1_QqN2taTAU1taN1 : 302.3683027 (12.41)%
+        QqC1nTAU1taN1_QqC1nTAU1taN1 : 299.5728672 (12.30)%
+            C1nTAU1taN1_C1nTAU1taN1 : 286.6065000 (11.76)%
+      QqN2taTAU1taN1_QqN2taTAU1taN1 : 76.2974559 (3.13)%
+              QqC1nTAU1taN1_QqC1wN1 : 60.4907432 (2.48)%
+                  C1nTAU1taN1_C1wN1 : 57.8725315 (2.38)%
+                 C1wN1_N2taTAU1taN1 : 57.1624282 (2.35)%
+                  C1nTAU1taN1_N2hN1 : 46.9206452 (1.93)%
+               GqQqN1_QqC1nTAU1taN1 : 41.7977720 (1.72)%
+             QqC1wN1_QqN2taTAU1taN1 : 30.5276034 (1.25)%
+              QqC1nTAU1taN1_QqN2hN1 : 25.0579776 (1.03)%
+              GqQqN1_QqN2taTAU1taN1 : 21.0939019 (0.87)%
+                              N1_N1 : 17.8383146 (0.73)%
+     GtT1bC1nTAU1taN1_QqC1nTAU1taN1 : 15.6199515 (0.64)%
+                 QqC1nTAU1taN1_QqN1 : 15.4724826 (0.64)%
+             QqN2hN1_QqN2taTAU1taN1 : 12.6459019 (0.52)%
+     GbB1tC1nTAU1taN1_QqC1nTAU1taN1 : 10.3417271 (0.42)%
+    GtT1bC1nTAU1taN1_QqN2taTAU1taN1 : 7.8828538 (0.32)%
+                QqN1_QqN2taTAU1taN1 : 7.8084313 (0.32)%
+          N2taTAU1taN1_N2taTAU1taN1 : 7.6485689 (0.31)%
+    GtT1tN2taTAU1taN1_QqC1nTAU1taN1 : 7.3339990 (0.30)%
+                  C1nTAU1taN1_N2zN1 : 5.9592710 (0.24)%
+    GbB1bN2taTAU1taN1_QqC1nTAU1taN1 : 5.5218534 (0.23)%
+    GbB1tC1nTAU1taN1_QqN2taTAU1taN1 : 5.2191149 (0.21)%
+                        C1wN1_N2hN1 : 4.7371859 (0.19)%
+  GtT2tN4wC1nTAU1taN1_QqC1nTAU1taN1 : 4.3268978 (0.18)%
+                     GqQqN1_QqC1wN1 : 4.2199721 (0.17)%
+  GtT1tN3wC1nTAU1taN1_QqC1nTAU1taN1 : 4.2181330 (0.17)%
+  GbB2tC2hC1nTAU1taN1_QqC1nTAU1taN1 : 3.9363413 (0.16)%
+                     C1nTAU1taN1_N1 : 3.8329968 (0.16)%
+              GtT1tN1_QqC1nTAU1taN1 : 3.7656802 (0.15)%
+   GtT1tN2taTAU1taN1_QqN2taTAU1taN1 : 3.7012177 (0.15)%
+      T1bC1nTAU1taN1_T1bC1nTAU1taN1 : 3.6425308 (0.15)%
+  GbB2tC2zC1nTAU1taN1_QqC1nTAU1taN1 : 3.4992211 (0.14)%
+ GbB2tC2wN2taTAU1taN1_QqC1nTAU1taN1 : 3.4723066 (0.14)%
+     T1bC1nTAU1taN1_T1tN2taTAU1taN1 : 3.4205378 (0.14)%
+  GtT2hT1bC1nTAU1taN1_QqC1nTAU1taN1 : 3.3083013 (0.14)%
+              QqC1nTAU1taN1_QqN2zN1 : 3.1825496 (0.13)%
+                    QqC1wN1_QqC1wN1 : 3.0536227 (0.13)%
+  GbB1bN3wC1nTAU1taN1_QqC1nTAU1taN1 : 2.9496632 (0.12)%
+                        C1wN1_C1wN1 : 2.9214532 (0.12)%
+  GtT1bC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.9179480 (0.12)%
+   GbB1bN2taTAU1taN1_QqN2taTAU1taN1 : 2.7866900 (0.11)%
+  GtT2bC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.7214687 (0.11)%
+     GbB2tC1nTAU1taN1_QqC1nTAU1taN1 : 2.7033309 (0.11)%
+  GbB1bN4wC1nTAU1taN1_QqC1nTAU1taN1 : 2.6729094 (0.11)%
+  GtT1bC2zC1nTAU1taN1_QqC1nTAU1taN1 : 2.5939177 (0.11)%
+  GbB1tC2hC1nTAU1taN1_QqC1nTAU1taN1 : 2.5769448 (0.11)%
+ GtT1bC2wN2taTAU1taN1_QqC1nTAU1taN1 : 2.5739664 (0.11)%
+                    QqC1wN1_QqN2hN1 : 2.5298948 (0.10)%
+  GtT2bC2zC1nTAU1taN1_QqC1nTAU1taN1 : 2.4192569 (0.10)%
+ GtT2bC2wN2taTAU1taN1_QqC1nTAU1taN1 : 2.4006490 (0.10)%
+ GtT2tN4hN2taTAU1taN1_QqC1nTAU1taN1 : 2.3710111 (0.10)%
+              GtT2tN1_QqC1nTAU1taN1 : 2.3656441 (0.10)%
+     GbB2tC2nTAU1taN1_QqC1nTAU1taN1 : 2.3506493 (0.10)%
+  GtT2tN3wC1nTAU1taN1_QqC1nTAU1taN1 : 2.2932341 (0.09)%
+  GbB1tC2zC1nTAU1taN1_QqC1nTAU1taN1 : 2.2907819 (0.09)%
+ GbB1tC2wN2taTAU1taN1_QqC1nTAU1taN1 : 2.2731623 (0.09)%
+ GtT2tN4wC1nTAU1taN1_QqN2taTAU1taN1 : 2.1836369 (0.09)%
+ GtT1tN3wC1nTAU1taN1_QqN2taTAU1taN1 : 2.1287470 (0.09)%
+ GtT1tN3zN2taTAU1taN1_QqC1nTAU1taN1 : 2.0325218 (0.08)%
+ GbB2tC2hC1nTAU1taN1_QqN2taTAU1taN1 : 1.9865364 (0.08)%
+   T1bC1nTAU1taN1_T1tN3wC1nTAU1taN1 : 1.9673146 (0.08)%
+  GbB2bN3wC1nTAU1taN1_QqC1nTAU1taN1 : 1.9665137 (0.08)%
+              GbB1bN1_QqC1nTAU1taN1 : 1.9447174 (0.08)%
+  GbB2bN4wC1nTAU1taN1_QqC1nTAU1taN1 : 1.9373570 (0.08)%
+      C2hC1nTAU1taN1_N4wC1nTAU1taN1 : 1.9325009 (0.08)%
+             GtT1tN1_QqN2taTAU1taN1 : 1.9004096 (0.08)%
+ GbB2tC2zC1nTAU1taN1_QqN2taTAU1taN1 : 1.7659369 (0.07)%
+               T1bC1nTAU1taN1_T1tN1 : 1.7562931 (0.07)%
+GbB2tC2wN2taTAU1taN1_QqN2taTAU1taN1 : 1.7523541 (0.07)%
+                     GqQqN1_QqN2hN1 : 1.7481016 (0.07)%
+     GtT1bC2nTAU1taN1_QqC1nTAU1taN1 : 1.7424995 (0.07)%
+      C2zC1nTAU1taN1_N4wC1nTAU1taN1 : 1.7179019 (0.07)%
+     C2wN2taTAU1taN1_N4wC1nTAU1taN1 : 1.7046885 (0.07)%
+           GbB2tC2wN1_QqC1nTAU1taN1 : 1.6718469 (0.07)%
+ GtT2hT1bC1nTAU1taN1_QqN2taTAU1taN1 : 1.6695862 (0.07)%
+                    N1_N2taTAU1taN1 : 1.6325990 (0.07)%
+     GtT2bC2nTAU1taN1_QqC1nTAU1taN1 : 1.6251687 (0.07)%
+             QqN2taTAU1taN1_QqN2zN1 : 1.6061236 (0.07)%
+    GtT1tN3taTAU1taN1_QqC1nTAU1taN1 : 1.5852006 (0.07)%
+           GtT1bC1wN1_QqC1nTAU1taN1 : 1.5770161 (0.06)%
+           GtT1bC1nTAU1taN1_QqC1wN1 : 1.5770161 (0.06)%
+                       QqC1wN1_QqN1 : 1.5621274 (0.06)%
+ GtT2hT1tN2taTAU1taN1_QqC1nTAU1taN1 : 1.5533389 (0.06)%
+     GbB1tC2nTAU1taN1_QqC1nTAU1taN1 : 1.5388639 (0.06)%
+    GtT2tN4taTAU1taN1_QqC1nTAU1taN1 : 1.5280268 (0.06)%
+    GbB2bN2taTAU1taN1_QqC1nTAU1taN1 : 1.5057063 (0.06)%
+ GbB1bN3wC1nTAU1taN1_QqN2taTAU1taN1 : 1.4885939 (0.06)%
+ GtT1bC2hC1nTAU1taN1_QqN2taTAU1taN1 : 1.4725883 (0.06)%
+ GbB1bN4hN2taTAU1taN1_QqC1nTAU1taN1 : 1.4646747 (0.06)%
+ GbB1bN3zN2taTAU1taN1_QqC1nTAU1taN1 : 1.4213053 (0.06)%
+ GtT2bC2hC1nTAU1taN1_QqN2taTAU1taN1 : 1.3734319 (0.06)%
+    GbB2tC1nTAU1taN1_QqN2taTAU1taN1 : 1.3642784 (0.06)%
+   T1bC1nTAU1taN1_T1bC2hC1nTAU1taN1 : 1.3609153 (0.06)%
+ GbB1bN4wC1nTAU1taN1_QqN2taTAU1taN1 : 1.3489257 (0.06)%
+ GtT1bC2zC1nTAU1taN1_QqN2taTAU1taN1 : 1.3090613 (0.05)%
+ GbB1tC2hC1nTAU1taN1_QqN2taTAU1taN1 : 1.3004957 (0.05)%
+GtT1bC2wN2taTAU1taN1_QqN2taTAU1taN1 : 1.2989926 (0.05)%
+                 N2hN1_N2taTAU1taN1 : 1.2677101 (0.05)%
+           GtT1bC2wN1_QqC1nTAU1taN1 : 1.2393139 (0.05)%
+ GtT2bC2zC1nTAU1taN1_QqN2taTAU1taN1 : 1.2209160 (0.05)%
+GtT2bC2wN2taTAU1taN1_QqN2taTAU1taN1 : 1.2115252 (0.05)%
+   T1bC1nTAU1taN1_T1bC2zC1nTAU1taN1 : 1.2097893 (0.05)%
+  T1bC1nTAU1taN1_T1bC2wN2taTAU1taN1 : 1.2004841 (0.05)%
+GtT2tN4hN2taTAU1taN1_QqN2taTAU1taN1 : 1.1965680 (0.05)%
+      C2hC1nTAU1taN1_C2zC1nTAU1taN1 : 1.1944141 (0.05)%
+             GtT2tN1_QqN2taTAU1taN1 : 1.1938594 (0.05)%
+    GbB2tC2nTAU1taN1_QqN2taTAU1taN1 : 1.1862921 (0.05)%
+     C2hC1nTAU1taN1_C2wN2taTAU1taN1 : 1.1852272 (0.05)%
+     QqC1nTAU1taN1_QqC2hC1nTAU1taN1 : 1.1582446 (0.05)%
+ GtT2tN3wC1nTAU1taN1_QqN2taTAU1taN1 : 1.1573166 (0.05)%
+ GbB1tC2zC1nTAU1taN1_QqN2taTAU1taN1 : 1.1560791 (0.05)%
+           GtT2bC2wN1_QqC1nTAU1taN1 : 1.1558649 (0.05)%
+         C2nTAU1taN1_N4wC1nTAU1taN1 : 1.1540239 (0.05)%
+GbB1tC2wN2taTAU1taN1_QqN2taTAU1taN1 : 1.1471870 (0.05)%
+    GbB1bN3taTAU1taN1_QqC1nTAU1taN1 : 1.1085018 (0.05)%
+ GtT2tN3zN2taTAU1taN1_QqC1nTAU1taN1 : 1.1050027 (0.05)%
+           GbB1tC2wN1_QqC1nTAU1taN1 : 1.0944826 (0.04)%
+                        GqQqN1_QqN1 : 1.0793957 (0.04)%
+ GbB2bN4hN2taTAU1taN1_QqC1nTAU1taN1 : 1.0616139 (0.04)%
+     C2hC1nTAU1taN1_N4hN2taTAU1taN1 : 1.0589529 (0.04)%
+     C2wN2taTAU1taN1_C2zC1nTAU1taN1 : 1.0536108 (0.04)%
+           GbB1tC1nTAU1taN1_QqC1wN1 : 1.0441179 (0.04)%
+------------------------------------------------------------
+                                                  SUM=90.02%

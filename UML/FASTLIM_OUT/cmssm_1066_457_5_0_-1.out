@@ -1,0 +1,767 @@
+/Users/rafalmaselek/Projects/fastlim-1.0
+ 
+#################################################################
+#                                                               #
+#                                                               #
+#                     This is Fastlim  ver. 1.0                 #
+#                                                               #
+#          A fast LHC limit calculator for BSM models.          #
+#                                                               #
+#                  http://cern.ch/fastlim-1.0/                  #
+#                                                               #
+#  for bugs/feature requests: fastlim-1.0.developers@gmail.com  #
+#                                                               #
+#    please refer to:                                           #
+#    M.Papucci, K.Sakurai, A.Weiler, L.Zeune arXiv:1402.xxxx    #
+#                                                               #
+#################################################################
+ 
+
+!! Masses incompatible with the data for ERER !!
+
+!! Problem with reading tables for ER ER !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for ELEL !!
+
+!! Problem with reading tables for EL EL !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for TAU1TAU1 !!
+
+!! Problem with reading tables for TAU1 TAU1 !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+
+!! Masses incompatible with the data for TAU2TAU2 !!
+
+!! Problem with reading tables for TAU2 TAU2 !! Probably mass outside the table !! Setting xsec to 10^-20 !!
+!! EWK PROCESS C1C2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1-C2+
+XSEC FOUND FOR: C1+C2-
+!! EWK PROCESS C1N1 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N1
+XSEC FOUND FOR: C1-N1
+!! EWK PROCESS C1N2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N2
+XSEC FOUND FOR: C1-N2
+!! EWK PROCESS C1N3 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N3
+XSEC FOUND FOR: C1-N3
+!! EWK PROCESS C1N4 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C1+N4
+XSEC FOUND FOR: C1-N4
+!! EWK PROCESS C2N1 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N1
+XSEC FOUND FOR: C2-N1
+!! EWK PROCESS C2N2 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N2
+XSEC FOUND FOR: C2-N2
+!! EWK PROCESS C2N3 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N3
+XSEC FOUND FOR: C2-N3
+!! EWK PROCESS C2N4 NOT FOUND !! WILL TRY TO LOOK FOR +/- MODES !!
+XSEC FOUND FOR: C2+N4
+XSEC FOUND FOR: C2-N4
+---------------  Output inclusive processes  ---------------
+The total xsec = 535492.53 [fb]
+The total rate = 100.00%
+Output upto 0.10%
+                    Modes : xsec/fb      (rate)
+              C1wN1_N2zN1 : 89480.7647073 (16.71)%
+              C1wN1_C1wN1 : 47110.8375076 (8.80)%
+           GqqC1wN1_GttN1 : 6215.0986064 (1.16)%
+           GbtC1wN1_GttN1 : 5041.6762302 (0.94)%
+            GttN1_QqGttN1 : 4566.9804058 (0.85)%
+        GbtC1wN1_GqqC1wN1 : 4383.9416910 (0.82)%
+            GttN1_QqC1wN1 : 4261.6565211 (0.80)%
+              C1wN1_N2hN1 : 4190.7962861 (0.78)%
+         GttN1_QqGqqC1wN1 : 3971.1744445 (0.74)%
+         GqqC1wN1_QqGttN1 : 3971.1744445 (0.74)%
+         GqqC1wN1_QqC1wN1 : 3705.6829598 (0.69)%
+              GttN1_GttN1 : 3573.7832664 (0.67)%
+      GqqC1wN1_QqGqqC1wN1 : 3453.0970285 (0.64)%
+         GbtC1wN1_QqGttN1 : 3221.4091957 (0.60)%
+         GttN1_QqGbtC1wN1 : 3221.4091957 (0.60)%
+         GbtC1wN1_QqC1wN1 : 3006.0430057 (0.56)%
+           GqqN2zN1_GttN1 : 2969.3413182 (0.55)%
+        GbtC2hC1wN1_GttN1 : 2839.3579040 (0.53)%
+      GbtC1wN1_QqGqqC1wN1 : 2801.1457761 (0.52)%
+      GqqC1wN1_QqGbtC1wN1 : 2801.1457761 (0.52)%
+        GbtC2zC1wN1_GttN1 : 2786.6767176 (0.52)%
+        GqqC1wN1_GqqC1wN1 : 2702.1399878 (0.50)%
+        GbtC2wN2zN1_GttN1 : 2689.6521496 (0.50)%
+        GqqC1wN1_GqqN2zN1 : 2581.9625468 (0.48)%
+     GbtC2hC1wN1_GqqC1wN1 : 2468.9367033 (0.46)%
+     GbtC2zC1wN1_GqqC1wN1 : 2423.1282779 (0.45)%
+          QqC1wN1_QqGttN1 : 2357.1118267 (0.44)%
+     GbtC2wN2zN1_GqqC1wN1 : 2338.7614862 (0.44)%
+      GbtC1wN1_QqGbtC1wN1 : 2272.2841537 (0.42)%
+       QqGqqC1wN1_QqGttN1 : 2196.4468987 (0.41)%
+        GbtC1wN1_GqqN2zN1 : 2094.4831327 (0.39)%
+            GttN1_QqN2zN1 : 2067.2615305 (0.39)%
+       QqC1wN1_QqGqqC1wN1 : 2049.6042061 (0.38)%
+           GbbN2zN1_GttN1 : 2048.4935550 (0.38)%
+     GbtC1wN1_GbtC2hC1wN1 : 2002.7967824 (0.37)%
+              GqqN1_GttN1 : 1982.2939351 (0.37)%
+     GbtC1wN1_GbtC2zC1wN1 : 1965.6370744 (0.37)%
+         GttN1_QqGqqN2zN1 : 1897.2784032 (0.35)%
+         GqqN2zN1_QqGttN1 : 1897.2784032 (0.35)%
+     GbtC1wN1_GbtC2wN2zN1 : 1897.1988925 (0.35)%
+      GttN1_QqGbtC2hC1wN1 : 1814.2247229 (0.34)%
+      GbtC2hC1wN1_QqGttN1 : 1814.2247229 (0.34)%
+         GqqC1wN1_QqN2zN1 : 1797.5676335 (0.34)%
+       QqGbtC1wN1_QqGttN1 : 1781.7535684 (0.33)%
+        GbbN2zN1_GqqC1wN1 : 1781.2481186 (0.33)%
+      GttN1_QqGbtC2zC1wN1 : 1780.5637637 (0.33)%
+      GbtC2zC1wN1_QqGttN1 : 1780.5637637 (0.33)%
+        GbtC1wN1_GbtC1wN1 : 1778.1226025 (0.33)%
+         GqqN2zN1_QqC1wN1 : 1770.4365162 (0.33)%
+           GqqC1wN1_GqqN1 : 1723.6848677 (0.32)%
+      GttN1_QqGbtC2wN2zN1 : 1718.5693354 (0.32)%
+      GbtC2wN2zN1_QqGttN1 : 1718.5693354 (0.32)%
+      GbtC2hC1wN1_QqC1wN1 : 1692.9353608 (0.32)%
+       QqC1wN1_QqGbtC1wN1 : 1662.6350540 (0.31)%
+      GbtC2zC1wN1_QqC1wN1 : 1661.5247933 (0.31)%
+      GqqN2zN1_QqGqqC1wN1 : 1649.7604192 (0.31)%
+      GqqC1wN1_QqGqqN2zN1 : 1649.7604192 (0.31)%
+      GbtC2wN2zN1_QqC1wN1 : 1603.6749809 (0.30)%
+   GqqC1wN1_QqGbtC2hC1wN1 : 1577.5418802 (0.29)%
+   GbtC2hC1wN1_QqGqqC1wN1 : 1577.5418802 (0.29)%
+    QqGbtC1wN1_QqGqqC1wN1 : 1549.3068962 (0.29)%
+   GqqC1wN1_QqGbtC2zC1wN1 : 1548.2723127 (0.29)%
+   GbtC2zC1wN1_QqGqqC1wN1 : 1548.2723127 (0.29)%
+   GqqC1wN1_QqGbtC2wN2zN1 : 1494.3656463 (0.28)%
+   GbtC2wN2zN1_QqGqqC1wN1 : 1494.3656463 (0.28)%
+         GbtC1wN1_QqN2zN1 : 1458.1834632 (0.27)%
+        GbbN2zN1_GbtC1wN1 : 1444.9451036 (0.27)%
+           GbtC1wN1_GqqN1 : 1398.2499034 (0.26)%
+           GbtC2wN1_GttN1 : 1376.6074691 (0.26)%
+      GbtC1wN1_QqGqqN2zN1 : 1338.2825306 (0.25)%
+      GqqN2zN1_QqGbtC1wN1 : 1338.2825306 (0.25)%
+        GttN1_GttN4wC1wN1 : 1325.8841777 (0.25)%
+         GttN1_QqGbbN2zN1 : 1308.8972148 (0.24)%
+         GbbN2zN1_QqGttN1 : 1308.8972148 (0.24)%
+   GbtC1wN1_QqGbtC2hC1wN1 : 1279.6989884 (0.24)%
+   GbtC2hC1wN1_QqGbtC1wN1 : 1279.6989884 (0.24)%
+            GqqN1_QqGttN1 : 1266.5985715 (0.24)%
+            GttN1_QqGqqN1 : 1266.5985715 (0.24)%
+          QqGttN1_QqGttN1 : 1262.9928613 (0.24)%
+   GbtC1wN1_QqGbtC2zC1wN1 : 1255.9555707 (0.23)%
+   GbtC2zC1wN1_QqGbtC1wN1 : 1255.9555707 (0.23)%
+         GbbN2zN1_QqC1wN1 : 1221.3913472 (0.23)%
+   GbtC1wN1_QqGbtC2wN2zN1 : 1212.2265849 (0.23)%
+   GbtC2wN2zN1_QqGbtC1wN1 : 1212.2265849 (0.23)%
+        GbtC2wN1_GqqC1wN1 : 1197.0159527 (0.22)%
+            GqqN1_QqC1wN1 : 1181.9205651 (0.22)%
+     GbtC2hC1wN1_GqqN2zN1 : 1179.5654791 (0.22)%
+     GbtC2zC1wN1_GqqN2zN1 : 1157.6799292 (0.22)%
+     GqqC1wN1_GttN4wC1wN1 : 1152.9099963 (0.22)%
+          QqGttN1_QqN2zN1 : 1143.3973100 (0.21)%
+      GqqC1wN1_QqGbbN2zN1 : 1138.1391440 (0.21)%
+      GbbN2zN1_QqGqqC1wN1 : 1138.1391440 (0.21)%
+     GbtC2wN2zN1_GqqN2zN1 : 1117.3726362 (0.21)%
+  GbtC2hC1wN1_GbtC2zC1wN1 : 1107.0022962 (0.21)%
+         GqqN1_QqGqqC1wN1 : 1101.3587604 (0.21)%
+         GqqC1wN1_QqGqqN1 : 1101.3587604 (0.21)%
+          QqC1wN1_QqC1wN1 : 1099.7639681 (0.21)%
+  GbtC2hC1wN1_GbtC2wN2zN1 : 1068.4594617 (0.20)%
+          QqC1wN1_QqN2zN1 : 1066.9558810 (0.20)%
+       QqGqqN2zN1_QqGttN1 : 1049.3800569 (0.20)%
+  GbtC2wN2zN1_GbtC2zC1wN1 : 1048.6353627 (0.20)%
+    QqGbtC2hC1wN1_QqGttN1 : 1003.4432690 (0.19)%
+       QqGqqC1wN1_QqN2zN1 : 994.2302734 (0.19)%
+    QqGbtC2zC1wN1_QqGttN1 : 984.8254745 (0.18)%
+       QqC1wN1_QqGqqN2zN1 : 979.2241186 (0.18)%
+        GbtC1wN1_GbtC2wN1 : 971.0170760 (0.18)%
+    QqGqqC1wN1_QqGqqC1wN1 : 954.9497718 (0.18)%
+    QqGbtC2wN2zN1_QqGttN1 : 950.5365074 (0.18)%
+    QqC1wN1_QqGbtC2hC1wN1 : 936.3584186 (0.17)%
+     GbtC1wN1_GttN4wC1wN1 : 935.2384076 (0.17)%
+      GbtC1wN1_QqGbbN2zN1 : 923.2563202 (0.17)%
+      GbbN2zN1_QqGbtC1wN1 : 923.2563202 (0.17)%
+    QqC1wN1_QqGbtC2zC1wN1 : 918.9853103 (0.17)%
+    QqGqqC1wN1_QqGqqN2zN1 : 912.4784638 (0.17)%
+         GbtC1wN1_QqGqqN1 : 893.4201426 (0.17)%
+         GqqN1_QqGbtC1wN1 : 893.4201426 (0.17)%
+    QqC1wN1_QqGbtC2wN2zN1 : 886.9887202 (0.17)%
+         GttN1_QqGbtC2wN1 : 879.5915797 (0.16)%
+         GbtC2wN1_QqGttN1 : 879.5915797 (0.16)%
+ QqGbtC2hC1wN1_QqGqqC1wN1 : 872.5345660 (0.16)%
+         GqqN2zN1_QqN2zN1 : 858.8104846 (0.16)%
+ QqGbtC2zC1wN1_QqGqqC1wN1 : 856.3456396 (0.16)%
+        GbbN2zN1_GqqN2zN1 : 851.0136317 (0.16)%
+      GttN1_QqGttN4wC1wN1 : 847.1816292 (0.16)%
+      GttN4wC1wN1_QqGttN1 : 847.1816292 (0.16)%
+ QqGbtC2wN2zN1_QqGqqC1wN1 : 826.5299939 (0.15)%
+           GqqN1_GqqN2zN1 : 823.5120666 (0.15)%
+      GbtC2hC1wN1_QqN2zN1 : 821.2159117 (0.15)%
+         GbtC2wN1_QqC1wN1 : 820.7867910 (0.15)%
+     GbbN2zN1_GbtC2hC1wN1 : 813.7603673 (0.15)%
+       QqGbtC1wN1_QqN2zN1 : 806.5177167 (0.15)%
+        GttN1_GttN3wC1wN1 : 806.3430750 (0.15)%
+      GbtC2zC1wN1_QqN2zN1 : 805.9791469 (0.15)%
+     GbbN2zN1_GbtC2zC1wN1 : 798.6619320 (0.15)%
+      GttN4wC1wN1_QqC1wN1 : 790.5435963 (0.15)%
+      GqqN2zN1_QqGqqN2zN1 : 788.1937340 (0.15)%
+        GbtC2hC1wN1_GqqN1 : 787.4626877 (0.15)%
+      GbtC2wN2zN1_QqN2zN1 : 777.9171266 (0.15)%
+        GbtC2zC1wN1_GqqN1 : 772.8521772 (0.14)%
+     GbbN2zN1_GbtC2wN2zN1 : 770.8546774 (0.14)%
+      GbtC2wN1_QqGqqC1wN1 : 764.8405057 (0.14)%
+      GqqC1wN1_QqGbtC2wN1 : 764.8405057 (0.14)%
+   GqqN2zN1_QqGbtC2hC1wN1 : 753.6904211 (0.14)%
+   GbtC2hC1wN1_QqGqqN2zN1 : 753.6904211 (0.14)%
+        GbtC2wN2zN1_GqqN1 : 745.9435487 (0.14)%
+    QqGbtC1wN1_QqGqqN2zN1 : 740.2008033 (0.14)%
+   GqqN2zN1_QqGbtC2zC1wN1 : 739.7065181 (0.14)%
+   GbtC2zC1wN1_QqGqqN2zN1 : 739.7065181 (0.14)%
+   GqqC1wN1_QqGttN4wC1wN1 : 736.6587409 (0.14)%
+   GttN4wC1wN1_QqGqqC1wN1 : 736.6587409 (0.14)%
+       QqGbbN2zN1_QqGttN1 : 723.9478568 (0.14)%
+GbtC2hC1wN1_QqGbtC2hC1wN1 : 720.6974966 (0.13)%
+   GbtC2wN2zN1_QqGqqN2zN1 : 713.9519321 (0.13)%
+   GqqN2zN1_QqGbtC2wN2zN1 : 713.9519321 (0.13)%
+ QqGbtC1wN1_QqGbtC2hC1wN1 : 707.7983890 (0.13)%
+GbtC2hC1wN1_QqGbtC2zC1wN1 : 707.3257412 (0.13)%
+GbtC2zC1wN1_QqGbtC2hC1wN1 : 707.3257412 (0.13)%
+     GqqC1wN1_GttN3wC1wN1 : 701.1479639 (0.13)%
+          QqGqqN1_QqGttN1 : 700.5525804 (0.13)%
+ QqGbtC1wN1_QqGbtC2zC1wN1 : 694.6659626 (0.13)%
+GbtC2zC1wN1_QqGbtC2zC1wN1 : 694.2020843 (0.13)%
+GbtC2wN2zN1_QqGbtC2hC1wN1 : 682.6985665 (0.13)%
+GbtC2hC1wN1_QqGbtC2wN2zN1 : 682.6985665 (0.13)%
+       QqC1wN1_QqGbbN2zN1 : 675.5485749 (0.13)%
+ QqGbtC1wN1_QqGbtC2wN2zN1 : 670.4795672 (0.13)%
+GbtC2wN2zN1_QqGbtC2zC1wN1 : 670.0318399 (0.13)%
+GbtC2zC1wN1_QqGbtC2wN2zN1 : 670.0318399 (0.13)%
+          QqC1wN1_QqGqqN1 : 653.7173816 (0.12)%
+GbtC2wN2zN1_QqGbtC2wN2zN1 : 646.7031382 (0.12)%
+    QqGbbN2zN1_QqGqqC1wN1 : 629.5019844 (0.12)%
+    QqGbtC1wN1_QqGbtC1wN1 : 628.3974114 (0.12)%
+      GbtC1wN1_QqGbtC2wN1 : 620.4371711 (0.12)%
+      GbtC2wN1_QqGbtC1wN1 : 620.4371711 (0.12)%
+        GqqN2zN1_GqqN2zN1 : 616.7824968 (0.12)%
+       QqGqqC1wN1_QqGqqN1 : 609.1588439 (0.11)%
+   GbtC1wN1_QqGttN4wC1wN1 : 597.5761768 (0.11)%
+   GttN4wC1wN1_QqGbtC1wN1 : 597.5761768 (0.11)%
+         GbbN2zN1_QqN2zN1 : 592.4774400 (0.11)%
+           GttN1_GttN2zN1 : 582.8172502 (0.11)%
+            GqqN1_QqN2zN1 : 573.3307938 (0.11)%
+              N2zN1_N2zN1 : 572.1898378 (0.11)%
+        GbtC2wN1_GqqN2zN1 : 571.8893861 (0.11)%
+     GbtC1wN1_GttN3wC1wN1 : 568.7699017 (0.11)%
+           GbbN2zN1_GqqN1 : 568.1257155 (0.11)%
+  GbtC2hC1wN1_GbtC2hC1wN1 : 563.9649012 (0.11)%
+     GqqN2zN1_GttN4wC1wN1 : 550.8172122 (0.10)%
+        GttN1_GttN4hN2zN1 : 550.2629749 (0.10)%
+     GbtC2hC1wN1_GbtC2wN1 : 546.8548324 (0.10)%
+      GqqN2zN1_QqGbbN2zN1 : 543.7602523 (0.10)%
+      GbbN2zN1_QqGqqN2zN1 : 543.7602523 (0.10)%
+  GbtC2zC1wN1_GbtC2zC1wN1 : 543.2315385 (0.10)%
+     GbtC2wN1_GbtC2zC1wN1 : 536.7085379 (0.10)%
+  GbtC2hC1wN1_GttN4wC1wN1 : 526.7050964 (0.10)%
+------------------------------------------------------------
+                                        SUM=75.40%
+
+SHOWING PROCESSES TO GET 90.00% SUSY COVERAGE
+---------------  Output inclusive processes  ---------------
+The total xsec = 535492.53 [fb]
+The total rate = 100.00%
+                      Modes : xsec/fb      (rate)
+                C1wN1_N2zN1 : 89480.7647073 (16.71)%
+                C1wN1_C1wN1 : 47110.8375076 (8.80)%
+             GqqC1wN1_GttN1 : 6215.0986064 (1.16)%
+             GbtC1wN1_GttN1 : 5041.6762302 (0.94)%
+              GttN1_QqGttN1 : 4566.9804058 (0.85)%
+          GbtC1wN1_GqqC1wN1 : 4383.9416910 (0.82)%
+              GttN1_QqC1wN1 : 4261.6565211 (0.80)%
+                C1wN1_N2hN1 : 4190.7962861 (0.78)%
+           GttN1_QqGqqC1wN1 : 3971.1744445 (0.74)%
+           GqqC1wN1_QqGttN1 : 3971.1744445 (0.74)%
+           GqqC1wN1_QqC1wN1 : 3705.6829598 (0.69)%
+                GttN1_GttN1 : 3573.7832664 (0.67)%
+        GqqC1wN1_QqGqqC1wN1 : 3453.0970285 (0.64)%
+           GbtC1wN1_QqGttN1 : 3221.4091957 (0.60)%
+           GttN1_QqGbtC1wN1 : 3221.4091957 (0.60)%
+           GbtC1wN1_QqC1wN1 : 3006.0430057 (0.56)%
+             GqqN2zN1_GttN1 : 2969.3413182 (0.55)%
+          GbtC2hC1wN1_GttN1 : 2839.3579040 (0.53)%
+        GbtC1wN1_QqGqqC1wN1 : 2801.1457761 (0.52)%
+        GqqC1wN1_QqGbtC1wN1 : 2801.1457761 (0.52)%
+          GbtC2zC1wN1_GttN1 : 2786.6767176 (0.52)%
+          GqqC1wN1_GqqC1wN1 : 2702.1399878 (0.50)%
+          GbtC2wN2zN1_GttN1 : 2689.6521496 (0.50)%
+          GqqC1wN1_GqqN2zN1 : 2581.9625468 (0.48)%
+       GbtC2hC1wN1_GqqC1wN1 : 2468.9367033 (0.46)%
+       GbtC2zC1wN1_GqqC1wN1 : 2423.1282779 (0.45)%
+            QqC1wN1_QqGttN1 : 2357.1118267 (0.44)%
+       GbtC2wN2zN1_GqqC1wN1 : 2338.7614862 (0.44)%
+        GbtC1wN1_QqGbtC1wN1 : 2272.2841537 (0.42)%
+         QqGqqC1wN1_QqGttN1 : 2196.4468987 (0.41)%
+          GbtC1wN1_GqqN2zN1 : 2094.4831327 (0.39)%
+              GttN1_QqN2zN1 : 2067.2615305 (0.39)%
+         QqC1wN1_QqGqqC1wN1 : 2049.6042061 (0.38)%
+             GbbN2zN1_GttN1 : 2048.4935550 (0.38)%
+       GbtC1wN1_GbtC2hC1wN1 : 2002.7967824 (0.37)%
+                GqqN1_GttN1 : 1982.2939351 (0.37)%
+       GbtC1wN1_GbtC2zC1wN1 : 1965.6370744 (0.37)%
+           GttN1_QqGqqN2zN1 : 1897.2784032 (0.35)%
+           GqqN2zN1_QqGttN1 : 1897.2784032 (0.35)%
+       GbtC1wN1_GbtC2wN2zN1 : 1897.1988925 (0.35)%
+        GttN1_QqGbtC2hC1wN1 : 1814.2247229 (0.34)%
+        GbtC2hC1wN1_QqGttN1 : 1814.2247229 (0.34)%
+           GqqC1wN1_QqN2zN1 : 1797.5676335 (0.34)%
+         QqGbtC1wN1_QqGttN1 : 1781.7535684 (0.33)%
+          GbbN2zN1_GqqC1wN1 : 1781.2481186 (0.33)%
+        GttN1_QqGbtC2zC1wN1 : 1780.5637637 (0.33)%
+        GbtC2zC1wN1_QqGttN1 : 1780.5637637 (0.33)%
+          GbtC1wN1_GbtC1wN1 : 1778.1226025 (0.33)%
+           GqqN2zN1_QqC1wN1 : 1770.4365162 (0.33)%
+             GqqC1wN1_GqqN1 : 1723.6848677 (0.32)%
+        GttN1_QqGbtC2wN2zN1 : 1718.5693354 (0.32)%
+        GbtC2wN2zN1_QqGttN1 : 1718.5693354 (0.32)%
+        GbtC2hC1wN1_QqC1wN1 : 1692.9353608 (0.32)%
+         QqC1wN1_QqGbtC1wN1 : 1662.6350540 (0.31)%
+        GbtC2zC1wN1_QqC1wN1 : 1661.5247933 (0.31)%
+        GqqN2zN1_QqGqqC1wN1 : 1649.7604192 (0.31)%
+        GqqC1wN1_QqGqqN2zN1 : 1649.7604192 (0.31)%
+        GbtC2wN2zN1_QqC1wN1 : 1603.6749809 (0.30)%
+     GqqC1wN1_QqGbtC2hC1wN1 : 1577.5418802 (0.29)%
+     GbtC2hC1wN1_QqGqqC1wN1 : 1577.5418802 (0.29)%
+      QqGbtC1wN1_QqGqqC1wN1 : 1549.3068962 (0.29)%
+     GqqC1wN1_QqGbtC2zC1wN1 : 1548.2723127 (0.29)%
+     GbtC2zC1wN1_QqGqqC1wN1 : 1548.2723127 (0.29)%
+     GqqC1wN1_QqGbtC2wN2zN1 : 1494.3656463 (0.28)%
+     GbtC2wN2zN1_QqGqqC1wN1 : 1494.3656463 (0.28)%
+           GbtC1wN1_QqN2zN1 : 1458.1834632 (0.27)%
+          GbbN2zN1_GbtC1wN1 : 1444.9451036 (0.27)%
+             GbtC1wN1_GqqN1 : 1398.2499034 (0.26)%
+             GbtC2wN1_GttN1 : 1376.6074691 (0.26)%
+        GbtC1wN1_QqGqqN2zN1 : 1338.2825306 (0.25)%
+        GqqN2zN1_QqGbtC1wN1 : 1338.2825306 (0.25)%
+          GttN1_GttN4wC1wN1 : 1325.8841777 (0.25)%
+           GttN1_QqGbbN2zN1 : 1308.8972148 (0.24)%
+           GbbN2zN1_QqGttN1 : 1308.8972148 (0.24)%
+     GbtC1wN1_QqGbtC2hC1wN1 : 1279.6989884 (0.24)%
+     GbtC2hC1wN1_QqGbtC1wN1 : 1279.6989884 (0.24)%
+              GqqN1_QqGttN1 : 1266.5985715 (0.24)%
+              GttN1_QqGqqN1 : 1266.5985715 (0.24)%
+            QqGttN1_QqGttN1 : 1262.9928613 (0.24)%
+     GbtC1wN1_QqGbtC2zC1wN1 : 1255.9555707 (0.23)%
+     GbtC2zC1wN1_QqGbtC1wN1 : 1255.9555707 (0.23)%
+           GbbN2zN1_QqC1wN1 : 1221.3913472 (0.23)%
+     GbtC1wN1_QqGbtC2wN2zN1 : 1212.2265849 (0.23)%
+     GbtC2wN2zN1_QqGbtC1wN1 : 1212.2265849 (0.23)%
+          GbtC2wN1_GqqC1wN1 : 1197.0159527 (0.22)%
+              GqqN1_QqC1wN1 : 1181.9205651 (0.22)%
+       GbtC2hC1wN1_GqqN2zN1 : 1179.5654791 (0.22)%
+       GbtC2zC1wN1_GqqN2zN1 : 1157.6799292 (0.22)%
+       GqqC1wN1_GttN4wC1wN1 : 1152.9099963 (0.22)%
+            QqGttN1_QqN2zN1 : 1143.3973100 (0.21)%
+        GqqC1wN1_QqGbbN2zN1 : 1138.1391440 (0.21)%
+        GbbN2zN1_QqGqqC1wN1 : 1138.1391440 (0.21)%
+       GbtC2wN2zN1_GqqN2zN1 : 1117.3726362 (0.21)%
+    GbtC2hC1wN1_GbtC2zC1wN1 : 1107.0022962 (0.21)%
+           GqqN1_QqGqqC1wN1 : 1101.3587604 (0.21)%
+           GqqC1wN1_QqGqqN1 : 1101.3587604 (0.21)%
+            QqC1wN1_QqC1wN1 : 1099.7639681 (0.21)%
+    GbtC2hC1wN1_GbtC2wN2zN1 : 1068.4594617 (0.20)%
+            QqC1wN1_QqN2zN1 : 1066.9558810 (0.20)%
+         QqGqqN2zN1_QqGttN1 : 1049.3800569 (0.20)%
+    GbtC2wN2zN1_GbtC2zC1wN1 : 1048.6353627 (0.20)%
+      QqGbtC2hC1wN1_QqGttN1 : 1003.4432690 (0.19)%
+         QqGqqC1wN1_QqN2zN1 : 994.2302734 (0.19)%
+      QqGbtC2zC1wN1_QqGttN1 : 984.8254745 (0.18)%
+         QqC1wN1_QqGqqN2zN1 : 979.2241186 (0.18)%
+          GbtC1wN1_GbtC2wN1 : 971.0170760 (0.18)%
+      QqGqqC1wN1_QqGqqC1wN1 : 954.9497718 (0.18)%
+      QqGbtC2wN2zN1_QqGttN1 : 950.5365074 (0.18)%
+      QqC1wN1_QqGbtC2hC1wN1 : 936.3584186 (0.17)%
+       GbtC1wN1_GttN4wC1wN1 : 935.2384076 (0.17)%
+        GbtC1wN1_QqGbbN2zN1 : 923.2563202 (0.17)%
+        GbbN2zN1_QqGbtC1wN1 : 923.2563202 (0.17)%
+      QqC1wN1_QqGbtC2zC1wN1 : 918.9853103 (0.17)%
+      QqGqqC1wN1_QqGqqN2zN1 : 912.4784638 (0.17)%
+           GbtC1wN1_QqGqqN1 : 893.4201426 (0.17)%
+           GqqN1_QqGbtC1wN1 : 893.4201426 (0.17)%
+      QqC1wN1_QqGbtC2wN2zN1 : 886.9887202 (0.17)%
+           GttN1_QqGbtC2wN1 : 879.5915797 (0.16)%
+           GbtC2wN1_QqGttN1 : 879.5915797 (0.16)%
+   QqGbtC2hC1wN1_QqGqqC1wN1 : 872.5345660 (0.16)%
+           GqqN2zN1_QqN2zN1 : 858.8104846 (0.16)%
+   QqGbtC2zC1wN1_QqGqqC1wN1 : 856.3456396 (0.16)%
+          GbbN2zN1_GqqN2zN1 : 851.0136317 (0.16)%
+        GttN1_QqGttN4wC1wN1 : 847.1816292 (0.16)%
+        GttN4wC1wN1_QqGttN1 : 847.1816292 (0.16)%
+   QqGbtC2wN2zN1_QqGqqC1wN1 : 826.5299939 (0.15)%
+             GqqN1_GqqN2zN1 : 823.5120666 (0.15)%
+        GbtC2hC1wN1_QqN2zN1 : 821.2159117 (0.15)%
+           GbtC2wN1_QqC1wN1 : 820.7867910 (0.15)%
+       GbbN2zN1_GbtC2hC1wN1 : 813.7603673 (0.15)%
+         QqGbtC1wN1_QqN2zN1 : 806.5177167 (0.15)%
+          GttN1_GttN3wC1wN1 : 806.3430750 (0.15)%
+        GbtC2zC1wN1_QqN2zN1 : 805.9791469 (0.15)%
+       GbbN2zN1_GbtC2zC1wN1 : 798.6619320 (0.15)%
+        GttN4wC1wN1_QqC1wN1 : 790.5435963 (0.15)%
+        GqqN2zN1_QqGqqN2zN1 : 788.1937340 (0.15)%
+          GbtC2hC1wN1_GqqN1 : 787.4626877 (0.15)%
+        GbtC2wN2zN1_QqN2zN1 : 777.9171266 (0.15)%
+          GbtC2zC1wN1_GqqN1 : 772.8521772 (0.14)%
+       GbbN2zN1_GbtC2wN2zN1 : 770.8546774 (0.14)%
+        GbtC2wN1_QqGqqC1wN1 : 764.8405057 (0.14)%
+        GqqC1wN1_QqGbtC2wN1 : 764.8405057 (0.14)%
+     GqqN2zN1_QqGbtC2hC1wN1 : 753.6904211 (0.14)%
+     GbtC2hC1wN1_QqGqqN2zN1 : 753.6904211 (0.14)%
+          GbtC2wN2zN1_GqqN1 : 745.9435487 (0.14)%
+      QqGbtC1wN1_QqGqqN2zN1 : 740.2008033 (0.14)%
+     GqqN2zN1_QqGbtC2zC1wN1 : 739.7065181 (0.14)%
+     GbtC2zC1wN1_QqGqqN2zN1 : 739.7065181 (0.14)%
+     GqqC1wN1_QqGttN4wC1wN1 : 736.6587409 (0.14)%
+     GttN4wC1wN1_QqGqqC1wN1 : 736.6587409 (0.14)%
+         QqGbbN2zN1_QqGttN1 : 723.9478568 (0.14)%
+  GbtC2hC1wN1_QqGbtC2hC1wN1 : 720.6974966 (0.13)%
+     GbtC2wN2zN1_QqGqqN2zN1 : 713.9519321 (0.13)%
+     GqqN2zN1_QqGbtC2wN2zN1 : 713.9519321 (0.13)%
+   QqGbtC1wN1_QqGbtC2hC1wN1 : 707.7983890 (0.13)%
+  GbtC2hC1wN1_QqGbtC2zC1wN1 : 707.3257412 (0.13)%
+  GbtC2zC1wN1_QqGbtC2hC1wN1 : 707.3257412 (0.13)%
+       GqqC1wN1_GttN3wC1wN1 : 701.1479639 (0.13)%
+            QqGqqN1_QqGttN1 : 700.5525804 (0.13)%
+   QqGbtC1wN1_QqGbtC2zC1wN1 : 694.6659626 (0.13)%
+  GbtC2zC1wN1_QqGbtC2zC1wN1 : 694.2020843 (0.13)%
+  GbtC2wN2zN1_QqGbtC2hC1wN1 : 682.6985665 (0.13)%
+  GbtC2hC1wN1_QqGbtC2wN2zN1 : 682.6985665 (0.13)%
+         QqC1wN1_QqGbbN2zN1 : 675.5485749 (0.13)%
+   QqGbtC1wN1_QqGbtC2wN2zN1 : 670.4795672 (0.13)%
+  GbtC2wN2zN1_QqGbtC2zC1wN1 : 670.0318399 (0.13)%
+  GbtC2zC1wN1_QqGbtC2wN2zN1 : 670.0318399 (0.13)%
+            QqC1wN1_QqGqqN1 : 653.7173816 (0.12)%
+  GbtC2wN2zN1_QqGbtC2wN2zN1 : 646.7031382 (0.12)%
+      QqGbbN2zN1_QqGqqC1wN1 : 629.5019844 (0.12)%
+      QqGbtC1wN1_QqGbtC1wN1 : 628.3974114 (0.12)%
+        GbtC1wN1_QqGbtC2wN1 : 620.4371711 (0.12)%
+        GbtC2wN1_QqGbtC1wN1 : 620.4371711 (0.12)%
+          GqqN2zN1_GqqN2zN1 : 616.7824968 (0.12)%
+         QqGqqC1wN1_QqGqqN1 : 609.1588439 (0.11)%
+     GbtC1wN1_QqGttN4wC1wN1 : 597.5761768 (0.11)%
+     GttN4wC1wN1_QqGbtC1wN1 : 597.5761768 (0.11)%
+           GbbN2zN1_QqN2zN1 : 592.4774400 (0.11)%
+             GttN1_GttN2zN1 : 582.8172502 (0.11)%
+              GqqN1_QqN2zN1 : 573.3307938 (0.11)%
+                N2zN1_N2zN1 : 572.1898378 (0.11)%
+          GbtC2wN1_GqqN2zN1 : 571.8893861 (0.11)%
+       GbtC1wN1_GttN3wC1wN1 : 568.7699017 (0.11)%
+             GbbN2zN1_GqqN1 : 568.1257155 (0.11)%
+    GbtC2hC1wN1_GbtC2hC1wN1 : 563.9649012 (0.11)%
+       GqqN2zN1_GttN4wC1wN1 : 550.8172122 (0.10)%
+          GttN1_GttN4hN2zN1 : 550.2629749 (0.10)%
+       GbtC2hC1wN1_GbtC2wN1 : 546.8548324 (0.10)%
+        GqqN2zN1_QqGbbN2zN1 : 543.7602523 (0.10)%
+        GbbN2zN1_QqGqqN2zN1 : 543.7602523 (0.10)%
+    GbtC2zC1wN1_GbtC2zC1wN1 : 543.2315385 (0.10)%
+       GbtC2wN1_GbtC2zC1wN1 : 536.7085379 (0.10)%
+    GbtC2hC1wN1_GttN4wC1wN1 : 526.7050964 (0.10)%
+           GqqN1_QqGqqN2zN1 : 526.1879627 (0.10)%
+           GqqN2zN1_QqGqqN1 : 526.1879627 (0.10)%
+     GbtC2hC1wN1_QqGbbN2zN1 : 519.9570560 (0.10)%
+     GbbN2zN1_QqGbtC2hC1wN1 : 519.9570560 (0.10)%
+       GbtC2wN1_GbtC2wN2zN1 : 518.0217941 (0.10)%
+    GbtC2zC1wN1_GttN4wC1wN1 : 516.9326583 (0.10)%
+        GttN3wC1wN1_QqGttN1 : 515.2177328 (0.10)%
+        GttN1_QqGttN3wC1wN1 : 515.2177328 (0.10)%
+      QqGbbN2zN1_QqGbtC1wN1 : 510.6508187 (0.10)%
+     GbbN2zN1_QqGbtC2zC1wN1 : 510.3098205 (0.10)%
+     GbtC2zC1wN1_QqGbbN2zN1 : 510.3098205 (0.10)%
+          GqqC1wN1_GttN2zN1 : 506.7832056 (0.09)%
+    GbtC2wN2zN1_GbtC2wN2zN1 : 506.0623537 (0.09)%
+        GbtC2hC1wN1_QqGqqN1 : 503.1539964 (0.09)%
+        GqqN1_QqGbtC2hC1wN1 : 503.1539964 (0.09)%
+    GbtC2wN2zN1_GttN4wC1wN1 : 498.9344572 (0.09)%
+         QqGbtC1wN1_QqGqqN1 : 494.1485016 (0.09)%
+        GqqN1_QqGbtC2zC1wN1 : 493.8185232 (0.09)%
+        GbtC2zC1wN1_QqGqqN1 : 493.8185232 (0.09)%
+     GbbN2zN1_QqGbtC2wN2zN1 : 492.5422088 (0.09)%
+     GbtC2wN2zN1_QqGbbN2zN1 : 492.5422088 (0.09)%
+         QqGbtC2wN1_QqGttN1 : 486.4999572 (0.09)%
+          C2hC1wN1_N3wC1wN1 : 481.2054353 (0.09)%
+        GttN3wC1wN1_QqC1wN1 : 480.7730306 (0.09)%
+       GqqC1wN1_GttN4hN2zN1 : 478.4759446 (0.09)%
+        GqqN1_QqGbtC2wN2zN1 : 476.6250940 (0.09)%
+        GbtC2wN2zN1_QqGqqN1 : 476.6250940 (0.09)%
+         QqGqqN2zN1_QqN2zN1 : 475.0059842 (0.09)%
+          C2zC1wN1_N3wC1wN1 : 472.2771938 (0.09)%
+          C2hC1wN1_N4wC1wN1 : 470.7191894 (0.09)%
+      QqGttN1_QqGttN4wC1wN1 : 468.5740926 (0.09)%
+          C2zC1wN1_N4wC1wN1 : 461.9855087 (0.09)%
+          C2wN2zN1_N3wC1wN1 : 455.8337756 (0.09)%
+      QqGbtC2hC1wN1_QqN2zN1 : 454.2125176 (0.08)%
+         QqC1wN1_QqGbtC2wN1 : 453.9751720 (0.08)%
+     GttN3wC1wN1_QqGqqC1wN1 : 448.0026871 (0.08)%
+     GqqC1wN1_QqGttN3wC1wN1 : 448.0026871 (0.08)%
+          C2wN2zN1_N4wC1wN1 : 445.9004192 (0.08)%
+      QqGbtC2zC1wN1_QqN2zN1 : 445.7851002 (0.08)%
+          N3wC1wN1_N4wC1wN1 : 442.3593050 (0.08)%
+      QqC1wN1_QqGttN4wC1wN1 : 437.2477348 (0.08)%
+      QqGbtC2wN2zN1_QqN2zN1 : 430.2640652 (0.08)%
+      QqGbtC2wN1_QqGqqC1wN1 : 423.0314181 (0.08)%
+   QqGbtC2hC1wN1_QqGqqN2zN1 : 416.8643335 (0.08)%
+          GbtC1wN1_GttN2zN1 : 411.1015775 (0.08)%
+   QqGbtC2zC1wN1_QqGqqN2zN1 : 409.1298709 (0.08)%
+   QqGqqC1wN1_QqGttN4wC1wN1 : 407.4441527 (0.08)%
+                      N1_N1 : 402.6955459 (0.08)%
+           GbtC2wN1_QqN2zN1 : 398.1505664 (0.07)%
+   QqGbtC2wN2zN1_QqGqqN2zN1 : 394.8850721 (0.07)%
+          GbbN2zN1_GbtC2wN1 : 394.5358907 (0.07)%
+QqGbtC2hC1wN1_QqGbtC2zC1wN1 : 391.2201422 (0.07)%
+       GbtC1wN1_GttN4hN2zN1 : 388.1387809 (0.07)%
+        GttN4wC1wN1_QqN2zN1 : 383.4800756 (0.07)%
+             GbtC2wN1_GqqN1 : 381.7859721 (0.07)%
+       GbbN2zN1_GttN4wC1wN1 : 379.9985884 (0.07)%
+QqGbtC2hC1wN1_QqGbtC2wN2zN1 : 377.5989119 (0.07)%
+        GbbN2zN1_QqGbbN2zN1 : 375.1301224 (0.07)%
+           GttN1_QqGttN2zN1 : 372.3945695 (0.07)%
+           GttN2zN1_QqGttN1 : 372.3945695 (0.07)%
+QqGbtC2wN2zN1_QqGbtC2zC1wN1 : 370.5929763 (0.07)%
+          GqqN1_GttN4wC1wN1 : 367.7184608 (0.07)%
+        GbtC2wN1_QqGqqN2zN1 : 365.4121454 (0.07)%
+        GqqN2zN1_QqGbtC2wN1 : 365.4121454 (0.07)%
+     GbtC1wN1_QqGttN3wC1wN1 : 363.4189321 (0.07)%
+     GttN3wC1wN1_QqGbtC1wN1 : 363.4189321 (0.07)%
+           GqqN1_QqGbbN2zN1 : 363.0073254 (0.07)%
+           GbbN2zN1_QqGqqN1 : 363.0073254 (0.07)%
+     GqqN2zN1_QqGttN4wC1wN1 : 351.9479537 (0.07)%
+     GttN4wC1wN1_QqGqqN2zN1 : 351.9479537 (0.07)%
+        GttN1_QqGttN4hN2zN1 : 351.5938205 (0.07)%
+        GttN4hN2zN1_QqGttN1 : 351.5938205 (0.07)%
+              GqqN1_QqGqqN1 : 351.2762917 (0.07)%
+     GbtC2wN1_QqGbtC2hC1wN1 : 349.4161674 (0.07)%
+     GbtC2hC1wN1_QqGbtC2wN1 : 349.4161674 (0.07)%
+           GttN2zN1_QqC1wN1 : 347.4982602 (0.06)%
+       T1bC1wN1_T1tN3wC1wN1 : 346.7320308 (0.06)%
+      QqGbtC1wN1_QqGbtC2wN1 : 343.1622860 (0.06)%
+     GbtC2wN1_QqGbtC2zC1wN1 : 342.9331319 (0.06)%
+     GbtC2zC1wN1_QqGbtC2wN1 : 342.9331319 (0.06)%
+  GbtC2hC1wN1_QqGttN4wC1wN1 : 336.5413730 (0.06)%
+  GttN4wC1wN1_QqGbtC2hC1wN1 : 336.5413730 (0.06)%
+       GqqN2zN1_GttN3wC1wN1 : 334.9822346 (0.06)%
+     GbtC2wN1_QqGbtC2wN2zN1 : 330.9931251 (0.06)%
+     GbtC2wN2zN1_QqGbtC2wN1 : 330.9931251 (0.06)%
+   QqGbtC1wN1_QqGttN4wC1wN1 : 330.5179258 (0.06)%
+  GttN4wC1wN1_QqGbtC2zC1wN1 : 330.2972152 (0.06)%
+  GbtC2zC1wN1_QqGttN4wC1wN1 : 330.2972152 (0.06)%
+        GttN4hN2zN1_QqC1wN1 : 328.0881380 (0.06)%
+         QqGbbN2zN1_QqN2zN1 : 327.6978269 (0.06)%
+        GttN2zN1_QqGqqC1wN1 : 323.8121617 (0.06)%
+        GqqC1wN1_QqGttN2zN1 : 323.8121617 (0.06)%
+    T1bC2hC1wN1_T1tN3wC1wN1 : 320.6104082 (0.06)%
+    GbtC2hC1wN1_GttN3wC1wN1 : 320.3183311 (0.06)%
+  GbtC2wN2zN1_QqGttN4wC1wN1 : 318.7971570 (0.06)%
+  GttN4wC1wN1_QqGbtC2wN2zN1 : 318.7971570 (0.06)%
+            QqGqqN1_QqN2zN1 : 317.1078636 (0.06)%
+    T1bC2zC1wN1_T1tN3wC1wN1 : 314.6618320 (0.06)%
+    GbtC2zC1wN1_GttN3wC1wN1 : 314.3751741 (0.06)%
+          GttN1_GttN3zN2zN1 : 306.1333352 (0.06)%
+     GttN4hN2zN1_QqGqqC1wN1 : 305.7250679 (0.06)%
+     GqqC1wN1_QqGttN4hN2zN1 : 305.7250679 (0.06)%
+    T1bC2wN2zN1_T1tN3wC1wN1 : 303.7061556 (0.06)%
+    GbtC2wN2zN1_GttN3wC1wN1 : 303.4294784 (0.06)%
+      QqGbbN2zN1_QqGqqN2zN1 : 300.7524692 (0.06)%
+          GbbN2zN1_GbbN2zN1 : 293.5492678 (0.05)%
+         QqGqqN1_QqGqqN2zN1 : 291.0332787 (0.05)%
+                GbbN1_GttN1 : 291.0090827 (0.05)%
+   QqGbbN2zN1_QqGbtC2hC1wN1 : 287.5869794 (0.05)%
+      QqGttN1_QqGttN3wC1wN1 : 284.9656713 (0.05)%
+   QqGbbN2zN1_QqGbtC2zC1wN1 : 282.2511169 (0.05)%
+      QqGbtC2hC1wN1_QqGqqN1 : 278.2932481 (0.05)%
+                GqqN1_GqqN1 : 274.8830128 (0.05)%
+      QqGbtC2zC1wN1_QqGqqN1 : 273.1298207 (0.05)%
+   QqGbbN2zN1_QqGbtC2wN2zN1 : 272.4238942 (0.05)%
+       GqqC1wN1_GttN3zN2zN1 : 266.1953347 (0.05)%
+      QqC1wN1_QqGttN3wC1wN1 : 265.9143905 (0.05)%
+      QqGbtC2wN2zN1_QqGqqN1 : 263.6201769 (0.05)%
+        GbtC1wN1_QqGttN2zN1 : 262.6758129 (0.05)%
+        GttN2zN1_QqGbtC1wN1 : 262.6758129 (0.05)%
+            QqN2zN1_QqN2zN1 : 258.7816307 (0.05)%
+          C2hC1wN1_C2zC1wN1 : 257.7198154 (0.05)%
+       GbtC2wN1_GttN4wC1wN1 : 255.3627243 (0.05)%
+             GbbN1_GqqC1wN1 : 253.0441845 (0.05)%
+        GbtC2wN1_QqGbbN2zN1 : 252.0910682 (0.05)%
+        GbbN2zN1_QqGbtC2wN1 : 252.0910682 (0.05)%
+          C2hC1wN1_C2wN2zN1 : 248.7467064 (0.05)%
+     GbtC1wN1_QqGttN4hN2zN1 : 248.0035966 (0.05)%
+     GttN4hN2zN1_QqGbtC1wN1 : 248.0035966 (0.05)%
+   QqGqqC1wN1_QqGttN3wC1wN1 : 247.7891935 (0.05)%
+       T1bC1wN1_T1bC2hC1wN1 : 245.3529839 (0.05)%
+          C2wN2zN1_C2zC1wN1 : 244.1314828 (0.05)%
+           GqqN1_QqGbtC2wN1 : 243.9444314 (0.05)%
+           GbtC2wN1_QqGqqN1 : 243.9444314 (0.05)%
+     GbbN2zN1_QqGttN4wC1wN1 : 242.8023719 (0.05)%
+     GttN4wC1wN1_QqGbbN2zN1 : 242.8023719 (0.05)%
+          GqqN2zN1_GttN2zN1 : 242.1220333 (0.05)%
+       T1bC1wN1_T1bC2zC1wN1 : 240.8007272 (0.04)%
+        GqqN1_QqGttN4wC1wN1 : 234.9559109 (0.04)%
+        GttN4wC1wN1_QqGqqN1 : 234.9559109 (0.04)%
+             C2wN1_N3wC1wN1 : 233.3030984 (0.04)%
+        GttN3wC1wN1_QqN2zN1 : 233.2153204 (0.04)%
+       T1bC1wN1_T1bC2wN2zN1 : 232.4166953 (0.04)%
+       GbtC2hC1wN1_GttN2zN1 : 231.5231007 (0.04)%
+       GbbN2zN1_GttN3wC1wN1 : 231.0980366 (0.04)%
+       GqqN2zN1_GttN4hN2zN1 : 228.5978843 (0.04)%
+             C2wN1_N4wC1wN1 : 228.2190460 (0.04)%
+       GbtC2zC1wN1_GttN2zN1 : 227.2274423 (0.04)%
+    T1tN3wC1wN1_T1tN3wC1wN1 : 226.5427877 (0.04)%
+          GqqN1_GttN3wC1wN1 : 223.6298158 (0.04)%
+    T1bC2hC1wN1_T1bC2zC1wN1 : 222.6596119 (0.04)%
+         QqGbtC2wN1_QqN2zN1 : 220.2161071 (0.04)%
+       GbtC2wN2zN1_GttN2zN1 : 219.3159955 (0.04)%
+    GbtC2hC1wN1_GttN4hN2zN1 : 218.5909736 (0.04)%
+      QqGqqN2zN1_QqGqqN2zN1 : 217.9740159 (0.04)%
+       GbtC1wN1_GttN3zN2zN1 : 215.9371518 (0.04)%
+    T1bC2hC1wN1_T1bC2wN2zN1 : 214.9072047 (0.04)%
+    GbtC2zC1wN1_GttN4hN2zN1 : 214.5352567 (0.04)%
+     GqqN2zN1_QqGttN3wC1wN1 : 214.0389033 (0.04)%
+     GttN3wC1wN1_QqGqqN2zN1 : 214.0389033 (0.04)%
+      QqGttN4wC1wN1_QqN2zN1 : 212.1018944 (0.04)%
+    T1bC2wN2zN1_T1bC2zC1wN1 : 210.9198361 (0.04)%
+    GbtC2wN2zN1_GttN4hN2zN1 : 207.0657176 (0.04)%
+         QqGttN1_QqGttN2zN1 : 205.9705280 (0.04)%
+             GbbN1_GbtC1wN1 : 205.2689637 (0.04)%
+  GttN3wC1wN1_QqGbtC2hC1wN1 : 204.6693144 (0.04)%
+  GbtC2hC1wN1_QqGttN3wC1wN1 : 204.6693144 (0.04)%
+      QqGbtC2wN1_QqGqqN2zN1 : 202.1085663 (0.04)%
+   QqGbtC1wN1_QqGttN3wC1wN1 : 201.0061249 (0.04)%
+  GttN3wC1wN1_QqGbtC2zC1wN1 : 200.8718987 (0.04)%
+  GbtC2zC1wN1_QqGttN3wC1wN1 : 200.8718987 (0.04)%
+         QqGbbN2zN1_QqGqqN1 : 200.7784663 (0.04)%
+QqGbtC2hC1wN1_QqGbtC2hC1wN1 : 199.3080137 (0.04)%
+        GttN1_QqGttN3zN2zN1 : 195.6057264 (0.04)%
+        GttN3zN2zN1_QqGttN1 : 195.6057264 (0.04)%
+          C2hC1wN1_N4hN2zN1 : 195.3559337 (0.04)%
+   QqGqqN2zN1_QqGttN4wC1wN1 : 194.6615547 (0.04)%
+      QqGttN1_QqGttN4hN2zN1 : 194.4656845 (0.04)%
+  GttN3wC1wN1_QqGbtC2wN2zN1 : 193.8780809 (0.04)%
+  GbtC2wN2zN1_QqGttN3wC1wN1 : 193.8780809 (0.04)%
+   QqGbtC2hC1wN1_QqGbtC2wN1 : 193.2612299 (0.04)%
+         QqC1wN1_QqGttN2zN1 : 192.2004401 (0.04)%
+QqGbtC2zC1wN1_QqGbtC2zC1wN1 : 191.9807397 (0.04)%
+          C2zC1wN1_N4hN2zN1 : 191.7313176 (0.04)%
+   QqGbtC2wN1_QqGbtC2zC1wN1 : 189.6754787 (0.04)%
+QqGbtC2hC1wN1_QqGttN4wC1wN1 : 186.1402125 (0.03)%
+              GbbN1_QqGttN1 : 185.9419947 (0.03)%
+              GttN1_QqGbbN1 : 185.9419947 (0.03)%
+          C2wN2zN1_N4hN2zN1 : 185.0557502 (0.03)%
+          N3wC1wN1_N4hN2zN1 : 183.5861316 (0.03)%
+   QqGbtC2wN1_QqGbtC2wN2zN1 : 183.0714901 (0.03)%
+          C2hC1wN1_N3zN2zN1 : 182.6927389 (0.03)%
+QqGbtC2zC1wN1_QqGttN4wC1wN1 : 182.6865841 (0.03)%
+        GttN3zN2zN1_QqC1wN1 : 182.5285737 (0.03)%
+      QqC1wN1_QqGttN4hN2zN1 : 181.4647489 (0.03)%
+             GttN1_GttN4hN1 : 180.4755565 (0.03)%
+          C2zC1wN1_N3zN2zN1 : 179.3030746 (0.03)%
+      QqGqqC1wN1_QqGttN2zN1 : 179.0997168 (0.03)%
+QqGbtC2wN2zN1_QqGbtC2wN2zN1 : 178.8449641 (0.03)%
+QqGbtC2wN2zN1_QqGttN4wC1wN1 : 176.3259299 (0.03)%
+           GgN4wC1wN1_GttN1 : 173.8509966 (0.03)%
+              GbbN1_QqC1wN1 : 173.5109074 (0.03)%
+          C2wN2zN1_N3zN2zN1 : 173.0602251 (0.03)%
+    T1tN3wC1wN1_T1tN3zN2zN1 : 172.0168532 (0.03)%
+     GqqC1wN1_QqGttN3zN2zN1 : 170.0871019 (0.03)%
+     GttN3zN2zN1_QqGqqC1wN1 : 170.0871019 (0.03)%
+        GbtC2wN1_QqGbtC2wN1 : 169.4076345 (0.03)%
+   QqGqqC1wN1_QqGttN4hN2zN1 : 169.0957893 (0.03)%
+           GttN2zN1_QqN2zN1 : 168.5658574 (0.03)%
+          N3zN2zN1_N4wC1wN1 : 167.9445556 (0.03)%
+          GbbN2zN1_GttN2zN1 : 167.0355044 (0.03)%
+     GbtC2wN1_QqGttN4wC1wN1 : 163.1655408 (0.03)%
+     GttN4wC1wN1_QqGbtC2wN1 : 163.1655408 (0.03)%
+           GbbN1_QqGqqC1wN1 : 161.6840958 (0.03)%
+           GqqC1wN1_QqGbbN1 : 161.6840958 (0.03)%
+             GqqN1_GttN2zN1 : 161.6375441 (0.03)%
+        GttN4hN2zN1_QqN2zN1 : 159.1503170 (0.03)%
+       GbbN2zN1_GttN4hN2zN1 : 157.7054446 (0.03)%
+  GttN4wC1wN1_QqGttN4wC1wN1 : 157.1534469 (0.03)%
+          GqqC1wN1_GttN4hN1 : 156.9308064 (0.03)%
+       T1bC2wN1_T1tN3wC1wN1 : 155.4417222 (0.03)%
+       GbtC2wN1_GttN3wC1wN1 : 155.3001143 (0.03)%
+        GttN2zN1_QqGqqN2zN1 : 154.7053220 (0.03)%
+        GqqN2zN1_QqGttN2zN1 : 154.7053220 (0.03)%
+          GqqN1_GttN4hN2zN1 : 152.6089968 (0.03)%
+        GgN4wC1wN1_GqqC1wN1 : 151.1704832 (0.03)%
+    GttN3wC1wN1_GttN4wC1wN1 : 149.5778346 (0.03)%
+    T1tN3wC1wN1_T1tN4wC1wN1 : 149.2834937 (0.03)%
+     GttN2zN1_QqGbtC2hC1wN1 : 147.9330706 (0.03)%
+     GbtC2hC1wN1_QqGttN2zN1 : 147.9330706 (0.03)%
+          T1tN1_T1tN3wC1wN1 : 147.8257913 (0.03)%
+       T1tN2zN1_T1tN3wC1wN1 : 147.7983774 (0.03)%
+     GbbN2zN1_QqGttN3wC1wN1 : 147.6614733 (0.03)%
+     GttN3wC1wN1_QqGbbN2zN1 : 147.6614733 (0.03)%
+     GttN4hN2zN1_QqGqqN2zN1 : 146.0639860 (0.03)%
+     GqqN2zN1_QqGttN4hN2zN1 : 146.0639860 (0.03)%
+      QqGbtC1wN1_QqGttN2zN1 : 145.2853514 (0.03)%
+     GttN2zN1_QqGbtC2zC1wN1 : 145.1883339 (0.03)%
+     GbtC2zC1wN1_QqGttN2zN1 : 145.1883339 (0.03)%
+        GqqN1_QqGttN3wC1wN1 : 142.8896090 (0.03)%
+        GttN3wC1wN1_QqGqqN1 : 142.8896090 (0.03)%
+     GttN2zN1_QqGbtC2wN2zN1 : 140.1332677 (0.03)%
+     GbtC2wN2zN1_QqGttN2zN1 : 140.1332677 (0.03)%
+  GttN4hN2zN1_QqGbtC2hC1wN1 : 139.6700106 (0.03)%
+  GbtC2hC1wN1_QqGttN4hN2zN1 : 139.6700106 (0.03)%
+      QqGbbN2zN1_QqGbtC2wN1 : 139.4309549 (0.03)%
+             GqqN2hN1_GttN1 : 139.0679283 (0.03)%
+     GbtC1wN1_QqGttN3zN2zN1 : 137.9743353 (0.03)%
+     GttN3zN2zN1_QqGbtC1wN1 : 137.9743353 (0.03)%
+   QqGbtC1wN1_QqGttN4hN2zN1 : 137.1701844 (0.03)%
+                   C1wN1_N1 : 137.1412772 (0.03)%
+  GttN4hN2zN1_QqGbtC2zC1wN1 : 137.0785860 (0.03)%
+  GbtC2zC1wN1_QqGttN4hN2zN1 : 137.0785860 (0.03)%
+         QqGbtC2wN1_QqGqqN1 : 134.9250700 (0.03)%
+   QqGbbN2zN1_QqGttN4wC1wN1 : 134.2933996 (0.03)%
+          T1bC1wN1_T1bC1wN1 : 132.6715169 (0.02)%
+          GbtC2wN1_GbtC2wN1 : 132.5659660 (0.02)%
+  GttN4hN2zN1_QqGbtC2wN2zN1 : 132.3058793 (0.02)%
+  GbtC2wN2zN1_QqGttN4hN2zN1 : 132.3058793 (0.02)%
+             GttN1_GttN4zN1 : 132.0756917 (0.02)%
+       T1bC1wN1_T1tN3zN2zN1 : 131.6390459 (0.02)%
+          C2hC1wN1_C2hC1wN1 : 131.2959609 (0.02)%
+           GbbN1_QqGbtC1wN1 : 131.1578326 (0.02)%
+           GbtC1wN1_QqGbbN1 : 131.1578326 (0.02)%
+      QqGqqN1_QqGttN4wC1wN1 : 129.9535412 (0.02)%
+      QqGttN3wC1wN1_QqN2zN1 : 128.9908249 (0.02)%
+             C2hC1wN1_C2wN1 : 127.3125873 (0.02)%
+          GbtC1wN1_GttN4hN1 : 127.3019732 (0.02)%
+       GqqN2zN1_GttN3zN2zN1 : 127.1781602 (0.02)%
+          C2zC1wN1_C2zC1wN1 : 126.4690528 (0.02)%
+          GbtC2wN2hN1_GttN1 : 125.9687965 (0.02)%
+             C2wN1_C2zC1wN1 : 124.9504412 (0.02)%
+          GttN1_GttN4zN2zN1 : 124.4506960 (0.02)%
+    GttN4wC1wN1_GttN4wC1wN1 : 122.9767393 (0.02)%
+        GbtC1wN1_GgN4wC1wN1 : 122.6292100 (0.02)%
+    T1bC2hC1wN1_T1tN3zN2zN1 : 121.7218038 (0.02)%
+    GbtC2hC1wN1_GttN3zN2zN1 : 121.6109149 (0.02)%
+          GqqC1wN1_GqqN2hN1 : 120.9251965 (0.02)%
+             GbbN1_GqqN2zN1 : 120.8950332 (0.02)%
+             C2wN1_C2wN2zN1 : 120.6000038 (0.02)%
+    T1bC2zC1wN1_T1tN3zN2zN1 : 119.4633886 (0.02)%
+    GbtC2zC1wN1_GttN3zN2zN1 : 119.3545571 (0.02)%
+          T1bC1wN1_T1bC2wN1 : 118.9546234 (0.02)%
+   QqGqqN2zN1_QqGttN3wC1wN1 : 118.3843953 (0.02)%
+          C2wN2zN1_C2wN2zN1 : 117.8157415 (0.02)%
+          GbbN1_GbtC2hC1wN1 : 115.6028328 (0.02)%
+           GttN1_QqGttN4hN1 : 115.3159367 (0.02)%
+           GttN4hN1_QqGttN1 : 115.3159367 (0.02)%
+    T1bC2wN2zN1_T1tN3zN2zN1 : 115.3039956 (0.02)%
+    GbtC2wN2zN1_GttN3zN2zN1 : 115.1989533 (0.02)%
+          GqqC1wN1_GttN4zN1 : 114.8451636 (0.02)%
+             GttN1_GttN3zN1 : 114.3086303 (0.02)%
+       T1bC1wN1_T1tN4wC1wN1 : 114.2419263 (0.02)%
+          GbbN1_GbtC2zC1wN1 : 113.4579485 (0.02)%
+    T1bC2hC1wN1_T1bC2hC1wN1 : 113.4344585 (0.02)%
+QqGbtC2hC1wN1_QqGttN3wC1wN1 : 113.2020986 (0.02)%
+             T1bC1wN1_T1tN1 : 113.1263929 (0.02)%
+          T1bC1wN1_T1tN2zN1 : 113.1054139 (0.02)%
+          GbtC2wN1_GttN2zN1 : 112.2494734 (0.02)%
+QqGbtC2zC1wN1_QqGttN3wC1wN1 : 111.1017572 (0.02)%
+         GgN4wC1wN1_QqGttN1 : 111.0831346 (0.02)%
+         GttN1_QqGgN4wC1wN1 : 111.0831346 (0.02)%
+       T1bC2hC1wN1_T1bC2wN1 : 109.9929830 (0.02)%
+       GbtC2wN2hN1_GqqC1wN1 : 109.5349708 (0.02)%
+          GbbN1_GbtC2wN2zN1 : 109.5076487 (0.02)%
+------------------------------------------------------------
+                                          SUM=90.01%
