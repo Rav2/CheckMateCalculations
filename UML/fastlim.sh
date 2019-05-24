@@ -20,7 +20,7 @@ echo "[INFO] Running Fastlim..."
 for FILE in $INDIR/$PREFIX*.slha; do
 	NAME=$(basename $FILE)
 	echo ${NAME}
-	NAME=${NAME/slha/"out"}
+	NAME=${NAME/slha/"txt"}
 	# echo $NAME
 	python3 ${FASTLIM} ${FILE} > ${OUTDIR}/${NAME}	
 done
