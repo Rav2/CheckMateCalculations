@@ -1,58 +1,43 @@
 import plot as mplt
 from itertools import chain
 
-def get_proc_inits(proc):
-	par1 = proc.split('_')[0]
-	par2 = proc.split('_')[1]
-	names = []
-	for p in (par1, par2):
-		if p[0] in ('G', 'Q', 'E'):
-			names.append(p[0])
-		elif p[0:2] in ('N1', 'N2', 'N3', 'N4', 'T1', 'T2', 'B1', 'B2', 'C1', 'C2'):
-			names.append(p[0:2])
-		elif p[0:3] == 'TAU':
-			names.append(p[0:4])
-	assert len(names)==2, 'There must be 2 names!'
-	names.sort()
-	return names
-
-def get_SM_products(proc):
-	par1 = proc.split('_')[0]
-	par2 = proc.split('_')[1]
-	prods = []
-	for p in (par1, par2):
-		for ii,char in enumerate(p):
-			if char in ('q', 'e', 'b', 't', 'g', 'z', 'h', 'w', 'n', 'm'):
-				if char=='t' and len(p)>ii+1 and p[ii+1]=='a':
-					prods.append('ta')
-				else:
-					prods.append(char)
-	prods.sort()
-	return prods
+def proc_eq(p1, p2):
+	try:
+		if sorted(p1.init_pars) == sorted(p2.init_pars) and sorted(p1.SM_pars) == sorted(p2.SM_pars):
+			return True
+		else:
+			return False
+	except Exception as e:
+		print(str(e))
+		exit(1)
 
 in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/UML/FASTLIM_OUT"
 slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
 points = mplt.main(in_path, slha_path)[0]
-procs = set(list(chain.from_iterable([p.procs for p in points])))
+procs = list(chain.from_iterable([p.procs for p in points]))
 topo = mplt.parse_topo('topologies.txt')
-topo_procs = [p[0] for p in topo]
 
-topo_tuples = []
-for tup in topo:
-	proc = tup[0]
-	names = get_proc_inits(proc)
-	sm_prods = get_SM_products(proc)
-	topo_tuples.append((names, sm_prods))
-
+# analyze processes
+for p in procs+topo:
+	p.analyze_process(None, True)
+procs = set(procs)
+topo = set(topo)
 
 new_topos = []
-for proc in procs:
-	names = get_proc_inits(proc)
-	sm_prods = get_SM_products(proc)
-	if names is not None and sm_prods is not None:
-		proc_tuple = (names, sm_prods)
-		if proc_tuple in topo_tuples and proc not in topo_procs:
-			new_topos.append(proc)
-			# print(proc, proc_tuple)
-			print(proc)
+topo_names = [p.proc for p in topo]
+for pp in procs:
+	for tt in topo:
+		if proc_eq(pp, tt) and (pp.proc not in topo_names) and ('['+pp.proc+']' not in new_topos):
+			if tt.brackets:
+				new_topos.append('['+pp.proc+']')
+			else:
+				new_topos.append(pp.proc)
+			continue
+new_topos = set(new_topos)
+
+
+print('New topologies found:')
+for nt in new_topos:
+	print(nt)
+
 
