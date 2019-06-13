@@ -91,12 +91,16 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 			title = 'Total'
 		elif cdata == 'tot_disc_':
 			title = 'Discarded_total_'
+		elif cdata == 'Higgs_mass' or cdata == 'physical_Higgs':
+			title = ''
 		else:
 			print('Wrong cdata argument for plot function, it has to be \"max\" or \"tot_allowed_\"" !')
 			exit(1)
 
 		fig, ax = plt.subplots(1)
+		cmap = cm.get_cmap('gist_rainbow_r') # Colour map (there are many others)
 		# Small differences in plots for xsection and rate
+		vmin = 10.**-1
 		if text_short == 'rate':
 			fig.set_size_inches(8, 5, forward=True)
 			if folder == '':
@@ -105,18 +109,30 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 				vmax = max(data['{}{}'.format(cdata, text_short)].tolist())
 			norm = colors.Normalize(vmin=0.,vmax=vmax)
 			unit = ''
-		else:
+		elif text_short == 'xsec':
 			vmax = max(data['{}{}'.format(cdata, text_short)].tolist())
 			norm = colors.LogNorm()
 			unit='/fb'
+		elif text_short == 'higgs':
+			text_short = ''
+			unit = r'$GeV/c^2$'
+			cmap = cm.get_cmap('tab20')
+			if text_long == 'physical_Higgs':
+				vmin = 0.0
+				vmax = 1.0
+			else:
+				vmax = 129
+				vmin = 109
+			norm = colors.Normalize(vmin=vmin, vmax=vmax)
 
 		# Create figures and plots
-		cmap = cm.get_cmap('gist_rainbow_r') # Colour map (there are many others)
 		ax.xaxis.set_label_text(r'$m_0 [GeV/c^2]$', fontsize=14)
 		ax.yaxis.set_label_text(r'$m_{1/2} [GeV/c^2]$', fontsize=14)
 		plt.title(r"{title} {text} for $\tan(\beta)$={tan}, $sgn$={sign}, $A_0$={A0}".format(title=title, sign=signval, tan=tanval, A0=A0val, text=text_long), fontsize=14, loc='left')
+
 		sc = ax.scatter(data['m0'].tolist(), data['mhalf'].tolist(), c=data['{}{}'.format(cdata, text_short)].tolist(), s=190, cmap=cmap,\
-		 edgecolor='face', marker='s', alpha=0.75, vmin=10.**-1, vmax=vmax, norm=norm)
+		 edgecolor='face', marker='s', alpha=0.75, vmin=vmin, vmax=vmax, norm=norm)
+
 		cb = plt.colorbar(sc, shrink=0.9)
 		cb.ax.set_title(text_short+unit, fontsize=10)
 		plt.xlim(limits[0], limits[1])
@@ -129,6 +145,8 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 			text = folder
 		else:
 			text = '!'+text_short
+		if group_names is not None:
+			text += '_top'
 
 		if not os.path.exists('plots/' + text):
 			os.mkdir('plots/' + text)
@@ -164,6 +182,20 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 				plt.gcf().text(0.01, 0.5, group_leg,  fontsize=10, verticalalignment='center', bbox=props)
 				fig.subplots_adjust(left=0.3, right=0.99, top=0.85, bottom=0.15)
 		else:
+			# ax.tricontour(data['m0'].tolist(), data['mhalf'].tolist(), data['physical_Higgs'], 1, linewidths=2.5, colors='crimson', linestyles='-')
+			if text_short == 'rate' or text_long == 'Higgs_mass' or text_long == 'physical_Higgs':
+				if text_short == 'rate':
+					fontsize = 10
+					toleft = 45
+					todown = 20
+				else:
+					fontsize = 7
+					toleft =65
+					todown = 10
+				for index, row in data.iterrows():
+					plt.text(row['m0']-toleft, row['mhalf']-todown, str(int((row['{}{}'.format(cdata, text_short)]))), fontsize=fontsize)
+
+
 			fig.subplots_adjust(left=0.15, right=0.99, top=0.85, bottom=0.15)
 
 		plt.savefig("plots/{text}/{title}_{stext}_{}_{}_{}.png".format( tanval, A0val, signval, title=title, text=text, stext=text_short))
@@ -171,7 +203,8 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 
 	# Select data for plotting
 	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'tot_allowed_rate', 'tot_allowed_xsec', 'maxrate', 'maxxsec', \
-	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'maxproc', 'disc_top_group', 'top_group', 'limited_to_group']
+	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'physical_Higgs', 'Higgs_mass',\
+	          'maxproc', 'disc_top_group', 'top_group', 'limited_to_group' ]
 	df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
 	gb = df.groupby(['tanB', 'sign'], sort=True)
 	groups = [gb.get_group(x) for x in gb.groups]
@@ -186,10 +219,15 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 		if not zeroA0.empty:
 			make_plot(zeroA0, tanval, '0', signval, 'rate', 'coverage', (0, 3150), cdata=cdata, folder=folder, group_names=group_name)
 			make_plot(zeroA0, tanval, '0', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
+			if not os.path.exists('plots/!higgs'):
+				make_plot(zeroA0, tanval, '0', signval, 'higgs', 'Higgs_mass', (0, 3150), cdata='Higgs_mass', folder='!higgs')
 
 		if not nonzeroA0.empty:
 			make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'rate', 'coverage', (0, 3150), cdata=cdata, folder=folder, group_names=group_name)
 			make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
+			if not os.path.exists('plots/!higgs'):
+				make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'higgs', 'Higgs_mass', (0, 3150), cdata='Higgs_mass', folder='!higgs')
+
 
 
 def main(in_path, slha_path=None):
@@ -250,7 +288,25 @@ def main(in_path, slha_path=None):
 	for p in points:
 		p.set_allowed(topos)
 		p.set_tops()
+		p.detect_physical_Higgs()
 	return points, broken_files, topos
+
+
+def groupped_to_file(points, gname):
+	allowed = []
+	discareded = []
+	for p in points:
+		allowed += p.allowed_procs
+		discareded += p.discarded_procs
+	allowed = set(allowed)
+	discarded = set(discareded)
+	with open('groups/'+gname, 'w') as f:
+		f.write('ALLOWED PROCESSES FOR {}'.format(gname))
+		for proc in allowed:
+			f.write(proc+'\n')
+		f.write('DISCARDED PROCESSES FOR {}'.format(gname))
+		for proc in discarded:
+			f.write(proc + '\n')
 
 
 if __name__ == '__main__':
@@ -275,9 +331,12 @@ if __name__ == '__main__':
 	print(groups)
 
 	print('Plotting basic plots!')
-	# plot_rate_xsec(points, group_name=tuple(groups))
-	# plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded')
-	# plot_hist(points)
+	plot_rate_xsec(points, group_name=tuple(groups))
+	plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
+	# Now plot the same but instead of top process group plot the total coverage for rate plots
+	plot_rate_xsec(points)
+	plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
+	plot_hist(points)
 
 	print('Plotting separate plots for each group')
 	for gg in groups:
@@ -285,7 +344,9 @@ if __name__ == '__main__':
 		for point in grouped:
 			point.limit_to_group(gg, topo)
 		if len(grouped) > 0:
-			print('\nPlotting for {}'.format(gg))
+			print('Dumping processes names')
+			# groupped_to_file(grouped, gg)
+			print('\nPlotting f or {}'.format(gg))
 			plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=gg)
 
 	with open('broken_files.txt', 'w') as bf:

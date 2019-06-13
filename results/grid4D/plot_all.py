@@ -111,18 +111,18 @@ for name in group_names:
 	do_plot(x, y, z, val, r, labelsG, 'G')
 
 # plot with mN1 slices
-df=pd.DataFrame(data_raw).sort_values(3)
-groups = df.groupby(3)
-group_names = df[3].unique()
-for name in group_names:
-	x = []
-	y = []
-	z = []
-	r = []
-	val = name
-	for index, row in groups.get_group(name).iterrows():
-		x.append(row[1])
-		y.append(row[2])
-		z.append(row[0])
-		r.append(row[4])
-	do_plot(x, y, z, val, r, labelsN, 'N')
+#df=pd.DataFrame(data_raw).sort_values(3)
+#groups = df.groupby(3)
+#group_names = df[3].unique()
+#for name in group_names:
+#	x = []
+#	y = []
+#	z = []
+#	r = []
+#	val = name
+#	for index, row in groups.get_group(name).iterrows():
+#		x.append(row[1])
+#		y.append(row[2])
+#		z.append(row[0])
+#		r.append(row[4])
+#	do_plot(x, y, z, val, r, labelsN, 'N')

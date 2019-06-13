@@ -23,6 +23,7 @@ for p in procs+topo:
 procs = set(procs)
 topo = set(topo)
 
+print('Looking for new topologies...')
 new_topos = []
 topo_names = [p.proc for p in topo]
 for pp in procs:

@@ -28,6 +28,8 @@ class Point:
 		self.mass_spectrum = None
 		self.name = "{m0}_{mhalf}_{tanB}_{A0}_{sign}".format(m0=self.m0, mhalf=self.mhalf, tanB=self.tanB, A0=self.A0, sign=self.sign)
 		self.limited_to_group = False
+		self.physical_Higgs = None
+		self.Higgs_mass = None
 
 	def add_data(self, proc, xsec, rate):
 		self.procs.append(Process(proc.strip(), xsec, rate, False))
@@ -115,6 +117,9 @@ class Point:
 		# if  len(self.procs) - len(self.allowed_procs) - len(self.discarded_procs) != 0:
 		# 	print('Tot no of procs: {}, allowed: {}, discarded: {}, diff: {}'.format(len(self.procs), len(self.allowed_procs), len(self.discarded_procs), \
 		#                                                                          len(self.procs) - len(self.allowed_procs) - len(self.discarded_procs)))
+		rate_sum = self.tot_allowed_rate + self.tot_disc_rate
+		# if rate_sum < 90 or rate_sum > 100:
+		# 	print('tot_allowed={}, tot_disc={}, sum={}'.format( self.tot_allowed_rate, self.tot_disc_rate, rate_sum))
 
 	def add_err(self, msg):
 		self.errors.append(msg)
@@ -151,6 +156,14 @@ class Point:
 			self.set_tops()
 		else:
 			self.top_group = 'no_data'
+
+	def detect_physical_Higgs(self):
+		assert self.mass_spectrum is not None, '[ERROR] Set the mass spectrum first!'
+		self.Higgs_mass =  self.mass_spectrum['h']
+		if self.mass_spectrum['h'] <= 128. and self.mass_spectrum['h'] >= 122.:
+			self.physical_Higgs = 1
+		else:
+			self.physical_Higgs = 0
 
 
 class Process():
