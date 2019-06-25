@@ -145,7 +145,7 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 			text = folder
 		else:
 			text = '!'+text_short
-		if group_names is not None:
+		if group_names is not None and len(group_names) > 1:
 			text += '_top'
 
 		if not os.path.exists('plots/' + text):
@@ -170,8 +170,11 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 						else:
 							if 'disc' in cdata:
 								plt.text(row['m0']-45, row['mhalf']-20, group_dict[row['disc_top_group']], fontsize=10)
+								# if row['disc_maxrate'] > 5.:
+								# 	print('{}_{}_{}_{}_{} : {}'.format(row['m0'], row['mhalf'], row['tanB'], row['A0'], row['sign'], row['disc_maxproc']))
 							else:
 								plt.text(row['m0']-45, row['mhalf']-20, group_dict[row['top_group']], fontsize=10)
+
 
 				except KeyError as e:
 					print('[WARNING] Point {}_{}_{}_{}_{} has no group set!'.format( row['m0'], row['mhalf'], row['tanB'], row['A0'], row['sign']))
@@ -182,6 +185,7 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 				plt.gcf().text(0.01, 0.5, group_leg,  fontsize=10, verticalalignment='center', bbox=props)
 				fig.subplots_adjust(left=0.3, right=0.99, top=0.85, bottom=0.15)
 		else:
+			# print on points the value of Higgs mass or the value of total coverage
 			# ax.tricontour(data['m0'].tolist(), data['mhalf'].tolist(), data['physical_Higgs'], 1, linewidths=2.5, colors='crimson', linestyles='-')
 			if text_short == 'rate' or text_long == 'Higgs_mass' or text_long == 'physical_Higgs':
 				if text_short == 'rate':
@@ -204,13 +208,16 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 	# Select data for plotting
 	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'tot_allowed_rate', 'tot_allowed_xsec', 'maxrate', 'maxxsec', \
 	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'physical_Higgs', 'Higgs_mass',\
-	          'maxproc', 'disc_top_group', 'top_group', 'limited_to_group' ]
+	          'disc_maxproc','maxproc', 'disc_top_group', 'top_group', 'limited_to_group' ]
 	df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
 	gb = df.groupby(['tanB', 'sign'], sort=True)
 	groups = [gb.get_group(x) for x in gb.groups]
 	# Iterate over four groups (2 vals of tanBeta and signMu)
+	plot_higgs = False
+	if not os.path.exists('plots/!higgs'):
+		plot_higgs = True
 	for gr in groups:
-		gr[fields[:-4]] = gr[fields[:-4]].apply(pd.to_numeric)
+		gr[fields[:-5]] = gr[fields[:-5]].apply(pd.to_numeric)
 		tanval = gr['tanB'].values[0]
 		signval = gr['sign'].values[0]
 		# Two cases for A0, it's either 0 or -mhalf
@@ -218,14 +225,14 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 		nonzeroA0 = gr[gr['A0'] != 0]
 		if not zeroA0.empty:
 			make_plot(zeroA0, tanval, '0', signval, 'rate', 'coverage', (0, 3150), cdata=cdata, folder=folder, group_names=group_name)
-			make_plot(zeroA0, tanval, '0', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
-			if not os.path.exists('plots/!higgs'):
+			# make_plot(zeroA0, tanval, '0', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
+			if plot_higgs:
 				make_plot(zeroA0, tanval, '0', signval, 'higgs', 'Higgs_mass', (0, 3150), cdata='Higgs_mass', folder='!higgs')
 
 		if not nonzeroA0.empty:
 			make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'rate', 'coverage', (0, 3150), cdata=cdata, folder=folder, group_names=group_name)
-			make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
-			if not os.path.exists('plots/!higgs'):
+			# make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
+			if plot_higgs:
 				make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'higgs', 'Higgs_mass', (0, 3150), cdata='Higgs_mass', folder='!higgs')
 
 
@@ -298,15 +305,17 @@ def groupped_to_file(points, gname):
 	for p in points:
 		allowed += p.allowed_procs
 		discareded += p.discarded_procs
-	allowed = set(allowed)
-	discarded = set(discareded)
-	with open('groups/'+gname, 'w') as f:
-		f.write('ALLOWED PROCESSES FOR {}'.format(gname))
-		for proc in allowed:
-			f.write(proc+'\n')
-		f.write('DISCARDED PROCESSES FOR {}'.format(gname))
-		for proc in discarded:
-			f.write(proc + '\n')
+
+	allowed_set = set(allowed)
+	discarded_set = set(discareded)
+
+	with open('groups/'+gname+'.txt', 'w') as f:
+		f.write('ALLOWED PROCESSES FOR {}\n'.format(gname))
+		for proc in allowed_set:
+			f.write(proc.proc+'\n')
+		f.write('DISCARDED PROCESSES FOR {}\n'.format(gname))
+		for proc in discarded_set:
+			f.write(proc.proc + '\n')
 
 
 if __name__ == '__main__':
@@ -331,23 +340,25 @@ if __name__ == '__main__':
 	print(groups)
 
 	print('Plotting basic plots!')
-	plot_rate_xsec(points, group_name=tuple(groups))
-	plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
-	# Now plot the same but instead of top process group plot the total coverage for rate plots
-	plot_rate_xsec(points)
-	plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
-	plot_hist(points)
+	# plot_rate_xsec(points, group_name=tuple(groups))
+	# plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
+	# plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded_max')
+	# # Now plot the same but instead of top process group plot the total coverage for rate plots
+	# plot_rate_xsec(points)
+	# plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
+	# plot_hist(points)
 
-	print('Plotting separate plots for each group')
+	# print('Plotting separate plots for each group')
 	for gg in groups:
 		grouped = copy.deepcopy(points)
+		# print('Dumping processes names')
+		# groupped_to_file(grouped, gg)
 		for point in grouped:
 			point.limit_to_group(gg, topo)
 		if len(grouped) > 0:
-			print('Dumping processes names')
-			# groupped_to_file(grouped, gg)
 			print('\nPlotting f or {}'.format(gg))
-			plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=gg)
+			plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=(gg,))
+			plot_rate_xsec(grouped, cdata='tot_disc_', folder=gg.replace('(', '').replace(')', ''), group_name=(gg,))
 
 	with open('broken_files.txt', 'w') as bf:
 		bf.write('\n'.join(broken_files))
