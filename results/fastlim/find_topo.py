@@ -11,8 +11,8 @@ def proc_eq(p1, p2):
 		print(str(e))
 		exit(1)
 
-in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/UML/FASTLIM_OUT"
-slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
+in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/FASTLIM_OUT"
+slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/SLHA_FIX"
 points = mplt.main(in_path, slha_path)[0]
 procs = list(chain.from_iterable([p.procs for p in points]))
 topo = mplt.parse_topo('topologies.txt')

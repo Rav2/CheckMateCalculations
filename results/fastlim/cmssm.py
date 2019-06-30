@@ -232,6 +232,8 @@ class Process():
 							self.group = 'X(X->SL)'
 						else:
 							self.group = 'X(X->other)'
+					elif self.init_pars[0] == 'G' and self.init_pars[1] == 'Q':
+						self.group = 'G(Q->other)'
 					else:
 						self.group = 'other'
 			except Exception as e:
@@ -284,15 +286,22 @@ class Process():
 		self.SUSY_pars = (susy_pars[0][1:-1], susy_pars[1][1:-1])
 		tot_no_of_SUSY_pars = len(set(susy_pars[0] + susy_pars[1]))
 		# parse brackets == check for masses
+		ew_pars = ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
+		stops = ('T1', 'T2', 'B1', 'B2')
 		if self.brackets and len(self.SUSY_pars[0]) == len(self.SUSY_pars[1]) and not omit_mass_check:
-			ew_pars =  ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
-			stops = ('T1', 'T2', 'B1', 'B2')
-
 			for p1, p2 in zip(susy_pars[0][0:-1], susy_pars[1][0:-1]):
 				m1 = masses[p1]
 				m2 = masses[p2]
 				if p1 != p2 and ((p1 in ew_pars and p2 in ew_pars) or (p1 in stops and p2 in stops)) and abs(m1-m2)/min((m1, m2)) < 0.1:
 					tot_no_of_SUSY_pars -= 1
+		# if there are NU produced, we have no chance to detect them, so we can treat as if they were not there
+		if 'NU' in susy_pars[0]+ susy_pars[1]:
+			tot_no_of_SUSY_pars -=1
+		# ISR cannot be distniguished from jets from SUSY decay -> dont count initial G->q as SUSY mass needed to be known
+		if len(br1) >= 2 and br[0:2] == 'Gq':
+			tot_no_of_SUSY_pars -=1
+		#TODO: ADD MASS CHECK FOR CHIRALINOS->N1 WITH LIGHT PARTICLES
+
 		# set topological groups
 		self.detectGroup()
 		# we discard processes that require more than 3 SUSY masses

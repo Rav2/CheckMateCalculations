@@ -1,7 +1,7 @@
 # !/bin/bash
 
 SOFTSUSY="/Users/rafalmaselek/ScienceSoft/softSUSY"
-INFILE="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/grid/gridCMSSM.dat"
+INFILE="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/grid/higgs.dat"
 OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_SOFT"
 PREFIX="cmssm"
 MODEL="sugra"
