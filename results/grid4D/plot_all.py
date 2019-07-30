@@ -30,7 +30,10 @@ def do_plot(x, y, z, val, r, labels, mode='G'):
 	colors = np.vstack((colors2, colors1))
 	mymap = cls.LinearSegmentedColormap.from_list('my_colormap', colors)
 
-
+	# print info about the number of excluded/ allowed points
+	rquant = [0 if value < 1 else 1 for value in r]
+	print("--- Details for mG={} slice ---".format(val))
+	print("No of points: {}\nAllowed: {}\nExcluded: {}".format(len(rquant), len(rquant) - sum(rquant), sum(rquant)))
 
 	# scatter plot #nipy_spectral
 	vmin, vmax = 10**-2, 100
@@ -53,28 +56,29 @@ def do_plot(x, y, z, val, r, labels, mode='G'):
 		ax.set_zlim(950,3050)
 
 	# axes labels
-	ax.set_xlabel(labels[0]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
-	ax.set_ylabel(labels[1]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
-	ax.set_zlabel(labels[2]+r'$ [\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
+	ax.set_xlabel(labels[0]+r'$\:[\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
+	ax.set_ylabel(labels[1]+r'$\:[\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
+	ax.set_zlabel(labels[2]+r'$\:[\rm GeV/c^2]$', fontsize=18, labelpad=12, fontname='Helvetica')
 
 	
 	# color bar
 	cbaxes = fig.add_axes([0.10, 0.1, 0.03, 0.8]) 
 	cb = plt.colorbar(sc, pad=0.05, shrink=0.8, cax=cbaxes, orientation='vertical', cmap=mymap)#, ticks=[10**-2, 10**-1, 1, 10, 100], boundaries=[10**-2, 1, 100])
 	# cb.ax.set_yticklabels([10**-2, 10**-1, 1, 10, 100])
+	cb.ax.set_title('r', fontsize=10)
 	cbaxes.yaxis.set_ticks_position('left')
 
 	# text box
-	textstr = labels[-1] + '={}'.format(int(val)) + r'$ [\rm GeV/c^2]$'
+	textstr = labels[-1] + '={}'.format(int(val)) + r'$\:[\rm GeV/c^2]$'
 	# these are matplotlib.patch.Patch properties
 	props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 	# place a text box in upper left in axes coords
 	ax.text2D(0.10, 0.97, textstr, transform=ax.transAxes, fontsize=14, verticalalignment='top', bbox=props, fontname='Helvetica')
 
 	if mode=='G':
-		plt.savefig("plots/G_slice/G_{}.png".format(val))
+		plt.savefig("plots/G_slice/G_{}.png".format(int(val)))
 	else:
-		plt.savefig("plots/N1_slice/N1_{}.png".format(val))
+		plt.savefig("plots/N1_slice/N1_{}.png".format(int(val)))
 	plt.close()
 
 ##################################################################
@@ -82,7 +86,7 @@ def do_plot(x, y, z, val, r, labels, mode='G'):
 plot_prefix = 'minigrid'
 infile = 'collective_results.txt'
 
-labelsG = [r'$m_Q$', r'$m_{Q_3}$', r'$m_{\chi^0_1}$', r'$m_G$']
+labelsG = [r'$m_{\widetilde{q}}$', r'$m_{\widetilde{q}_3}$', r'$m_{\widetilde{\chi^0_1}}$', r'$m_{\widetilde{g}}$']
 labels2G = ['Q', 'Q3', 'N1', 'G']
 labelsN = [r'$m_Q$', r'$m_{Q_3}$', r'$m_G$', r'$m_{\chi^0_1}$']
 labels2N = ['Q', 'Q3', 'G', 'N1']

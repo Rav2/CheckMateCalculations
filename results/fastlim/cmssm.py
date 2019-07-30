@@ -1,4 +1,46 @@
+# -*- coding: UTF-8 -*-
+
 import copy
+
+class Tree:
+	def __init__(self):
+		self.left = None
+		self.right = None
+		self.data = None
+	def getString(self):
+		if self.left is not None:
+			return self.data + ''.join(self.left)
+		else:
+			return self.data
+
+def drawFullTree(tree):
+	print('Drawing a decay tree!\n')
+	def loopBranch(tree, first_branch = False):
+		s = ''
+		counter = 0
+		current_tree = tree
+		while True:
+			s += current_tree.getString()
+			counter +=1
+			if current_tree.right is not None:
+				if first_branch:
+					s += '\n|'
+				else:
+					s+= '\n'
+				s += '\t'*counter + '└──'
+				current_tree = current_tree.right
+			else:
+				break
+		return s
+
+	s = 'pp──'
+	s += loopBranch(tree.left, True)
+	s += '\n└───'
+	s += loopBranch(tree.right)
+	print(s)
+
+
+
 
 class Point:
 	def __init__(self, m0, mhalf, tanB, A0, sign):
@@ -50,9 +92,9 @@ class Point:
 			return
 
 		if len(self.allowed_procs) == 0:
-			print('[WARNING] No allowed procs for {}_{}_{}_{}_{}'.format(self.m0, self.mhalf, self.tanB, self.A0, self.sign) + ' ; ' + \
-			'Tot no of procs: {}, allowed: {}, discarded: {}, diff: {}'.format(len(self.procs), len(self.allowed_procs), len(self.discarded_procs), \
-			                                                                   len(self.procs) - len(self.allowed_procs) - len(self.discarded_procs)))
+			#print('[WARNING] No allowed procs for {}_{}_{}_{}_{}'.format(self.m0, self.mhalf, self.tanB, self.A0, self.sign) + ' ; ' + \
+			#'Tot no of procs: {}, allowed: {}, discarded: {}, diff: {}'.format(len(self.procs), len(self.allowed_procs), len(self.discarded_procs), \
+			#																   len(self.procs) - len(self.allowed_procs) - len(self.discarded_procs)))
 			self.maxrate = 0.0
 			self.maxxsec = 0.0
 			self.maxproc = 'no_data'
@@ -164,7 +206,29 @@ class Point:
 			self.physical_Higgs = 1
 		else:
 			self.physical_Higgs = 0
-
+	def to_dict(self):
+		return {
+			'm0': self.m0,
+			'mhalf': self.mhalf,
+			'A0': self.A0,
+			'tanB': self.tanB,
+			'sign': self.sign,
+			'tot_allowed_rate': self.tot_allowed_rate,
+			'tot_allowed_xsec': self.tot_allowed_xsec,
+			'maxrate': self.maxrate,
+			'maxxsec': self.maxxsec,
+			'tot_disc_rate': self.tot_disc_rate,
+			'tot_disc_xsec': self.tot_disc_xsec,
+			'disc_maxrate': self.disc_maxrate,
+			'disc_maxxsec': self.disc_maxxsec,
+			'physical_Higgs': self.physical_Higgs,
+			'Higgs_mass': self.Higgs_mass,
+			'disc_maxproc': self.disc_maxproc,
+			'maxproc': self.maxproc,
+			'disc_top_group': self.disc_top_group,
+			'top_group': self.top_group,
+			'limited_to_group': self.limited_to_group
+		}
 
 class Process():
 	def __init__(self, proc, xsec, rate, brackets=False):
@@ -177,6 +241,7 @@ class Process():
 		self.brackets = brackets
 		self.allowed = False
 		self.group = None
+		self.decayTree = None
 
 	def detectGroup(self):
 		if self.SM_pars is None:
@@ -241,9 +306,59 @@ class Process():
 
 
 	def analyze_process(self, masses, omit_mass_check=False):
+		def SMtoTree(tree, particle):
+			if tree.left is None:
+				tree.left = []
+			tree.left.append(particle)
+			return tree
+		def SUSYtoTree(tree, particle):
+			if tree.data is None:
+				tree.data = particle
+				return tree
+			else:
+				tree.right = Tree()
+				tree.right.data = particle
+				return tree.right
+		def iterateTree(branch, particle):
+			topo = ''
+			mass_diff = masses[particle] - masses['N1']
+			treshold = 0.
+			cond = True
+			while cond:
+				if branch.data == 'N1':
+					cond = False
+				elif branch.data != particle:
+					branch = branch.right
+				elif branch.right.data == 'NU' and branch.right.right.data == 'N1':
+					topo = ''.join(sorted(branch.left + branch.right.left))
+					# print('NU case', end = ' ')
+					cond = False
+				elif branch.right.data == 'N1':
+					topo = ''.join(sorted(branch.left))
+					cond = False
+				else:
+					branch = branch.right
+
+			if topo == 'en' or topo == 'mn' or topo == 'ee' or topo == 'mm':
+				treshold = 5
+			elif topo == 'bq' or topo == 'qq' or topo == 'bb':
+				treshold = 15
+			elif topo == 'ta' or topo == 'tata':
+				treshold = 10
+			elif topo == 'n' or topo == 'nn':
+				treshold = 10**9
+
+			if mass_diff < treshold:
+				# print('iter', end = ' ')
+				return True
+			else:
+				return False
+		# print(self.proc, end = ' ')
+		# define particles in fastlim notation
 		SM1 = ('q', 'e', 'b', 't', 'g', 'z', 'h', 'w', 'n', 'm')
-		SM2 = ('ta', 'nu')
-		SM = SM1+SM2
+		SM2 = ('ta',)
+		SM3 = ('gam',)
+		SM = SM1+SM2+SM3
 		SUSY1 = ('G', 'Q', 'E', 'M')
 		SUSY2 = ('N1', 'N2', 'N3', 'N4', 'T1', 'T2', 'B1', 'B2', 'C1', 'C2', 'NU')
 		SUSY3 = ('NUT')
@@ -252,39 +367,72 @@ class Process():
 
 		br1 = self.proc.split('_')[0]
 		br2 = self.proc.split('_')[1]
+		self.decayTree = Tree()
+		self.decayTree.data = 'root'
+		self.decayTree.left = Tree()
+		self.decayTree.right = Tree()
+
 		sm_pars = []
 		susy_pars = []
+		sm_pars_split = []
 		# extract particles from the string
-		for br in (br1, br2):
+		# print('analysing', end = ' ')
+		for ind, br in enumerate((br1, br2)):
+			if ind==0:
+				current_tree = self.decayTree.left
+				# print(br1)
+			else:
+				current_tree = self.decayTree.right
+				# print(br2)
 			susys = []
+			sms = []
+			SMproducts = []
 			for ii, char in enumerate(br):
 				if ii >= len(br):
 					break
-
 				if char.isupper():
 					if len(br[ii:])>3 and br[ii:ii+4] in SUSY:
 						susys.append(br[ii:ii+4])
+						current_tree = SUSYtoTree(current_tree, susys[-1])
 						ii = ii+4
 					elif len(br[ii:])>2 and br[ii:ii+3] in SUSY:
 						susys.append(br[ii:ii+3])
+						current_tree = SUSYtoTree(current_tree, susys[-1])
 						ii = ii+3
 					elif len(br[ii:])>1 and br[ii:ii+2] in SUSY:
 						susys.append(br[ii:ii+2])
+						current_tree = SUSYtoTree(current_tree, susys[-1])
 						ii = ii+2
 					elif char in SUSY:
 						susys.append(char)
+						current_tree = SUSYtoTree(current_tree, susys[-1])
+					# flush sm particles
+					if len(SMproducts) > 0:
+						sms.append(SMproducts)
+						SMproducts = []
 				else:
-					if len(br[ii:])>1 and br[ii:ii+2] in SM:
-						sm_pars.append(br[ii:ii+2])
+					if len(br[ii:])>2 and br[ii:ii+3] in SM:
+						SMproducts.append(br[ii:ii+3])
+						current_tree = SMtoTree(current_tree, SMproducts[-1])
+						ii = ii+3
+					elif len(br[ii:])>1 and br[ii:ii+2] in SM:
+						SMproducts.append(br[ii:ii+2])
+						current_tree = SMtoTree(current_tree, SMproducts[-1])
 						ii = ii+2
 					elif char in SM:
-						sm_pars.append(char)
+						SMproducts.append(char)
+						current_tree = SMtoTree(current_tree, SMproducts[-1])
 			susy_pars.append(susys)
+			sm_pars_split.append(sms)
+		sm_pars = [particle for branch in sm_pars_split for list in branch for particle in list]
 		# write found particles to fields
 		self.init_pars = (susy_pars[0][0], susy_pars[1][0])
 		self.SM_pars = tuple(sm_pars)
+		# print('reduce', end=' ')
+		# we dont include N1 in SUSY_pars
 		self.SUSY_pars = (susy_pars[0][1:-1], susy_pars[1][1:-1])
-		tot_no_of_SUSY_pars = len(set(susy_pars[0] + susy_pars[1]))
+		# but we count N1 to the total no of sparticles
+		tot_no_of_SUSY_pars = 1+ len(set(susy_pars[0] + susy_pars[1]))
 		# parse brackets == check for masses
 		ew_pars = ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
 		stops = ('T1', 'T2', 'B1', 'B2')
@@ -294,13 +442,24 @@ class Process():
 				m2 = masses[p2]
 				if p1 != p2 and ((p1 in ew_pars and p2 in ew_pars) or (p1 in stops and p2 in stops)) and abs(m1-m2)/min((m1, m2)) < 0.1:
 					tot_no_of_SUSY_pars -= 1
+
 		# if there are NU produced, we have no chance to detect them, so we can treat as if they were not there
 		if 'NU' in susy_pars[0]+ susy_pars[1]:
 			tot_no_of_SUSY_pars -=1
+
 		# ISR cannot be distniguished from jets from SUSY decay -> dont count initial G->q as SUSY mass needed to be known
-		if len(br1) >= 2 and br[0:2] == 'Gq':
+		if (len(br1) >= 2 and br1[0:2] == 'Gq') or (len(br2) >= 2 and br2[0:2] == 'Gq'):
 			tot_no_of_SUSY_pars -=1
-		#TODO: ADD MASS CHECK FOR CHIRALINOS->N1 WITH LIGHT PARTICLES
+
+		# When a chargino decays into neutralino and produces a lepton with low momentum, this lepton will be invisble\
+		# and one can treat both particles as having the same mass effectively. Similarly for N2
+		if not omit_mass_check:
+			# print('C1 check', end = ' ')
+			if iterateTree(self.decayTree.left, 'C1') and iterateTree(self.decayTree.right, 'C1'):
+				tot_no_of_SUSY_pars -= 1
+			# print('N2 check', end=' ')
+			if iterateTree(self.decayTree.left, 'N2') and iterateTree(self.decayTree.right, 'N2'):
+				tot_no_of_SUSY_pars -= 1
 
 		# set topological groups
 		self.detectGroup()
@@ -309,3 +468,4 @@ class Process():
 			self.allowed = True
 		else:
 			self.allowed = False
+		# print('end')

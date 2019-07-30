@@ -1,4 +1,6 @@
-import xslha
+#import xslha
+
+import pyslha
 from cmssm import Process
 import copy
 
@@ -40,7 +42,11 @@ def get_name(pid):
 		ppid = -pid
 
 	if ppid == 24:
-		return 'W+'
+		return 'w'
+	elif ppid in (12,14,16):
+		return 'n'
+	elif ppid == 23:
+		return 'z'
 	elif ppid == 25:
 		return 'h'
 	elif ppid == 35:
@@ -121,13 +127,19 @@ def get_name(pid):
 
 
 def read_masses(slha_path):
-	d = xslha.read(slha_path)
+	d = pyslha.read(slha_path)
 	mb = d.blocks['MASS']
 	masses = {}
 	for par in mb.items():
 		name = get_name(int(par[0]))
 		if name is not None:
 			masses[name] = abs(par[1])
+	# add some SM masses by hand
+	masses['z'] = 91.1876
+	masses['n'] = 0.120 * 10**-9
+	masses['q'] = 1./4.*(2.3+4.8+1275+95)*10**-3
+	masses['e'] = 0.5109989461 * 10**-3
+	masses['m'] = 105.6583745 * 10**-3
 	# now deal with R,L chiralities
 	new_masses = {}
 	for par in masses.items():

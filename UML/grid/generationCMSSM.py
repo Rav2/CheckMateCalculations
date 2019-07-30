@@ -15,7 +15,7 @@ tanB = [40]
 #                 for sign in [+1, -1]:
 #                     print("{}\t{}\t{}\t{}\t{}".format(m0, mhalf, tanval, A0, sign))
 for m0 in [int(x) for x in np.linspace(400, 9000, n0)]:
-    for mhalf in [int(x) for x in np.linspace(400, 300, n12)]:
+    for mhalf in [int(x) for x in np.linspace(400, 3000, n12)]:
         for tanval in tanB:
             for A0 in [-mhalf]:#[0, -mhalf]:
                 for sign in [1]:#[+1, -1]:

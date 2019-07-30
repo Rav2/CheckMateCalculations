@@ -1,7 +1,10 @@
 #!/usr/bin/python
 
-
 import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
 import sys
 import pandas as pd
 from collections import Counter
@@ -15,6 +18,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.text import Annotation, Text
 from cmssm import Point, Process
 from utilities import *
+#matplotlib.use('Agg')
 
 def plot_bar_from_counter(counter, ax=None):
 	""""
@@ -206,18 +210,24 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 		plt.close()
 
 	# Select data for plotting
-	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'tot_allowed_rate', 'tot_allowed_xsec', 'maxrate', 'maxxsec', \
+	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'tot_allowed_rate', 'tot_allowed_xsec', 'maxrate', 'maxxsec',\
 	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'physical_Higgs', 'Higgs_mass',\
 	          'disc_maxproc','maxproc', 'disc_top_group', 'top_group', 'limited_to_group' ]
-	df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
+	df = pd.DataFrame.from_records([p.to_dict() for p in points])
+	df[fields[:-5]] = df[fields[:-5]].apply(pd.to_numeric)
+	
+#df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
+	#print(fields[:-5])
+	#df[fields[:-5]] = df.loc[:, fields[:-5]].apply(pd.to_numeric)
+	
 	gb = df.groupby(['tanB', 'sign'], sort=True)
 	groups = [gb.get_group(x) for x in gb.groups]
 	# Iterate over four groups (2 vals of tanBeta and signMu)
 	plot_higgs = False
-	if not os.path.exists('plots/!higgs'):
-		plot_higgs = True
+	# if not os.path.exists('plots/!higgs'):
+	# 	plot_higgs = True
 	for gr in groups:
-		gr[fields[:-5]] = gr[fields[:-5]].apply(pd.to_numeric)
+		#gr[fields[:-5]] = gr[fields[:-5]].apply(pd.to_numeric)
 		tanval = gr['tanB'].values[0]
 		signval = gr['sign'].values[0]
 		# Two cases for A0, it's either 0 or -mhalf
@@ -293,8 +303,11 @@ def main(in_path, slha_path=None):
 	points = [p for p in points if p.broken == False]
 	# find out contribution from processes studied by ATLAS and CMS
 	for p in points:
+		# print('Setting allowed...')
 		p.set_allowed(topos)
+		# print('Setting tops...')
 		p.set_tops()
+		# print('Checking if physical Higgs...')
 		p.detect_physical_Higgs()
 	return points, broken_files, topos
 
@@ -319,8 +332,8 @@ def groupped_to_file(points, gname):
 
 
 if __name__ == '__main__':
-	in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/FASTLIM_OUT"
-	slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/SLHA_FIX"
+	in_path = "/fastlim_results/FASTLIM_OUT"
+	slha_path = "/fastlim_results/SLHA_FIX"
 	if len(sys.argv) == 2:
 		in_path = str(sys.argv[1])
 	elif len(sys.argv) == 3:
