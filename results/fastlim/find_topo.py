@@ -22,7 +22,7 @@ def validate_topo(proc):
 		print('N1 is not LSP: {}'.format(proc.proc))
 		return False
 
-def electron2muon(topos):
+def electron2muon(topos, topo_names):
 	new_topos = []
 	for topo in topos:
 		br1 = topo.proc.split('_')[0]
@@ -50,9 +50,13 @@ def electron2muon(topos):
 					s = b1+'_'+b2
 				else:
 					s = b2 + '_' + b1
-				print(s)
+				# print(s)
 				new_topos.append(s)
-	return new_topos
+	result = []
+	for nt in new_topos:
+		if nt not in topo_names:
+			result.append(nt)
+	return result
 
 if __name__ == '__main__':
 	in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/FASTLIM_OUT"
@@ -68,7 +72,7 @@ if __name__ == '__main__':
 			cmssm.drawFullTree(p.decayTree)
 		# print('#'*40)
 
-	procs = set(procs)
+	procs = list(set(procs))
 	topo = set(topo)
 
 	print('Looking for new topologies...')
@@ -82,7 +86,7 @@ if __name__ == '__main__':
 				else:
 					new_topos.append(pp.proc)
 				continue
-	new_topos += electron2muon(topo)
+	new_topos += electron2muon(topo, topo_names)
 	new_topos = set(new_topos)
 
 

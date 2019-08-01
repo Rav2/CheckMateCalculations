@@ -18,6 +18,10 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.text import Annotation, Text
 from cmssm import Point, Process
 from utilities import *
+import itertools
+from collections import OrderedDict
+import operator
+
 #matplotlib.use('Agg')
 
 def plot_bar_from_counter(counter, ax=None):
@@ -214,6 +218,7 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'physical_Higgs', 'Higgs_mass',\
 	          'disc_maxproc','maxproc', 'disc_top_group', 'top_group', 'limited_to_group' ]
 	df = pd.DataFrame.from_records([p.to_dict() for p in points])
+	df = df[fields]
 	df[fields[:-5]] = df[fields[:-5]].apply(pd.to_numeric)
 	
 #df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
@@ -261,6 +266,7 @@ def main(in_path, slha_path=None):
 			print('[WARNING] Omitting {} because of wrong prefix!'.format(file.split('/')[-1]))
 			continue
 		with open(file, 'r') as f:
+			xs = 0.0
 			content = f.readlines()
 			name = str(file.split('/')[-1].split('.')[0])
 			name_arr = name.split('_')[1:]
@@ -274,6 +280,9 @@ def main(in_path, slha_path=None):
 						msg = str(content[ii]).strip()
 					points[-1].add_err(msg)
 					points[-1].is_broken()
+				elif "The total xsec =" in line:# [fb]
+					xs = float(line.split()[4])
+					# print(xs)
 				elif "Output upto" in line:
 					jj = 2
 					# read process table
@@ -284,6 +293,8 @@ def main(in_path, slha_path=None):
 						rate = float(res.strip().split(':')[1].strip().split()[1].strip()[1:-2])
 						points[-1].add_data(proc, xsec, rate)
 						jj += 1
+			# add infor about total SUSY cross-section
+			points[-1].SUSYxsec = xs
 			# check if point has any processes
 			if points[-1].get_proc_no() == 0:
 				broken_files.append(file)
@@ -313,27 +324,92 @@ def main(in_path, slha_path=None):
 
 
 def groupped_to_file(points, gname):
-	allowed = []
-	discareded = []
-	for p in points:
-		allowed += p.allowed_procs
-		discareded += p.discarded_procs
+	processes = [p.allowed_procs for p in points]
+	processes = list(itertools.chain.from_iterable(processes))
+	names = [p.proc for p in processes]
+	unique = sorted(set(names))
+	with open('groups/{}'.format(gname+'.txt'), 'w') as f:
+		for name in unique:
+			f.write(name + '\n')
 
-	allowed_set = set(allowed)
-	discarded_set = set(discareded)
+def get_best_procs(points):
+	def get_xs(data):
+		SUSYxsec = data['SUSYxsec'].sum()
+		allowed = {}
+		discarded = {}
+		for index, row in data.loc[:,('allowed_procs', 'discarded_procs')].iterrows():
+			for p in row['allowed_procs']:
+				if p.proc not in allowed:
+					allowed[p.proc] = p.xsec
+				else:
+					allowed[p.proc] += p.xsec
+			for p in row['discarded_procs']:
+				if p.proc not in allowed:
+					discarded[p.proc] = p.xsec
+				else:
+					discarded[p.proc] += p.xsec
+		return SUSYxsec, allowed, discarded
 
-	with open('groups/'+gname+'.txt', 'w') as f:
-		f.write('ALLOWED PROCESSES FOR {}\n'.format(gname))
-		for proc in allowed_set:
-			f.write(proc.proc+'\n')
-		f.write('DISCARDED PROCESSES FOR {}\n'.format(gname))
-		for proc in discarded_set:
-			f.write(proc.proc + '\n')
+	def to_file(SUSYxsec, allowed, discarded, path, name):
+		with open(os.path.join(path, name + '_all.txt'), 'w') as f:
+			d = OrderedDict(sorted(allowed.items(),  key=operator.itemgetter(1), reverse=True))
+			f.write('process\t\txsec [fb]\trate\n')
+			for proc, xs in d.items():
+				s = "{}\t{}\t{}%\n".format(proc, xs, round(100.*xs/SUSYxsec, 2))
+				f.write(s)
+		with open(os.path.join(path, name + '_disc.txt'), 'w') as f:
+			d = OrderedDict(sorted(discarded.items(),  key=operator.itemgetter(1), reverse=True))
+			f.write('process\t\txsec [fb]\t\txsec/xall\n')
+			for proc, xs in d.items():
+				s = "{}\t{}\t{}\n".format(proc, xs, round(100.*xs/SUSYxsec, 2))
+				f.write(s)
+
+	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'SUSYxsec', 'allowed_procs', 'discarded_procs']
+	df = pd.DataFrame.from_records([p.to_dict() for p in points])
+	df = df[fields]
+	df[fields[:6]] = df[fields[:6]].apply(pd.to_numeric)
+	gb = df.groupby(['tanB', 'sign'], sort=True)
+	groups = [gb.get_group(x) for x in gb.groups]
+	results = []
+	for gr in groups:
+		tanval = gr['tanB'].values[0]
+		signval = gr['sign'].values[0]
+		# Two cases for A0, it's either 0 or -mhalf
+		zeroA0 = gr[gr['A0'] == 0]
+		nonzeroA0 = gr[gr['A0'] != 0]
+		if not zeroA0.empty:
+			SUSYxsec, allowed, discarded = get_xs(zeroA0)
+			results.append((SUSYxsec, allowed, discarded))
+			to_file(SUSYxsec, allowed, discarded, 'proc_lists/', '{}_{}_{}'.format(tanval, '0', signval))
+		if not nonzeroA0.empty:
+			SUSYxsec, allowed, discarded = get_xs(nonzeroA0)
+			results.append((SUSYxsec, allowed, discarded))
+			to_file(SUSYxsec, allowed, discarded, 'proc_lists/', '{}_{}_{}'.format(tanval, '-mhalf', signval))
+	# now summarise results for all plains
+	totSUSYxsec = 0.0
+	totAllowed = {}
+	totDiscarded = {}
+	for plane in results:
+		totSUSYxsec += plane[0]
+		for proc, xs in plane[1].items():
+			if proc not in totAllowed:
+				totAllowed[proc] = xs
+			else:
+				totAllowed[proc] += xs
+		for proc, xs in plane[2].items():
+			if proc not in totDiscarded:
+				totDiscarded[proc] = xs
+			else:
+				totDiscarded[proc] += xs
+	to_file(totSUSYxsec, totAllowed, totDiscarded, 'proc_lists/', 'total')
+
+
+
 
 
 if __name__ == '__main__':
-	in_path = "/fastlim_results/FASTLIM_OUT"
-	slha_path = "/fastlim_results/SLHA_FIX"
+	in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/FASTLIM_OUT_TEST"
+	slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/SLHA_FIX"
 	if len(sys.argv) == 2:
 		in_path = str(sys.argv[1])
 	elif len(sys.argv) == 3:
@@ -342,33 +418,39 @@ if __name__ == '__main__':
 
 	points, broken_files, topo = main(in_path, slha_path)
 
-	print('Detecting groups!')
-	groups = []
-	for point in points:
-		for proc in point.procs:
-			if proc.group is not None:
-				groups.append(proc.group)
-	# groups.append('no_data')
-	groups = set(groups)
-	print(groups)
+	# print('Detecting groups!')
+	# groups = []
+	# for point in points:
+	# 	for proc in point.procs:
+	# 		if proc.group is not None:
+	# 			groups.append(proc.group)
+	# # groups.append('no_data')
+	# groups = set(groups)
+	# print(groups)
 
+	get_best_procs(points)
+
+	groups = ('G(G->X)', 'G(G->other)')
 	print('Plotting basic plots!')
-	plot_rate_xsec(points, group_name=tuple(groups))
-	plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
+	# plot_rate_xsec(points, group_name=tuple(groups))
+	# plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
 	plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded_max')
 	# # Now plot the same but instead of top process group plot the total coverage for rate plots
-	plot_rate_xsec(points)
-	plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
+	# plot_rate_xsec(points)
+	# plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
 	plot_hist(points)
 
 	# print('Plotting separate plots for each group')
+
 	for gg in groups:
 		grouped = copy.deepcopy(points)
-		# print('Dumping processes names')
-		# groupped_to_file(grouped, gg)
+
 		for point in grouped:
 			point.limit_to_group(gg, topo)
+
 		if len(grouped) > 0:
+			print('Dumping processes names')
+			groupped_to_file(grouped, gg)
 			print('\nPlotting f or {}'.format(gg))
 			plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=(gg,))
 			plot_rate_xsec(grouped, cdata='tot_disc_', folder=gg.replace('(', '').replace(')', ''), group_name=(gg,))

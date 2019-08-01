@@ -72,6 +72,7 @@ class Point:
 		self.limited_to_group = False
 		self.physical_Higgs = None
 		self.Higgs_mass = None
+		self.SUSYxsec = 0.0
 
 	def add_data(self, proc, xsec, rate):
 		self.procs.append(Process(proc.strip(), xsec, rate, False))
@@ -217,6 +218,9 @@ class Point:
 			'tot_allowed_xsec': self.tot_allowed_xsec,
 			'maxrate': self.maxrate,
 			'maxxsec': self.maxxsec,
+			'SUSYxsec': self.SUSYxsec,
+			'allowed_procs': self.allowed_procs,
+			'discarded_procs': self.discarded_procs,
 			'tot_disc_rate': self.tot_disc_rate,
 			'tot_disc_xsec': self.tot_disc_xsec,
 			'disc_maxrate': self.disc_maxrate,
@@ -227,7 +231,8 @@ class Point:
 			'maxproc': self.maxproc,
 			'disc_top_group': self.disc_top_group,
 			'top_group': self.top_group,
-			'limited_to_group': self.limited_to_group
+			'limited_to_group': self.limited_to_group,
+
 		}
 
 class Process():
@@ -277,8 +282,10 @@ class Process():
 						else:
 							self.group = 'SL(SL->other)'
 					elif self.init_pars[0][0] in ('C', 'N'):
-						if len(self.SUSY_pars[0] + self.SUSY_pars[1]) == 0:
-							self.group = 'X(X->N1)'
+						if len(self.SUSY_pars[0] + self.SUSY_pars[1]) == 0 and self.init_pars[0][0] == 'C':
+							self.group = 'C(C->N1)'
+						elif len(self.SUSY_pars[0] + self.SUSY_pars[1]) == 0 and self.init_pars[0][0] == 'N':
+							self.group = 'N(N->N1)'
 						elif len(self.SUSY_pars[0]) == len(self.SUSY_pars[1]) and len(self.SUSY_pars[1]) == 1 and \
 										self.SUSY_pars[0][0] in ('E', 'M', 'TAU1', 'TAU2', 'NU', 'NUT') and \
 										self.SUSY_pars[1][0] in ('E', 'M', 'TAU1', 'TAU2', 'NU', 'NUT'):
@@ -290,7 +297,7 @@ class Process():
 				else:
 					if self.init_pars[0][0] in ('C', 'N') and self.init_pars[1][0] in ('C', 'N'):
 						if len(self.SUSY_pars[0] + self.SUSY_pars[1]) == 0:
-							self.group = 'X(X->N1)'
+							self.group = 'C(N->N1)'
 						elif len(self.SUSY_pars[0]) == len(self.SUSY_pars[1]) and len(self.SUSY_pars[1]) == 1 and \
 										self.SUSY_pars[0][0] in ('E', 'M', 'TAU1', 'TAU2', 'NU', 'NUT') and \
 										self.SUSY_pars[1][0] in ('E', 'M', 'TAU1', 'TAU2', 'NU', 'NUT'):
@@ -321,6 +328,8 @@ class Process():
 				return tree.right
 		def iterateTree(branch, particle):
 			topo = ''
+			if omit_mass_check:
+				return False
 			mass_diff = masses[particle] - masses['N1']
 			treshold = 0.
 			cond = True
@@ -364,6 +373,8 @@ class Process():
 		SUSY3 = ('NUT')
 		SUSY4 = ('TAU1', 'TAU2')
 		SUSY = SUSY1 + SUSY2 + SUSY4
+
+
 
 		br1 = self.proc.split('_')[0]
 		br2 = self.proc.split('_')[1]
@@ -432,7 +443,9 @@ class Process():
 		# we dont include N1 in SUSY_pars
 		self.SUSY_pars = (susy_pars[0][1:-1], susy_pars[1][1:-1])
 		# but we count N1 to the total no of sparticles
-		tot_no_of_SUSY_pars = 1+ len(set(susy_pars[0] + susy_pars[1]))
+		tot_no_of_SUSY_pars = len(set(susy_pars[0] + susy_pars[1]))
+		# if self.proc == 'QqC1wN1_QqC1wN1':
+		# 	print('tot = {}'.format(tot_no_of_SUSY_pars))
 		# parse brackets == check for masses
 		ew_pars = ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
 		stops = ('T1', 'T2', 'B1', 'B2')
@@ -464,8 +477,19 @@ class Process():
 		# set topological groups
 		self.detectGroup()
 		# we discard processes that require more than 3 SUSY masses
+
 		if tot_no_of_SUSY_pars < 4:
 			self.allowed = True
 		else:
 			self.allowed = False
+			# print(self.proc)
 		# print('end')
+
+		# if self.proc == 'QqC1wN1_QqC1wN1':
+		# 	print('QqC1wN1_QqC1wN1')
+		# 	print('Allowed = {}'.format(self.allowed))
+		# 	print('tot_no_of_SUSY_pars = {}'.format(tot_no_of_SUSY_pars))
+		# 	print('SUSY pars = {}'.format(self.SUSY_pars))
+		# 	print('SM pars = {}'.format(self.SM_pars))
+		# 	print('init pars = {}'.format(self.init_pars))
+		# 	print('*'*70)
