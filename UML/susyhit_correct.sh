@@ -2,6 +2,7 @@
 
 SUSYHIT="/Users/rafalmaselek/susyhit/run"
 INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_SOFT"
+#INDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA"
 OUTDIR="/Users/rafalmaselek/Projects/CheckMateCalculations/UML/SLHA_FIX"
 PREFIX=""
 

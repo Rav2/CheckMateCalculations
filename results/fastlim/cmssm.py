@@ -444,6 +444,19 @@ class Process():
 		self.SUSY_pars = (susy_pars[0][1:-1], susy_pars[1][1:-1])
 		# but we count N1 to the total no of sparticles
 		tot_no_of_SUSY_pars = len(set(susy_pars[0] + susy_pars[1]))
+
+		# set topological groups
+		#self.detectGroup()
+                # we discard processes that require more than 3 SUSY masses
+		#if tot_no_of_SUSY_pars < 4:
+		#	self.allowed = True
+		#else:
+		#	self.allowed = False
+		#return None
+
+
+
+
 		# if self.proc == 'QqC1wN1_QqC1wN1':
 		# 	print('tot = {}'.format(tot_no_of_SUSY_pars))
 		# parse brackets == check for masses
@@ -461,7 +474,8 @@ class Process():
 			tot_no_of_SUSY_pars -=1
 
 		# ISR cannot be distniguished from jets from SUSY decay -> dont count initial G->q as SUSY mass needed to be known
-		if (len(br1) >= 2 and br1[0:2] == 'Gq') or (len(br2) >= 2 and br2[0:2] == 'Gq'):
+		if ((len(br1) >= 2 and br1[0:2] == 'Gq') or (len(br2) >= 2 and br2[0:2] == 'Gq')) and \
+			(br1[0:2] not in ('Gb','Gt')) and (br2[0:2] not in ('Gb','Gt')):
 			tot_no_of_SUSY_pars -=1
 
 		# When a chargino decays into neutralino and produces a lepton with low momentum, this lepton will be invisble\

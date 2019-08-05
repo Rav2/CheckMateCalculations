@@ -408,8 +408,8 @@ def get_best_procs(points):
 
 
 if __name__ == '__main__':
-	in_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/FASTLIM_OUT_TEST"
-	slha_path = "/Users/rafalmaselek/Projects/CheckMateCalculations/results/fastlim/SLHA_FIX"
+	in_path = "/fastlim_results/FASTLIM_OUT"
+	slha_path = "/fastlim_results/SLHA_FIX"
 	if len(sys.argv) == 2:
 		in_path = str(sys.argv[1])
 	elif len(sys.argv) == 3:
@@ -418,29 +418,29 @@ if __name__ == '__main__':
 
 	points, broken_files, topo = main(in_path, slha_path)
 
-	# print('Detecting groups!')
-	# groups = []
-	# for point in points:
-	# 	for proc in point.procs:
-	# 		if proc.group is not None:
-	# 			groups.append(proc.group)
+	print('Detecting groups!')
+	groups = []
+	for point in points:
+		for proc in point.procs:
+			if proc.group is not None:
+	 			groups.append(proc.group)
 	# # groups.append('no_data')
-	# groups = set(groups)
-	# print(groups)
+	groups = set(groups)
+	print(groups)
 
 	get_best_procs(points)
 
-	groups = ('G(G->X)', 'G(G->other)')
+	#groups = ('G(G->X)', 'G(G->other)')
 	print('Plotting basic plots!')
-	# plot_rate_xsec(points, group_name=tuple(groups))
-	# plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
+	plot_rate_xsec(points, group_name=tuple(groups))
+	plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
 	plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded_max')
-	# # Now plot the same but instead of top process group plot the total coverage for rate plots
-	# plot_rate_xsec(points)
-	# plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
+	# Now plot the same but instead of top process group plot the total coverage for rate plots
+	plot_rate_xsec(points)
+	plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
 	plot_hist(points)
 
-	# print('Plotting separate plots for each group')
+	print('Plotting separate plots for each group')
 
 	for gg in groups:
 		grouped = copy.deepcopy(points)

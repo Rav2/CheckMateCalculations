@@ -1,7 +1,7 @@
 # !/bin/bash
 
 PREFIX="cmssm"
-INPUT="./grid/higgs.dat"
+INPUT="./grid/gridCMSSM.dat"
 WRITE_SLHA="./write_slhaCMSSM.py"
 RESULT_PATH="./SLHA"
 
