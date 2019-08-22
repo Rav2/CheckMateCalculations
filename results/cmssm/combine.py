@@ -38,6 +38,7 @@ from sklearn.metrics import mean_squared_error
 from scipy.interpolate import *
 from sklearn.svm import SVR, SVC
 from scipy.interpolate import interpn, RegularGridInterpolator
+from scipy.optimize import curve_fit
 import pyslha
 import math as m
 from scipy.stats import norm
@@ -347,7 +348,7 @@ def plotR(cMSSMdata, model, scaler, maxr, slha_folder, save=False, sigma=0):
 	fig, ax = plt.subplots()
 	maxr = max((max(rPredicted), max(rCMSSM)))
 	minr = min(min(rPredicted), min(rCMSSM))
-	xx = np.linspace(0, maxr*5)
+	xx = np.linspace(10**-20, maxr*3, 20000)
 	plt.xlim(10**-1, maxr *3)
 	plt.ylim(10**-1, maxr *3)
 	ax.plot(xx, xx, linestyle='--', color='black')
@@ -361,15 +362,30 @@ def plotR(cMSSMdata, model, scaler, maxr, slha_folder, save=False, sigma=0):
 		ax.plot(xx, yyDown, linestyle='dashdot', color='black')
 		ax.plot(xx, yyUp2, linestyle='dotted', color='black')
 		ax.plot(xx, yyDown2, linestyle='dotted', color='black')
-		ax.fill_between(xx, yyUp, yyDown, color='blue', alpha=0.3)
+		ax.fill_between(xx, yyUp, yyDown, color='blue', alpha=0.25)
 		ax.fill_between(xx, yyUp2, yyDown2, color='blue', alpha=0.15)
 
 	sc1 = ax.scatter(both_excluded_cmssm, both_excluded_pred, marker='s', c='red', alpha=0.85, edgecolors='black', linewidths='1')
 	sc2 = ax.scatter(mixed_cmssm, mixed_pred, marker='^', c='yellow', alpha=0.85, edgecolors='black', linewidths='1')
 	sc3 = ax.scatter(both_allowed_cmssm, both_allowed_pred, marker='o', c='green', alpha=0.85, edgecolors='black', linewidths='1')
-	plt.legend((sc1, sc2, sc3), ('both excluded', 'mixed', 'both allowed'))
-	plt.xscale('log')
-	plt.yscale('log')
+
+	def f(x, A, B): # this is your 'straight line' y=f(x)
+		return A*x + B
+	
+	nrCMSSM = np.log10([r+10**-20 if r == 0 else r for r in rCMSSM])
+	nrPredicted = np.log10([r+10**-20 if r == 0 else r for r in rPredicted])
+	coefficients, pcov = curve_fit(f, nrCMSSM, nrPredicted) # your data x, y to fit
+	# coefficients = np.polyfit(nrCMSSM, nrPredicted, 1)
+	a = coefficients[0]
+	b= coefficients[1]
+	yfit = np.array([10**(a*np.log10(x) + b) for x in xx])
+	fit = ax.plot(xx, yfit, linestyle='-', color='orange')
+	print('Fitting least squares: a={}, b={}'.format(coefficients[0], coefficients[1]))
+
+	fit_line = mlines.Line2D([], [], color='orange', label='fit')
+	plt.legend((sc1, sc2, sc3, fit_line), ('both excluded', 'mixed', 'both allowed', 'fit log(y)=alog(x)+b'))
+	ax.set_xscale('log', basex=10)
+	ax.set_yscale('log', basey=10)
 	plt.title('r exclusion parameter; cMSSM vs UML prediction')
 	plt.xlabel('cMSSM')
 

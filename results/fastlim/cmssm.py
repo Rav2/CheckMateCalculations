@@ -127,19 +127,19 @@ class Point:
 			self.disc_top_group = 'no_data'
 
 
-	def set_allowed(self, topo):
+	def set_allowed(self, topo, list_of_allowed=None):
 		allowed = {}
 		# extract topologies that are allowed
 		topo_copy = copy.deepcopy(topo)
 		for proc in topo_copy:
-			proc.analyze_process(self.mass_spectrum)
+			proc.analyze_process(self.mass_spectrum, list_of_allowed=list_of_allowed)
 			if proc.allowed:
 				allowed[proc.proc] = proc.brackets
 		# get indices of processes in self.proc that should be allowed
 		indices = [ii for ii, proc in enumerate(self.procs) if proc.proc in allowed.keys()]
 		for ii in indices:
 			self.procs[ii].brackets = allowed[self.procs[ii].proc]
-			self.procs[ii].analyze_process(self.mass_spectrum)
+			self.procs[ii].analyze_process(self.mass_spectrum, list_of_allowed=list_of_allowed)
 			if self.procs[ii].allowed:
 				self.allowed_procs.append(self.procs[ii])
 			else:
@@ -152,7 +152,7 @@ class Point:
 		for ii in indices:
 			# it doesnt need to be False, but as long as they are discarded, it doesnt matter but something needs to be set
 			self.procs[ii].brackets = False
-			self.procs[ii].analyze_process(self.mass_spectrum)
+			self.procs[ii].analyze_process(self.mass_spectrum, list_of_allowed=list_of_allowed)
 			self.discarded_procs.append(self.procs[ii])
 		# self.allowed_procs[-1].analyze_process(self.mass_spectrum)
 		self.tot_disc_xsec = sum([a.xsec for a in self.discarded_procs])
@@ -173,7 +173,7 @@ class Point:
 	def is_broken(self):
 		self.broken = True
 
-	def limit_to_group(self, group, topo):
+	def limit_to_group(self, group, topo, list_of_allowed=None):
 		self.limited_to_group = True
 		self.allowed_procs = []
 		self.discarded_procs = []
@@ -195,7 +195,7 @@ class Point:
 		processes = [p for p in self.procs if p.group == group]
 		self.procs = processes
 		if len(self.procs) > 0:
-			self.set_allowed(topo)
+			self.set_allowed(topo, list_of_allowed)
 			self.set_tops()
 		else:
 			self.top_group = 'no_data'
@@ -305,14 +305,14 @@ class Process():
 						else:
 							self.group = 'X(X->other)'
 					elif self.init_pars[0] == 'G' and self.init_pars[1] == 'Q':
-						self.group = 'G(Q->other)'
+						self.group = 'G(Q->any)'
 					else:
 						self.group = 'other'
 			except Exception as e:
 				print(e)
 
 
-	def analyze_process(self, masses, omit_mass_check=False):
+	def analyze_process(self, masses, omit_mass_check=False, list_of_allowed = None):
 		def SMtoTree(tree, particle):
 			if tree.left is None:
 				tree.left = []
@@ -446,64 +446,49 @@ class Process():
 		tot_no_of_SUSY_pars = len(set(susy_pars[0] + susy_pars[1]))
 
 		# set topological groups
-		#self.detectGroup()
-                # we discard processes that require more than 3 SUSY masses
-		#if tot_no_of_SUSY_pars < 4:
-		#	self.allowed = True
-		#else:
-		#	self.allowed = False
-		#return None
+		self.detectGroup()
 
+		# we want to force some processes to be allowed
+		if list_of_allowed is not None and len(list_of_allowed)>0 and self.proc in list_of_allowed:
+			self.allowed = True
+			pass
+		else:
+			# self.allowed = False
+			# return None
 
+			# parse brackets == check for masses
+			ew_pars = ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
+			stops = ('T1', 'T2', 'B1', 'B2')
+			if self.brackets and len(self.SUSY_pars[0]) == len(self.SUSY_pars[1]) and not omit_mass_check:
+				for p1, p2 in zip(susy_pars[0][0:-1], susy_pars[1][0:-1]):
+					m1 = masses[p1]
+					m2 = masses[p2]
+					if p1 != p2 and ((p1 in ew_pars and p2 in ew_pars) or (p1 in stops and p2 in stops)) and abs(m1-m2)/min((m1, m2)) < 0.1:
+						tot_no_of_SUSY_pars -= 1
 
+			# if there are NU produced, we have no chance to detect them, so we can treat as if they were not there
+			if 'NU' in susy_pars[0]+ susy_pars[1]:
+				tot_no_of_SUSY_pars -=1
 
-		# if self.proc == 'QqC1wN1_QqC1wN1':
-		# 	print('tot = {}'.format(tot_no_of_SUSY_pars))
-		# parse brackets == check for masses
-		ew_pars = ('C1', 'C2', 'N1', 'N2', 'N3', 'N4')
-		stops = ('T1', 'T2', 'B1', 'B2')
-		if self.brackets and len(self.SUSY_pars[0]) == len(self.SUSY_pars[1]) and not omit_mass_check:
-			for p1, p2 in zip(susy_pars[0][0:-1], susy_pars[1][0:-1]):
-				m1 = masses[p1]
-				m2 = masses[p2]
-				if p1 != p2 and ((p1 in ew_pars and p2 in ew_pars) or (p1 in stops and p2 in stops)) and abs(m1-m2)/min((m1, m2)) < 0.1:
+			# ISR cannot be distinguished from jets from SUSY decay -> dont count initial G->q as SUSY mass needed to be known
+			if ((len(br1) >= 2 and br1[0:2] == 'Gq') or (len(br2) >= 2 and br2[0:2] == 'Gq')) and \
+				(br1[0:2] not in ('Gb','Gt')) and (br2[0:2] not in ('Gb','Gt')):
+				tot_no_of_SUSY_pars -=1
+
+			# When a chargino decays into neutralino and produces a lepton with low momentum, this lepton will be invisble\
+			# and one can treat both particles as having the same mass effectively. Similarly for N2
+			if not omit_mass_check:
+				# print('C1 check', end = ' ')
+				if iterateTree(self.decayTree.left, 'C1') and iterateTree(self.decayTree.right, 'C1'):
+					tot_no_of_SUSY_pars -= 1
+				# print('N2 check', end=' ')
+				if iterateTree(self.decayTree.left, 'N2') and iterateTree(self.decayTree.right, 'N2'):
 					tot_no_of_SUSY_pars -= 1
 
-		# if there are NU produced, we have no chance to detect them, so we can treat as if they were not there
-		if 'NU' in susy_pars[0]+ susy_pars[1]:
-			tot_no_of_SUSY_pars -=1
 
-		# ISR cannot be distniguished from jets from SUSY decay -> dont count initial G->q as SUSY mass needed to be known
-		if ((len(br1) >= 2 and br1[0:2] == 'Gq') or (len(br2) >= 2 and br2[0:2] == 'Gq')) and \
-			(br1[0:2] not in ('Gb','Gt')) and (br2[0:2] not in ('Gb','Gt')):
-			tot_no_of_SUSY_pars -=1
+			# we discard processes that require more than 3 SUSY masses
+			if tot_no_of_SUSY_pars < 4:
+				self.allowed = True
+			else:
+				self.allowed = False
 
-		# When a chargino decays into neutralino and produces a lepton with low momentum, this lepton will be invisble\
-		# and one can treat both particles as having the same mass effectively. Similarly for N2
-		if not omit_mass_check:
-			# print('C1 check', end = ' ')
-			if iterateTree(self.decayTree.left, 'C1') and iterateTree(self.decayTree.right, 'C1'):
-				tot_no_of_SUSY_pars -= 1
-			# print('N2 check', end=' ')
-			if iterateTree(self.decayTree.left, 'N2') and iterateTree(self.decayTree.right, 'N2'):
-				tot_no_of_SUSY_pars -= 1
-
-		# set topological groups
-		self.detectGroup()
-		# we discard processes that require more than 3 SUSY masses
-
-		if tot_no_of_SUSY_pars < 4:
-			self.allowed = True
-		else:
-			self.allowed = False
-			# print(self.proc)
-		# print('end')
-
-		# if self.proc == 'QqC1wN1_QqC1wN1':
-		# 	print('QqC1wN1_QqC1wN1')
-		# 	print('Allowed = {}'.format(self.allowed))
-		# 	print('tot_no_of_SUSY_pars = {}'.format(tot_no_of_SUSY_pars))
-		# 	print('SUSY pars = {}'.format(self.SUSY_pars))
-		# 	print('SM pars = {}'.format(self.SM_pars))
-		# 	print('init pars = {}'.format(self.init_pars))
-		# 	print('*'*70)

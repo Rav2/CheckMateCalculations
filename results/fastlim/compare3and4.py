@@ -1,8 +1,8 @@
 import numpy as np 
 from collections import OrderedDict
 
-path3 = '../3masses/proc_lists/total_all.txt'
-path4 = '../4masses/proc_lists/total_all.txt'
+path3 = '3masses/proc_lists/total_all.txt'
+path4 = '4masses/proc_lists/total_all.txt'
 
 data3 = np.loadtxt(path3, dtype=str, skiprows=1)
 data4 = np.loadtxt(path4, dtype=str, skiprows=1)

@@ -132,7 +132,11 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 				vmax = 129
 				vmin = 109
 			norm = colors.Normalize(vmin=vmin, vmax=vmax)
-
+		##
+		##
+		vmin = 0.0
+		vmax = max(data['{}{}'.format(cdata, text_short)].tolist())
+		norm = colors.Normalize(vmin=vmin, vmax=vmax)
 		# Create figures and plots
 		ax.xaxis.set_label_text(r'$m_0 [GeV/c^2]$', fontsize=14)
 		ax.yaxis.set_label_text(r'$m_{1/2} [GeV/c^2]$', fontsize=14)
@@ -148,6 +152,27 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 
 		if '$' in A0val:
 			A0val = '-mhalf'
+
+		# drawing exclusion contour
+		file = 'DATA/cmssm.txt'
+		excl_data = np.loadtxt(file, skiprows=2, usecols = (0,1,2,3,4,5))
+		xar = []
+		yar = []
+		zar = []
+		for point in excl_data:
+			if point[3] == 0:
+				excl_A0 = '0'
+			else:
+				excl_A0 = '-mhalf'
+			if int(point[2]) == int(tanval) and excl_A0==A0val and int(point[4])==int(signval):
+				xar.append(int(point[0]))
+				yar.append(int(point[1]))
+				if point[5] < 1:
+					zar.append(0)
+				else:
+					zar.append(1)
+		cont = ax.tricontour(xar, yar, zar, linewidths=2.5, colors='grey', linestyles='--', levels=[0.49,0.5,0.51])
+
 
 		if folder is not None and folder != '':
 			text = folder
@@ -212,7 +237,7 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 
 		plt.savefig("plots/{text}/{title}_{stext}_{}_{}_{}.png".format( tanval, A0val, signval, title=title, text=text, stext=text_short))
 		plt.close()
-
+################################################################################################################################
 	# Select data for plotting
 	fields = ['m0', 'mhalf', 'A0', 'tanB', 'sign', 'tot_allowed_rate', 'tot_allowed_xsec', 'maxrate', 'maxxsec',\
 	          'tot_disc_rate', 'tot_disc_xsec', 'disc_maxrate', 'disc_maxxsec', 'physical_Higgs', 'Higgs_mass',\
@@ -221,7 +246,7 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 	df = df[fields]
 	df[fields[:-5]] = df[fields[:-5]].apply(pd.to_numeric)
 	
-#df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
+	#df = pd.DataFrame([{fn: getattr(f, fn) for fn in fields} for f in points])
 	#print(fields[:-5])
 	#df[fields[:-5]] = df.loc[:, fields[:-5]].apply(pd.to_numeric)
 	
@@ -249,10 +274,10 @@ def plot_rate_xsec(points, cdata='tot_allowed_', folder='', group_name = None):
 			# make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'xsec', 'cross-section', (0, 3150), cdata=cdata, folder=folder)
 			if plot_higgs:
 				make_plot(nonzeroA0, tanval, r'$-m_{1/2}$', signval, 'higgs', 'Higgs_mass', (0, 3150), cdata='Higgs_mass', folder='!higgs')
+################################################################################################################################
 
 
-
-def main(in_path, slha_path=None):
+def main(in_path, slha_path, list_of_allowed=None):
 	prefix = 'cmssm'
 	files = []
 	# r=root, d=directories, f = files
@@ -313,13 +338,15 @@ def main(in_path, slha_path=None):
 	# remove broken files without the process list
 	points = [p for p in points if p.broken == False]
 	# find out contribution from processes studied by ATLAS and CMS
+	print('Analyzing points...')
 	for p in points:
 		# print('Setting allowed...')
-		p.set_allowed(topos)
+		p.set_allowed(topos, list_of_allowed=list_of_allowed)
 		# print('Setting tops...')
 		p.set_tops()
 		# print('Checking if physical Higgs...')
 		p.detect_physical_Higgs()
+	print('Analyzing done!')
 	return points, broken_files, topos
 
 
@@ -404,19 +431,34 @@ def get_best_procs(points):
 	to_file(totSUSYxsec, totAllowed, totDiscarded, 'proc_lists/', 'total')
 
 
+def get_proposed(proposed_path):
+	proposed = []
+	with open(proposed_path, 'r') as file:
+		for line in file:
+			if len(line.strip()) == 0 or line[0] == '#':
+				continue
+			else:
+				proposed.append(line.strip())
+	for ii, proc in enumerate(sorted(set(proposed))):
+		print(str(ii+1)+'. '+proc)
+	return proposed
 
 
 
 if __name__ == '__main__':
-	in_path = "/fastlim_results/FASTLIM_OUT"
-	slha_path = "/fastlim_results/SLHA_FIX"
+	in_path = "DATA/FASTLIM_OUT"
+	slha_path = "DATA/SLHA_FIX"
 	if len(sys.argv) == 2:
 		in_path = str(sys.argv[1])
 	elif len(sys.argv) == 3:
 		in_path = str(sys.argv[1])
 		slha_path = str(sys.argv[1])
 
-	points, broken_files, topo = main(in_path, slha_path)
+	# adding processes that could improve the analyses:
+	list_proposed = get_proposed('proposed.txt')
+
+	points, broken_files, topo = main(in_path, slha_path, list_of_allowed=list_proposed)
+
 
 	print('Detecting groups!')
 	groups = []
@@ -427,36 +469,36 @@ if __name__ == '__main__':
 	# # groups.append('no_data')
 	groups = set(groups)
 	print(groups)
-
 	get_best_procs(points)
 
 	#groups = ('G(G->X)', 'G(G->other)')
 	print('Plotting basic plots!')
-	plot_rate_xsec(points, group_name=tuple(groups))
-	plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
-	plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded_max')
+	# plot_rate_xsec(points, group_name=tuple(groups))
+	# plot_rate_xsec(points, cdata='tot_disc_', group_name=tuple(groups), folder='!discarded')
+	# plot_rate_xsec(points, cdata='disc_max', group_name=tuple(groups), folder='!discarded_max')
+
 	# Now plot the same but instead of top process group plot the total coverage for rate plots
 	plot_rate_xsec(points)
-	plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
-	plot_hist(points)
+	# plot_rate_xsec(points, cdata='tot_disc_', folder='!discarded')
+	# plot_hist(points)
 
-	print('Plotting separate plots for each group')
-
-	for gg in groups:
-		grouped = copy.deepcopy(points)
-
-		for point in grouped:
-			point.limit_to_group(gg, topo)
-
-		if len(grouped) > 0:
-			print('Dumping processes names')
-			groupped_to_file(grouped, gg)
-			print('\nPlotting f or {}'.format(gg))
-			plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=(gg,))
-			plot_rate_xsec(grouped, cdata='tot_disc_', folder=gg.replace('(', '').replace(')', ''), group_name=(gg,))
-
-	with open('broken_files.txt', 'w') as bf:
-		bf.write('\n'.join(broken_files))
+	# print('Plotting separate plots for each group')
+	#
+	# for gg in groups:
+	# 	grouped = copy.deepcopy(points)
+	#
+	# 	for point in grouped:
+	# 		point.limit_to_group(gg, topo)
+	#
+	# 	if len(grouped) > 0:
+	# 		print('Dumping processes names')
+	# 		groupped_to_file(grouped, gg)
+	# 		print('\nPlotting f or {}'.format(gg))
+	# 		plot_rate_xsec(grouped, folder=gg.replace('(','').replace(')',''), group_name=(gg,))
+	# 		plot_rate_xsec(grouped, cdata='tot_disc_', folder=gg.replace('(', '').replace(')', ''), group_name=(gg,))
+	#
+	# with open('broken_files.txt', 'w') as bf:
+	# 	bf.write('\n'.join(broken_files))
 
 
 
