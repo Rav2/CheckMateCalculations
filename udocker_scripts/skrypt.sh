@@ -14,5 +14,6 @@
 		-v /home/2/rm394969/EWKfast_LO:/EWKfast_LO \
 		-v /home/2/rm394969/NLLFast:/NLLFast \
 		-v /home/2/rm394969/SYS_SCRIPT:/SYS_SCRIPT \
+		-v /home/2/rm394969/fastlim_results:/fastlim_results \
 		 LHCrecasting /bin/bash -rcfile /SYS_SCRIPT/on_start.sh 
 
